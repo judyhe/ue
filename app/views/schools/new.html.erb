@@ -1,0 +1,35 @@
+<h1>School</h1>
+
+<% form_for(@school, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+	
+	<ul>
+		<li><%= f.label :name %></li>
+		<li><%= f.text_field :name %></li>
+		<li><%= f.label :address1, "Address" %></li>
+		<li><%= f.text_field :address1 %></li>
+		<li><%= f.label :address2, "Address 2" %></li>
+		<li><%= f.text_field :address2 %></li>
+		<li><%= f.label :city %></li>
+		<li><%= f.text_field :city %></li>		
+		<li><%= f.label :neighborhood_id %></li>
+		<li><%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :name %></li>		
+
+		<li><%= f.label :county_id %></li>
+		<li><%= f.collection_select :county_id, County.all, :id, :name %></li>		
+		
+		<li><%= f.label :state_id %></li>
+		<li><%= f.collection_select :state_id, State.all, :id, :name %></li>	
+			
+		<li><%= f.label :zip %></li>
+		<li><%= f.text_field :zip %></li>		
+		
+		<li><%= f.label :avatar, "Photo" %></li>
+		<li><%= f.file_field :avatar %></li>
+	</ul>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', schools_path %>

@@ -1,0 +1,14 @@
+<h1><%= @school.name %></h1>
+<p><%= image_tag(@school.avatar.url(:middle)) %></p>
+<address>
+	<%= @school.address1 + " " + @school.address2 %><br />
+	<%= @school.city + ", " + @school.state.abbr + " " + @school.zip %><br />
+	<%= @school.neighborhood.name + ", " + @school.county.name %>
+</address>
+
+
+<h2>Students</h2>
+<%= render :partial => "students/student_list", :locals => {:students => @school.students, :school => false} %>
+
+<p>Add existing student</p>
+<p><%= link_to "Add new student", new_student_url %></p>

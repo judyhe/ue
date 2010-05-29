@@ -1,0 +1,35 @@
+<h1>Listing schools</h1>
+
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+  <tr>
+		<th>Name</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+		<th>Neighborhood</th>
+		<th>County</th>
+  </tr>
+	</thead>
+	<tbody>
+	<% @schools.each do |school| %>
+	  <tr>
+			<td><%= link_to school.name, school %></td>
+			<td><%= school.address1 %> <%= school.address2 %></td>
+			<td><%= school.city %></td>
+			<td><%= school.state.abbr %></td>
+			<td><%= school.zip %></td>
+			<td><%= school.neighborhood.name %></td>
+			<td><%= school.county.name %></td>
+			<!--
+	    <td><%= link_to 'Edit', edit_school_path(school) %></td>
+	    <td><%= link_to 'Destroy', school, :confirm => 'Are you sure?', :method => :delete %></td>-->
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+
+<br />
+
+<%= link_to 'New school', new_school_path %>

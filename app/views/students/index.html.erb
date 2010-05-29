@@ -1,0 +1,5 @@
+<h1>Listing students</h1>
+
+<%= render :partial => "student_list", :locals => {:students => @students, :school => true} %>
+
+<p><%= link_to 'New student', new_student_path %></p>

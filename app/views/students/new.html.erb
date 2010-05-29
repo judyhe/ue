@@ -1,0 +1,32 @@
+<h1>New student</h1>
+
+<% form_for(@student, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+
+	<ul>
+		<li><%= f.label :first_name %></li>
+		<li><%= f.text_field :first_name %></li>
+		<li><%= f.label :last_name %></li>
+		<li><%= f.text_field :last_name %></li>
+		<li><%= f.label :email %></li>
+		<li><%= f.text_field :email %></li>
+		<li><%= f.label :avatar, "Photo" %></li>
+		<li><%= f.file_field :avatar %></li>
+		
+		<li><%= f.label :grade_id %></li>
+		<li><%= f.collection_select :grade_id, Grade.all, :id, :name %></li>
+		
+		<li><%= f.label :school_id %></li>
+		<li><%= f.collection_select :school_id, School.all, :id, :name %></li>
+		
+		<li><%= f.label :ethnicity_id %></li>
+		<li><%= f.collection_select :ethnicity_id, Ethnicity.all, :id, :name %></li>
+	</ul>
+
+			
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', students_path %>

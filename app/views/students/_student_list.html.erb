@@ -1,0 +1,28 @@
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+	  <tr>
+			<th>&nbsp;</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Birthday</th>
+			<% if school %><th>School</th><% end %>
+			<th>Ethnicity</th>
+	  </tr>
+	</thead>
+	<tbody>
+
+	<% students.each do |student| %>
+	  <tr>
+			<td><%= image_tag @user.avatar.url(:thumb) %></td>
+			<td><%= link_to student.first_name, student %></td>
+			<td><%= student.last_name %></td>
+			<td><%= student.email %></td>
+			<td><%= student.birth_date %></td>
+			<% if school %><td><%= link_to student.school.name, school_url(student.school) %></td><% end %>
+			<td><%= student.ethnicity.name %></td>
+	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
