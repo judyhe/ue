@@ -5,14 +5,13 @@ class Student < ActiveRecord::Base
   belongs_to :school
   belongs_to :ethnicity
   belongs_to :grade
-  
-  validates_presence_of :first_name
-  validates_presence_of :last_name
-  
-=begin  
   belongs_to :county
   belongs_to :state
   belongs_to :neighborhood
-=end
+
+  has_and_belongs_to_many :activities
+  
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   
 end

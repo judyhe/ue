@@ -1,0 +1,36 @@
+<div>
+	<%= f.label :address1, "Address" %>
+	<%= f.text_field :address1 %>
+</div>
+		
+<div>
+	<%= f.label :address2, "Address (line 2)" %>
+	<%= f.text_field :address2 %>
+</div>
+
+<div class="input_set">
+	<span>
+		<%= f.label :city %>
+		<%= f.text_field :city, :size => 12 %>
+	</span>
+	<span>
+		<%= f.label :state_id %>
+		<%= f.collection_select :state_id, State.all, :id, :abbr %>
+	</span>
+	<span>
+		<%= f.label :zip %>
+		<%= f.text_field :zip, :size => 5 %>
+	</span>
+</div>
+
+<div class="input_set">
+	<span>
+		<%= f.label :county_id %>
+		<%= f.collection_select :county_id, County.all, :id, :name, {:prompt => ""} %>
+	</span>
+
+	<span>		
+		<%= f.label :neighborhood_id %>
+		<%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :name, {:prompt => ""} %>
+	</span>
+</div>

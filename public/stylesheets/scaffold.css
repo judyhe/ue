@@ -19,7 +19,6 @@ ol, ul, li {list-style: none; font-size: 1.0em; line-height: 1.8em;}
   
 h1{font-weight:normal;}
 
-
 img {display:block;}
 input, select{margin-bottom:10px;}
 
@@ -31,6 +30,7 @@ input, select{margin-bottom:10px;}
 .clearfix{*zoom:1}/* for ie */
 .clearfix:after{content: "."; display: block; height: 0; clear: both; visibility: hidden;}
 
+address{font-style:normal;line-height:1.4em;}
 
 pre {
   background-color: #eee;
@@ -44,7 +44,7 @@ pre {
 #nav_primary_wrapper{background:#33b560;padding:0 40px;}
 #nav_primary{padding-top:5px;}
 #nav_primary a{text-decoration:none;padding:5px 10px;display:inline-block;margin-right:5px;color:#fff;
-	-moz-border-radius:4px;
+	-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;
 	-webkit-border-top-left-radius:4px;-webkit-border-top-right-radius:4px;}
 #nav_primary a:hover, #nav_primary a.current{background:#fff;color:#000;}
 
@@ -53,6 +53,24 @@ pre {
 #nav_secondary a:hover{text-decoration:underline;}
 
 #container{margin:10px 40px;}
+
+/* login */
+#session_mgmt{width:400px;margin:0 auto;border: 1px solid #ddd; padding:20px;background:#efefef;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	}
+
+img.avatar{float:left;margin-right:10px;}
+h1 a{font-size:12px;}
+
+table.index{width:100%;}
+table.index td, table.index th{padding:5px;}
+table.index td{border-bottom:1px solid #eee;}
+table.index th{text-align:left;border-bottom:1px solid #dedede;}
+
+form.default label{display:block;line-height:1.6em;clear:both;}
+form.default div.input_set span{float:left; margin-right:10px;}
+form.default div.input_set{clear:both;}
 
 /* rails error stuff */
 
@@ -88,14 +106,3 @@ pre {
 }
 
 
-table.index{width:100%;}
-table.index td, table.index th{padding:5px;}
-table.index td{border-bottom:1px solid #eee;}
-table.index th{text-align:left;border-bottom:1px solid #dedede;}
-
-
-/* login */
-#session_mgmt{width:400px;margin:0 auto;border: 1px solid #ddd;padding:20px;background:#efefef;
-	-moz-border-radius:4px;
-	-webkit-border-radius:4px;
-	}

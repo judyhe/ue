@@ -3,13 +3,13 @@ class CreateSchools < ActiveRecord::Migration
     create_table :schools do |t|
       t.string :name, :null => false
 
-      t.string :address1, :null => false
-      t.string :address2, :null => false
-      t.string :city, :null => false
-      t.string :zip, :null => false, :limit => 10
+      t.string :address1
+      t.string :address2
+      t.string :city, :limit => 100
+      t.string :zip, :limit => 10
 
       t.integer :state_id, :null => false
-      t.integer :county_id, :null => false
+      t.integer :county_id
       t.integer :neighborhood_id
       
       t.string :avatar_file_name

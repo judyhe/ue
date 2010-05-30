@@ -18,8 +18,8 @@
 	
 	<div id="nav_primary_wrapper" class="clearfix">
 		<div id="nav_primary">
-			<%= link_to 'Students', students_path %>
-			<%= link_to 'Schools', schools_path %>
+			<%= link_with_highlight 'Students', :controller => "students" %>
+			<%= link_with_highlight 'Schools', :controller => "schools" %>
 			<a href="#">Organizations</a>
 			<a href="#">Programs</a>
 		</div>		
