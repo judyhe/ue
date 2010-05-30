@@ -1,0 +1,23 @@
+
+<% form_for(neighborhood, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	
+	<div class="input_set clearfix">
+		<span>
+			<%= f.label :ord, "Order" %>
+			<%= f.text_field :ord, :size => 1 %>
+		</span>
+		<span>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</span>
+	</div>
+	
+	<%= f.label :county_id %>
+	<%= f.collection_select :county_id, County.all, :id, :name, {:include_blank => true} %>
+
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>
+

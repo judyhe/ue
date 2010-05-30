@@ -1,0 +1,10 @@
+<h1><%= @ethnicities.size %> ethnicities <%= link_to 'new', new_ethnicity_path %></h1>
+
+<ul>
+	<% @ethnicities.each do |ethnicity| %>
+		<li>
+			<%= ethnicity.ord %> - <%= link_to ethnicity.name, edit_ethnicity_url(ethnicity) %>
+		</li>
+	<% end %>
+</ul>
+

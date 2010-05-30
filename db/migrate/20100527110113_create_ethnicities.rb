@@ -2,7 +2,7 @@ class CreateEthnicities < ActiveRecord::Migration
   def self.up
     create_table :ethnicities do |t|
       t.string :name, :null => false
-      t.integer :order
+      t.integer :ord
     end
   end
 

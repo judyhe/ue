@@ -1,0 +1,17 @@
+
+<% form_for(ethnicity, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	<div class="input_set clearfix">
+		<span>
+		<%= f.label :ord, "Order "%>
+		<%= f.text_field :ord, :size => 1 %>
+		</span>
+		<span>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</span>
+	</div>		
+  <p class="clear">
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

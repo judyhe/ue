@@ -1,0 +1,17 @@
+<% form_for(county, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	
+	<div class="input_set clearfix">
+		<span>
+			<%= f.label :state_id %>
+			<%= f.collection_select :state_id, State.all, :id, :abbr %>
+		</span>
+		<span>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</span>
+	</div>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

@@ -3,7 +3,7 @@ class CreateNeighborhoods < ActiveRecord::Migration
     create_table :neighborhoods do |t|
       t.string :name, :limit => 60, :null => false
       t.integer :county_id, :null => false
-      t.integer :order, :null => false
+      t.integer :ord, :null => false
     end
   end
 

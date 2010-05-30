@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :grades
+
+  map.resources :ethnicities
+
+  map.resources :neighborhoods
+
+  map.resources :states
+
+  map.resources :counties
+
   map.resources :activities
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -22,8 +32,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :schools
 
   map.resources :organizations
-
-  map.resources :users
 
   map.resources :parents
 

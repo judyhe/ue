@@ -1,0 +1,9 @@
+<h1><%= @counties.size %> counties <%= link_to 'new', new_county_path %></h1>
+
+<ul>
+<% @counties.each do |county| %>
+	<li><%= county.state.abbr %> - <%= link_to county.name, edit_county_url(county) %></li>
+<% end %>
+</ul>
+
+<p></p>

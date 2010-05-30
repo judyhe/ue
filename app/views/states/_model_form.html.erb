@@ -1,0 +1,20 @@
+
+<% form_for(state, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	
+	<div class="input_set clearfix">
+		<span>
+			<%= f.label :abbr %>
+			<%= f.text_field :abbr, :size => 2 %>
+		</span>
+		<span>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</span>
+	</div>
+	
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>
+

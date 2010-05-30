@@ -1,0 +1,46 @@
+<% user.password = user.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+<% form_for(user, :html => {:class => "default"}) do |f| -%>
+
+<%= f.label :login %>
+<%= f.text_field :login %>
+
+<%= f.label :email %>
+<%= f.text_field :email %>
+
+<div class="input_set clearfix">
+	<span>
+		<%= f.label :password %>
+		<%= f.password_field :password, :size => 13 %>
+	</span>
+	<span>
+		<%= f.label :password_confirmation, 'Confirm Password' %>
+		<%= f.password_field :password_confirmation, :size => 13 %>
+	</span>
+</div>
+
+<div class="input_set clearfix">
+	<span>
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name, :size => 13 %>
+	</span>
+	<span>
+		<%= f.label :last_name %>
+		<%= f.text_field :last_name, :size => 13 %>
+	</span>
+</div>
+
+<div class="input_set clearfix">
+	<span>
+		<%= f.label :phone %>
+		<%= f.text_field :phone, :size => 13 %>
+	</span>
+	<span>
+		<%= f.label :title %>
+		<%= f.text_field :title, :size => 20 %>
+	</span>
+</div>
+
+<p><%= submit_tag 'Submit' %></p>
+<% end -%>

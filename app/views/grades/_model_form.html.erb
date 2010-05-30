@@ -1,0 +1,10 @@
+<% form_for(grade, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

@@ -11,7 +11,7 @@
 	<div id="header">
 		<a href="/" id="branding">Urban Enrichment nyc</a>
 		<div id="nav_secondary">
-			  <%= link_to_current_user :content_method => :login %> 
+				<%= link_to current_user.login, edit_user_url(current_user)%>
 			  <%=link_to "log out", logout_path, { :title => "Log out" } %>
 		</div>
 	</div>

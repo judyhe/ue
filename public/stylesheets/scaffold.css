@@ -70,7 +70,6 @@ table.index th{text-align:left;border-bottom:1px solid #dedede;}
 
 form.default label{display:block;line-height:1.6em;clear:both;}
 form.default div.input_set span{float:left; margin-right:10px;}
-form.default div.input_set{clear:both;}
 
 /* rails error stuff */
 
