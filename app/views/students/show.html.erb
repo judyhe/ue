@@ -1,3 +1,5 @@
+<div class="clearfix">
+	<%= image_tag(@student.avatar.url(:medium), :class => "avatar") %>
+	<h1><%= @student.name %> <%= link_to 'Edit', edit_student_path(@student) %></h1>
+</div>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>

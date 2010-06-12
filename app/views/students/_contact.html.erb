@@ -1,0 +1,18 @@
+<% field_set_tag "Contact" do %>	
+<div>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+</div>
+
+<div class="input_set clearfix">
+	<%= f.label :home_phone, "Phone" %>
+	<span class="half">
+		<%= f.text_field :home_phone %>
+		<%= f.label :home_phone, "Home" %>
+	</span>		
+	<span class="half">
+		<%= f.text_field :cell_phone %>
+		<%= f.label :cell_phone, "Cell" %>
+	</span>
+</div>
+<% end %>

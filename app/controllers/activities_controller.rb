@@ -2,22 +2,11 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.xml
   def index
-    @activities = Activity.all
+    @activities = Activity.top_level_activities
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @activities }
-    end
-  end
-
-  # GET /activities/1
-  # GET /activities/1.xml
-  def show
-    @activity = Activity.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @activity }
     end
   end
 
@@ -45,7 +34,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       if @activity.save
         flash[:notice] = 'Activity was successfully created.'
-        format.html { redirect_to(@activity) }
+        format.html { redirect_to(activities_path) }
         format.xml  { render :xml => @activity, :status => :created, :location => @activity }
       else
         format.html { render :action => "new" }
@@ -62,7 +51,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
         flash[:notice] = 'Activity was successfully updated.'
-        format.html { redirect_to(@activity) }
+        format.html { redirect_to(activities_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

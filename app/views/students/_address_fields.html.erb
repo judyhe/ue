@@ -1,36 +1,37 @@
-<div>
-	<%= f.label :address1, "Address" %>
-	<%= f.text_field :address1 %>
-</div>
-		
-<div>
-	<%= f.label :address2, "Address (line 2)" %>
-	<%= f.text_field :address2 %>
-</div>
+<% field_set_tag "Address" do %>
+<div class="input_set clearfix">
+	<span class="full">
+		<%= f.text_field :address1 %>
+		<%= f.label :address1, "Street Address" %>
+	</span>
 
-<div class="input_set">
+	<span class="full">
+		<%= f.text_field :address2 %>
+		<%= f.label :address2, "Address (line 2)" %>
+	</span>
+
 	<span>
-		<%= f.label :city %>
 		<%= f.text_field :city, :size => 12 %>
+		<%= f.label :city %>
 	</span>
 	<span>
-		<%= f.label :state_id %>
 		<%= f.collection_select :state_id, State.all, :id, :abbr %>
+		<%= f.label :state_id %>
 	</span>
 	<span>
-		<%= f.label :zip %>
 		<%= f.text_field :zip, :size => 5 %>
+		<%= f.label :zip %>
 	</span>
-</div>
-
-<div class="input_set">
+<% if extended %>
 	<span>
-		<%= f.label :county_id %>
 		<%= f.collection_select :county_id, County.all, :id, :name, {:include_blank => true} %>
+		<%= f.label :county_id %>
 	</span>
 
 	<span>		
-		<%= f.label :neighborhood_id %>
 		<%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :name, {:include_blank => true} %>
+		<%= f.label :neighborhood_id %>
 	</span>
+<% end %>
 </div>
+<% end %>

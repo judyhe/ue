@@ -1,14 +1,14 @@
 class CreateSchools < ActiveRecord::Migration
   def self.up
     create_table :schools do |t|
-      t.string :name, :null => false
+      t.string :name, :null => false, :default => ""
 
       t.string :address1
       t.string :address2
       t.string :city, :limit => 100
       t.string :zip, :limit => 10
 
-      t.integer :state_id, :null => false
+      t.integer :state_id
       t.integer :county_id
       t.integer :neighborhood_id
       

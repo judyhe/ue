@@ -1,0 +1,18 @@
+<h1>Listing student_relations</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @student_relations.each do |student_relation| %>
+  <tr>
+    <td><%= link_to 'Show', student_relation %></td>
+    <td><%= link_to 'Edit', edit_student_relation_path(student_relation) %></td>
+    <td><%= link_to 'Destroy', student_relation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New student_relation', new_student_relation_path %>

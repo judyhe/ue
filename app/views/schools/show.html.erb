@@ -1,16 +1,37 @@
-<h1><%= @school.name %> <%= link_to 'Edit', edit_school_path(@school) %></h1>
 <%= image_tag(@school.avatar.url(:medium), :class => "avatar") %>
+<h1><%= @school.name %> <%= link_to 'Edit', edit_school_path(@school) %></h1>
 
 <address>
 	<%= @school.address1 + " " + @school.address2 %><br />
-	<%= @school.city + ", " + @school.state.abbr + " " + @school.zip %><br />
-	<%= @school.neighborhood.name + ", " + @school.county.name %>
+	<%= @school.city %>, <%= @school.state_abbr %> <%= @school.zip %><br />
+	<%= @school.neighborhood_name %>, <%= @school.county_name %>
 </address>
 
-<p>&nbsp;</p>
+<h2 class="clear"><%= @school.students_with_associations(:all).size %> Students</h2>
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+	  <tr>
+			<th>&nbsp;</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Age</th>
+			<th>Grade</th>
+			<th>Gender</th>
+	  </tr>
+	</thead>
+	<tbody>
 
-<h2 class="clear"><%= @school.students.size %> Students</h2>
-<%= render :partial => "students/student_list", :locals => {:students => @school.students, :school => false} %>
-
-<p>Add existing student</p>
-<p><%= link_to "Add new student", new_student_url %></p>
+	<% @school.students_with_associations(:all).each do |student| %>
+	  <tr>
+			<td><%= image_tag student.avatar.url(:thumb) %></td>
+			<td><%= link_to student.name, student %></td>
+			<td><%= student.email %></td>
+			<td><%= student.age %></td>
+			<td><%= associated_attribute(student.grade, :name) %></td>
+			<td><%= student.gender %></td>
+	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+<p><%= link_to "New student", new_student_url %></p>

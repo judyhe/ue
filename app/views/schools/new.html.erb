@@ -1,25 +1,5 @@
-<h1>
-	<%= form_title %>
-</h1>
+<h1>New School</h1>
 
-<% form_for(@school, :html => {:multipart => true, :class => "default"}) do |f| %>
-  <%= f.error_messages %>
-	
-	<div>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
-	</div>
-	
-	<%= render :partial => "students/address_fields", :locals => {:f => f}%>
-	
-	<div>		
-		<%= f.label :avatar, "Photo" %>
-		<%= f.file_field :avatar %>
-	</div>
-
-  <p>
-    <%= f.submit 'Submit' %>
-  </p>
-<% end %>
+<%= render :partial => "model_form", :locals => {:school => @school}%>
 
 <%= link_to 'Back', schools_path %>

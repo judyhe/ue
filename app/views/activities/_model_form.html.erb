@@ -1,0 +1,17 @@
+<% form_for(activity, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name, :class => "auto" %>
+	</p>
+	
+	<p>	
+		<%= f.label :parent_id %>
+		<%= f.collection_select :parent_id, Activity.top_level_activities, :id, :name, {:include_blank => true} %>
+	</p>	
+	
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

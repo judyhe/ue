@@ -1,18 +1,16 @@
-<h1>Listing activities</h1>
-
-<table>
-  <tr>
-  </tr>
-
+<h1>Listing activities <%= link_to 'new', new_activity_path %></h1>
+<ul class="nested">
 <% @activities.each do |activity| %>
-  <tr>
-    <td><%= link_to 'Show', activity %></td>
-    <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-    <td><%= link_to 'Destroy', activity, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<li><%= link_to activity.name, edit_activity_path(activity) %>
+	<% unless activity.children.empty? %>
+		<ul>
+		<% activity.children.each do |sub_activity| %>
+			<li><%= link_to sub_activity.name, edit_activity_path(sub_activity) %></li>
+		<% end %>
+		</ul>
+	<% end %>
+	</li>
 <% end %>
-</table>
+</ul>
 
-<br />
 
-<%= link_to 'New activity', new_activity_path %>

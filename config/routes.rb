@@ -1,4 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :organizations
+
+  map.resources :relation_types
+
+  map.resources :student_relations
+
+  map.resources :relations
+
   map.resources :grades
 
   map.resources :ethnicities
@@ -19,21 +27,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
 
-  map.resources :states
-
-  map.resources :counties
-
-  map.resources :ethnicities
-
-  map.resources :neighborhoods
-
-  map.resources :grades
-
   map.resources :schools
-
-  map.resources :organizations
-
-  map.resources :parents
 
   map.resources :students
 

@@ -8,4 +8,8 @@ module ApplicationHelper
       link_to(name, options)
     end
   end
+  
+  def associated_attribute(assoc_model, attribute)
+    assoc_model ? assoc_model[attribute] : ""
+  end
 end

@@ -1,0 +1,93 @@
+<% form_for(student, :html => {:multipart => true, :class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	<div class="clearfix">
+	<div class="p1">
+		<% field_set_tag "Basics" do %>
+		<div class="input_set clearfix">
+			<%= f.label :first_name, "Name" %>
+			<span class="half">
+				<%= f.text_field :first_name %>
+				<%= f.label :first_name, "First" %>
+			</span>
+			<span class="half">
+				<%= f.text_field :last_name	 %>
+				<%= f.label :last_name, "Last" %>
+			</span>
+		</div>
+	
+		<div>
+			<%= f.label :avatar, "Photo" %>
+			<%= f.file_field :avatar %>
+		</div>	
+	
+		<div>
+			<%= f.label :birth_date %>
+			<%= f.date_select :birth_date, :start_year => Time.now.year-12, :end_year => Time.now.year-3, :order => [:month, :day, :year] %>
+		</div>
+	
+		<div>
+				<%= f.label :school_id %>
+				<%= f.collection_select :school_id, School.all, :id, :name, {:include_blank => true} %>
+		</div>
+		<div>
+			<%= f.label :grade_id %>
+			<%= f.collection_select :grade_id, Grade.all, :id, :name, {:include_blank => true} %>
+		
+		</div>
+
+		<div class="input_set clearfix">
+			<label>Gender &amp; Ethnicity</label>
+			<span>
+				<%= f.radio_button(:gender, "M") %>
+				<%= f.label :gender_m, "M", :class => "radio" %>
+			</span>
+			<span>
+				<%= f.radio_button(:gender, "F") %>
+				<%= f.label :gender_f, "F", :class => "radio" %>
+			</span>
+			<span>
+				<%= f.collection_select :ethnicity_id, Ethnicity.all, :id, :name, {:include_blank => true} %>
+				<%= f.label :ethnicity_id %>
+			</span>
+		</div>		
+		<% end %>
+	
+		<%= render :partial => "contact", :locals => {:f => f}%>
+				
+		<%= render :partial => "address_fields", :locals => {:f => f, :extended => true}%>
+	</div>
+	
+	<div class="p2">
+		<% field_set_tag "Interests" do %>
+			<% Activity.top_level_activities.each do |activity| %>
+			<ul class="float_left clearfix">
+				<li><%= check_box_tag "student[activity_ids][]", activity.id, student.activities.include?(activity) %> <strong><%= activity.name %></strong></li>
+				<% activity.children.each do |sub_activity| %>
+					<li><%= check_box_tag "student[activity_ids][]", sub_activity.id, student.activities.include?(sub_activity) %> <%= sub_activity.name %></li>
+				<% end %>
+			</ul>
+			<% end %>
+		<% end %>
+				
+		<% field_set_tag "Family" do %>
+			<div>
+				<%= f.label :related_student_ids, "Related students" %>
+				<%= f.collection_select(:related_student_ids, Student.all_alphabetical, :id, :name, {}, :multiple => true) %>
+			</div>
+			
+			<div id="relations">
+				<label>Other Family</label>
+				<%= render :partial => 'relation', :collection => @student.student_relations %>	
+				<p><a href="#" class="add_association">Add a family member</a></p>
+			</div>
+		<% end %>
+		
+	</div>
+	</div>
+	
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= javascript_include_tag "student" %>

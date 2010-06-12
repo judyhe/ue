@@ -1,5 +1,36 @@
-<h1>Listing students</h1>
+<h1><%= @students.size %> students <%= link_to 'new', new_student_path %></h1>
 
-<%= render :partial => "student_list", :locals => {:students => @students, :school => true} %>
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+	  <tr>
+			<th>&nbsp;</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Age</th>
+			<th>Grade</th>
+			<th>Gender</th>
+			<th>Ethnicity</th>
+			<th>Interests</th>
+			<th>School</th>
+	  </tr>
+	</thead>
+	<tbody>
 
-<p><%= link_to 'New student', new_student_path %></p>
+	<% @students.each do |student| %>
+	  <tr>
+			<td><%= image_tag student.avatar.url(:thumb) %></td>
+			<td><%= link_to student.name, student %></td>
+			<td><%= student.email %></td>
+			<td><%= student.age %></td>
+			<td><%= associated_attribute(student.grade, :name) %>
+			<td><%= student.gender %></td>
+			<td><%= associated_attribute(student.ethnicity, :name) %>	
+			<td><%= student.activities_list %></td>
+			<td>
+				<% if student.school %><%= link_to student.school.name, school_url(student.school) %><% end %>
+			</td>
+	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
+	  </tr>
+	<% end %>
+	</tbody>
+</table>

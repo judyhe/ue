@@ -6,6 +6,7 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title><%= controller.controller_name %>: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'scaffold' %>
+	<%= javascript_include_tag 'jquery-1.4.2.min'%>
 </head>
 <body>
 	<div id="header">
@@ -15,23 +16,33 @@
 			  <%=link_to "log out", logout_path, { :title => "Log out" } %>
 		</div>
 	</div>
+
+	<div id="nav_primary">
+		<ul>
+			<li><%= link_with_highlight "Students", :controller => "students" %></li>
+			<li><%= link_with_highlight "Relations", :controller => "relations" %></li>
+			<li><%= link_with_highlight "Schools", :controller => "schools" %></li>
+			<li><%= link_with_highlight "Users", :controller => "users" %></li>
+		</ul>
+
+		<ul>
+			<li><%= link_with_highlight "Relationships", :controller => "relation_types" %></li>
+			<li><%= link_with_highlight "Activities", :controller => "activities" %></li>
+			<li><%= link_with_highlight "Counties", :controller => "counties" %></li>
+			<li><%= link_with_highlight "Neighborhoods", :controller => "neighborhoods" %></li>
+			<li><%= link_with_highlight "States", :controller => "states" %></li>
+			<li><%= link_with_highlight "Ethnicities", :controller => "ethnicities" %></li>
+			<li><%= link_with_highlight "Grades", :controller => "grades" %></li>
+		</ul>
+
+	</div>		
 	
-	<div id="nav_primary_wrapper" class="clearfix">
-		<div id="nav_primary">
-			<%= link_with_highlight 'Students', :controller => "students" %>
-			<%= link_with_highlight 'Schools', :controller => "schools" %>
-			<a href="#">Organizations</a>
-			<a href="#">Programs</a>
-		</div>		
-	</div>
-
-
-	<div id="container">
+	<div id="content" class="clearfix">
+		<p style="color: green"><%= flash[:notice] %></p>
 	
-	<p style="color: green"><%= flash[:notice] %></p>
 
-	<%= yield %>
+		<%= yield %>
 	</div>
-
+	
 </body>
 </html>

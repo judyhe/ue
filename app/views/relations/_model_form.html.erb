@@ -1,0 +1,38 @@
+
+<% form_for(relation, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	
+	<div class="clearfix">
+	<div class="p1">
+		<% field_set_tag "Basics" do %>
+		<div class="input_set clearfix">
+			<%= f.label :first_name, "Name" %>
+			<span class="half">
+				<%= f.text_field :first_name %>
+				<%= f.label :first_name, "First" %>
+			</span>
+			<span class="half">
+				<%= f.text_field :last_name	 %>
+				<%= f.label :last_name, "Last" %>
+			</span>
+		</div>
+		<% end %>
+
+		
+		<%= render :partial => "students/contact", :locals => {:f => f}%>
+
+		<%= render :partial => "students/address_fields", :locals => {:f => f, :extended => false}%>
+	</div>
+	<div class="p2">
+		<% field_set_tag "Related students" do %>
+			<%= render :partial => 'related_student', :collection => @relation.student_relations %>	
+			<p><a href="#" class="add_association">Add a student</a></p>
+		<% end %>
+	</div>
+	</div>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= javascript_include_tag "student" %>

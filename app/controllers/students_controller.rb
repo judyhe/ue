@@ -2,7 +2,7 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.xml
   def index
-    @students = Student.all
+    @students = Student.find_with_default_associations(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +25,7 @@ class StudentsController < ApplicationController
   # GET /students/new.xml
   def new
     @student = Student.new
+    @student.student_relations.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     @student = Student.find(params[:id])
+    @student.student_relations.build if @student.student_relations.empty?
   end
 
   # POST /students
@@ -57,6 +59,8 @@ class StudentsController < ApplicationController
   # PUT /students/1
   # PUT /students/1.xml
   def update
+    params[:student][:existing_student_relation_attributes] ||= {}
+    
     @student = Student.find(params[:id])
 
     respond_to do |format|

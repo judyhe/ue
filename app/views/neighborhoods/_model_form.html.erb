@@ -13,11 +13,12 @@
 		</span>
 	</div>
 	
-	<%= f.label :county_id %>
-	<%= f.collection_select :county_id, County.all, :id, :name, {:include_blank => true} %>
-
+	<div>
+		<%= f.label :county_id %>
+		<%= f.collection_select :county_id, County.all, :id, :name, {:include_blank => true} %>
+	</div>
   <p>
-    <%= f.submit 'Submit' %>
+    <%= f.submit %>
   </p>
 <% end %>
 
