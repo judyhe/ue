@@ -18,17 +18,15 @@
 
 	<% @students.each do |student| %>
 	  <tr>
-			<td><%= image_tag student.avatar.url(:thumb) %></td>
+			<td><%= image_tag student.person.avatar.url(:thumb) %></td>
 			<td><%= link_to student.name, student %></td>
-			<td><%= student.email %></td>
+			<td><%= student.person.email %></td>
 			<td><%= student.age %></td>
 			<td><%= associated_attribute(student.grade, :name) %>
 			<td><%= student.gender %></td>
 			<td><%= associated_attribute(student.ethnicity, :name) %>	
 			<td><%= student.activities_list %></td>
-			<td>
-				<% if student.school %><%= link_to student.school.name, school_url(student.school) %><% end %>
-			</td>
+			<td><%= link_to student.school.name, school_url(student.school_id) if student.school %></td>
 	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
 	  </tr>
 	<% end %>

@@ -18,10 +18,10 @@
 			<td><%= link_to school.name, school %></td>
 			<td><%= school.address1 %> <%= school.address2 %></td>
 			<td><%= school.city %></td>
-			<td><%= school.state_abbr %></td>
+			<td><%= associated_attribute(school.state, :abbr) %></td>
 			<td><%= school.zip %></td>
-			<td><%= school.neighborhood_name %></td>
-			<td><%= school.county_name %></td>
+			<td><%= associated_attribute(school.neighborhood, :name) %></td>
+			<td><%= associated_attribute(school.county, :name) %></td>
 			<!--
 	    <td><%= link_to 'Edit', edit_school_path(school) %></td>
 	    <td><%= link_to 'Destroy', school, :confirm => 'Are you sure?', :method => :delete %></td>-->

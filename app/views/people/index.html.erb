@@ -1,0 +1,18 @@
+<h1><%= @people.size %> people <%= link_to 'new', new_person_path %></h1>
+
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+  <tr>
+		<th>Name</th>
+		<th>Email</th>
+  </tr>
+	</thead>
+
+<% @people.each do |person| %>
+  <tr>
+    <td><%= link_to person.name, person %></td>
+    <td><%= person.email %></td>
+  </tr>
+<% end %>
+</table>
+

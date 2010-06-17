@@ -1,0 +1,50 @@
+<% field_set_tag "Basics" do %>
+<div class="input_set clearfix">
+	<%= f.label :first_name, "Name" %>
+	<span class="half">
+		<%= f.text_field :first_name %>
+		<%= f.label :first_name, "First" %>
+	</span>
+	<span class="half">
+		<%= f.text_field :last_name	 %>
+		<%= f.label :last_name, "Last" %>
+	</span>
+</div>
+
+<div>
+	<%= f.label :avatar, "Photo" %>
+	<%= f.file_field :avatar %>
+</div>
+
+<div>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+</div>
+
+<div class="input_set clearfix">
+	<%= f.label :home_phone, "Phone" %>
+	<span class="half">
+		<%= f.text_field :home_phone %>
+		<%= f.label :home_phone, "Home" %>
+	</span>		
+	<span class="half">
+		<%= f.text_field :cell_phone %>
+		<%= f.label :cell_phone, "Cell" %>
+	</span>
+</div>
+<% end %>
+
+<%= render :partial => "people/address_fields", :locals => {:f => f, :extended => true}%>
+
+<% field_set_tag "Family" do %>
+	<% f.fields_for :relationships do |rf| %>
+		<div>
+			<%= rf.collection_select :relationship_type_id, RelationshipType.all, :id, :name, {:include_blank => true} %> of 
+			<%= rf.collection_select :relation_id, Person.find_students(:all), :id, :name, {:include_blank => true} %>	
+			<a href="#" class="remove_association">Remove</a>
+		</div>
+	<% end %>
+	<p><a href="#" class="add_association">Add a family member</a></p>
+<% end %>
+
+<%= javascript_include_tag "application" %>

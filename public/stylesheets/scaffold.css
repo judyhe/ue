@@ -46,7 +46,7 @@ a:hover{color:#009fdb;text-decoration:underline;}
 
 /* layout */
 #branding{margin-left:40px;background:url("/images/uenyc_logo.png") no-repeat;display:inline-block;width:148px;height:68px;text-indent:-10000px;overflow:hidden;}
-#nav_primary{position:absolute;width:100px;left:40px;top:80px;}
+#nav_primary{position:absolute;width:140px;left:40px;top:78px;}
 
 #nav_primary a{text-decoration:none;}
 #nav_primary a:hover, #nav_primary a.current{text-decoration:underline;color:#009fdb;}
@@ -62,7 +62,7 @@ a:hover{color:#009fdb;text-decoration:underline;}
 #nav_secondary a:hover{text-decoration:underline;}
 
 #content{
-	margin:10px 40px 10px 160px;
+	margin:10px 40px 10px 200px;
 	padding:10px 20px;
 	border:1px solid #ddd;
 	-moz-border-radius:4px;
@@ -73,6 +73,14 @@ a:hover{color:#009fdb;text-decoration:underline;}
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	}
+	
+/* profile page*/
+.attribute_list th{padding:4px;text-align:left;width:100px;font-weight:normal;}
+.attribute_list td{padding:4px;}
+.attribute_list .spacer th{padding:0;}
+.attribute_list .spacer td{padding:0;}
+.attribute_list{width:50%;}
+.profile_header{width:50%;font-size:14px;border-top:1px solid #aaa;padding:6px 4px;border-bottom:1px solid #eee;}
 
 img.avatar{float:right;margin-left:10px;}
 h1 a{font-size:12px;}

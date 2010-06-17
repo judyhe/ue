@@ -1,5 +1,60 @@
-<div class="clearfix">
-	<%= image_tag(@student.avatar.url(:medium), :class => "avatar") %>
-	<h1><%= @student.name %> <%= link_to 'Edit', edit_student_path(@student) %></h1>
-</div>
+	<%= image_tag(@student.person.avatar.url(:medium), :class => "avatar") %>
+	<h1><%= @student.person.name %> <%= link_to 'Edit', edit_student_path(@student) %></h1>
 
+<h2 class="profile_header">General info</h2>
+<table cellspacing="0" cellpadding="0" border="0" class="attribute_list">
+	<tr>
+		<th>Birth date:</th>
+		<td><%= @student.birth_date.strftime("%b %d, %Y") %> (Age <%= @student.age %>)</td>
+	</tr>
+	<tr>
+		<th>Home neighborhood:</th>
+		<td><%= associated_attribute(@student.person.neighborhood, :name)%></td>
+	</tr>	
+	<tr>
+		<th>Gender:</th>
+		<td><%= @student.gender %></td>
+	</tr>
+	<tr>
+		<th>Ethnicity:</th>
+		<td><%= associated_attribute(@student.ethnicity, :name) %></td>
+	</tr>
+	<tr>
+		<th>Interests:</th>
+		<td><%= @student.activities_list %></td>
+	</tr>
+	<tr class="spacer">
+		<th>&nbsp;</th>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>		
+		<th>School:</th>
+		<td><%= link_to @student.school.name, school_url(@student.school) if @student.school %></td>
+	</tr>
+	<tr>		
+		<th>Grade:</th>
+		<td><%= associated_attribute(@student.grade, :name) %></td>
+	</tr>	
+</table>
+
+<h2 class="profile_header">Contact info</h2>
+<table cellspacing="0" cellpadding="0" border="0" class="attribute_list">
+	<tr>
+		<th>Home phone:</th>
+		<td><%= @student.person.home_phone %></td>
+	</tr>
+	<tr>
+		<th>Cell phone:</th>
+		<td><%= @student.person.cell_phone %></td>
+	</tr>	
+	<tr>
+		<th>Email:</th>
+		<td><%= @student.person.email %></td>
+	</tr>
+	<tr>
+		<th>Address:</th>
+		<td>
+			<%= address(@student.person, false) %>
+		</td>
+	</tr>	
+</table>

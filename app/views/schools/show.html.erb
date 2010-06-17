@@ -2,12 +2,10 @@
 <h1><%= @school.name %> <%= link_to 'Edit', edit_school_path(@school) %></h1>
 
 <address>
-	<%= @school.address1 + " " + @school.address2 %><br />
-	<%= @school.city %>, <%= @school.state_abbr %> <%= @school.zip %><br />
-	<%= @school.neighborhood_name %>, <%= @school.county_name %>
+	<%= address(@school) %>
 </address>
 
-<h2 class="clear"><%= @school.students_with_associations(:all).size %> Students</h2>
+<h2 class="clear"><%= @school.students.size %> Students</h2>
 <table cellspacing="0" cellpadding="0" border="0" class="index">
 	<thead>
 	  <tr>
@@ -21,15 +19,14 @@
 	</thead>
 	<tbody>
 
-	<% @school.students_with_associations(:all).each do |student| %>
+	<% @school.students.each do |student| %>
 	  <tr>
-			<td><%= image_tag student.avatar.url(:thumb) %></td>
-			<td><%= link_to student.name, student %></td>
-			<td><%= student.email %></td>
+			<td><%= image_tag student.person.avatar.url(:thumb) %></td>
+			<td><%= link_to student.person.name, student %></td>
+			<td><%= student.person.email %></td>
 			<td><%= student.age %></td>
 			<td><%= associated_attribute(student.grade, :name) %></td>
 			<td><%= student.gender %></td>
-	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
 	  </tr>
 	<% end %>
 	</tbody>
