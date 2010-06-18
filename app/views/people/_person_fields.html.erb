@@ -37,14 +37,16 @@
 <%= render :partial => "people/address_fields", :locals => {:f => f, :extended => true}%>
 
 <% field_set_tag "Family" do %>
+	<span id="family">
 	<% f.fields_for :relationships do |rf| %>
-		<div>
+		<div class="relationship">
 			<%= rf.collection_select :relationship_type_id, RelationshipType.all, :id, :name, {:include_blank => true} %> of 
 			<%= rf.collection_select :relation_id, Person.find_students(:all), :id, :name, {:include_blank => true} %>	
-			<a href="#" class="remove_association">Remove</a>
+			<%= remove_link_unless_new_record(rf) -%>
 		</div>
 	<% end %>
-	<p><a href="#" class="add_association">Add a family member</a></p>
+	</span>
+	<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'relationship' %></p>
 <% end %>
 
 <%= javascript_include_tag "application" %>
