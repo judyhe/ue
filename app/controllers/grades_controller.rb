@@ -67,7 +67,7 @@ class GradesController < ApplicationController
     @grade.destroy
 
     respond_to do |format|
-      format.html { redirect_to(grades_url) }
+      format.html { redirect_to(grades_path) }
       format.xml  { head :ok }
     end
   end

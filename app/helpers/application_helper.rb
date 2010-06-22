@@ -30,9 +30,19 @@ module ApplicationHelper
     address
   end
   
+  def display_and_remove_assets(m)
+    html = "<h2>#{m.assets.size} attachments</h2>"
+    html += "<div class='remote_form_msg'></div>"
+    html += "<ul>"
+    m.assets.each do |asset|
+    	html += "<li>#{link_to asset.data_file_name, asset.url} (#{link_to "remove", {:controller => "assets", :action => "destroy", :id => asset.id}, :class => "remote_form"})</li>"
+    end
+    html += "</ul>"
+  end
+  
   def remove_link_unless_new_record(fields)
     out = ''
-    out << fields.hidden_field(:_delete)  unless fields.object.new_record?
+    out << fields.hidden_field(:_destroy)  unless fields.object.new_record?
     out << link_to("remove", "##{fields.object.class.name.underscore}", :class => 'remove_association')
     out
   end

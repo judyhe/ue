@@ -68,7 +68,7 @@ class CountiesController < ApplicationController
     @county.destroy
 
     respond_to do |format|
-      format.html { redirect_to(counties_url) }
+      format.html { redirect_to(counties_path) }
       format.xml  { head :ok }
     end
   end

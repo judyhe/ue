@@ -65,3 +65,8 @@ RelationshipType.create(:name => "Aunt")
 RelationshipType.create(:name => "Uncle")
 RelationshipType.create(:name => "Guardian")
 RelationshipType.create(:name => "Other")
+
+PhoneNumberType.create(:name => "Home")
+PhoneNumberType.create(:name => "Cell")
+PhoneNumberType.create(:name => "Work")
+PhoneNumberType.create(:name => "Other")

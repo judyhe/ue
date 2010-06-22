@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title><%= yield(:title) %></title>
+  <title><%= yield(:title) %> Urban Enrichment</title>
   <%= stylesheet_link_tag 'scaffold' %>
 	<%= javascript_include_tag 'jquery-1.4.2.min'%>
 </head>
@@ -12,7 +12,7 @@
 	<div id="header">
 		<a href="/" id="branding">Urban Enrichment nyc</a>
 		<div id="nav_secondary">
-				<%= link_to current_user.login, edit_user_url(current_user)%>
+				<%= link_to current_user.login, edit_user_path(current_user)%>
 			  <%=link_to "log out", logout_path, { :title => "Log out" } %>
 		</div>
 	</div>
@@ -33,6 +33,7 @@
 			<li><%= link_with_highlight "States", :controller => "states" %></li>
 			<li><%= link_with_highlight "Ethnicities", :controller => "ethnicities" %></li>
 			<li><%= link_with_highlight "Grades", :controller => "grades" %></li>
+			<li><%= link_with_highlight "Phone# Types", :controller => "phone_number_types" %></li>
 		</ul>
 
 	</div>		

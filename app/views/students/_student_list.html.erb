@@ -21,7 +21,7 @@
 			<td><%= student.grade_name %>
 			<td><%= student.gender %></td>
 			<td>
-				<% if student.school_id %><%= link_to student.school_name, school_url(student.school_id) %><% end %>
+				<% if student.school_id %><%= link_to student.school_name, school_path(student.school_id) %><% end %>
 			</td>
 	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
 	  </tr>

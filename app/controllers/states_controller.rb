@@ -67,7 +67,7 @@ class StatesController < ApplicationController
     @state.destroy
 
     respond_to do |format|
-      format.html { redirect_to(states_url) }
+      format.html { redirect_to(states_path) }
       format.xml  { head :ok }
     end
   end

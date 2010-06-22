@@ -67,7 +67,7 @@ class ActivitiesController < ApplicationController
     @activity.destroy
 
     respond_to do |format|
-      format.html { redirect_to(activities_url) }
+      format.html { redirect_to(activities_path) }
       format.xml  { head :ok }
     end
   end

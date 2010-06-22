@@ -1,0 +1,9 @@
+
+<h1>Listing Phone Number Types <%= link_to 'new', new_phone_number_type_path %></h1>
+
+<ul>
+<% @phone_number_types.each do |phone_number_type| %>
+ <li><%= link_to phone_number_type.name, edit_phone_number_type_path(phone_number_type) %></li>
+<% end %>
+</ul>
+

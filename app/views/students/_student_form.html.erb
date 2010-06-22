@@ -23,19 +23,8 @@
 
 		</div>
 		<div class="input_set clearfix">
-			<label>Gender &amp; Ethnicity</label>
-			<span>
-				<%= f.radio_button(:gender, "M") %>
-				<%= f.label :gender_m, "M", :class => "radio" %>
-			</span>
-			<span>
-				<%= f.radio_button(:gender, "F") %>
-				<%= f.label :gender_f, "F", :class => "radio" %>
-			</span>
-			<span>
-				<%= f.collection_select :ethnicity_id, Ethnicity.all, :id, :name, {:include_blank => true} %>
-				<%= f.label :ethnicity_id %>
-			</span>
+			<%= f.label :ethnicity_id %>
+			<%= f.collection_select :ethnicity_id, Ethnicity.all, :id, :name, {:include_blank => true} %>
 		</div>
 		<% end %>
 		<% field_set_tag "Interests" do %>

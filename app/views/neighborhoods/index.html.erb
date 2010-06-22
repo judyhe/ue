@@ -2,7 +2,7 @@
 
 <ul>
 <% @neighborhoods.each do |neighborhood| %>
-  <li><%= neighborhood.ord %> - <%= link_to neighborhood.name, edit_neighborhood_url(neighborhood)%></li>
+  <li><%= neighborhood.ord %> - <%= link_to neighborhood.name, edit_neighborhood_path(neighborhood)%></li>
 <% end %>
 </ul>
 

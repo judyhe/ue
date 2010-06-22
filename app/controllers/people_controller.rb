@@ -25,7 +25,8 @@ class PeopleController < ApplicationController
   # GET /people/new.xml
   def new
     @person = Person.new
-    @person.relationships.build
+    @person.build_address
+    @possible_family = Person.find_students(:all)
     
     respond_to do |format|
       format.html # new.html.erb
@@ -36,14 +37,16 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    @person.relationships.build if @person.relationships.empty?
+    @possible_family = Person.find_students(:all)
   end
 
   # POST /people
   # POST /people.xml
   def create
     @person = Person.new(params[:person])
-
+    @person.relationships.build if @person.relationships.empty?
+    @possible_family = Person.find_students(:all)
+    
     respond_to do |format|
       if @person.save
         flash[:notice] = 'Person was successfully created.'
@@ -60,6 +63,8 @@ class PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     @person = Person.find(params[:id])
+    @person.relationships.build if @person.relationships.empty?
+    @possible_family = Person.find_students(:all)
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
@@ -80,7 +85,7 @@ class PeopleController < ApplicationController
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to(people_url) }
+      format.html { redirect_to(people_path) }
       format.xml  { head :ok }
     end
   end

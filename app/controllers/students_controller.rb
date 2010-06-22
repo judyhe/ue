@@ -26,6 +26,8 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @student.build_person
+    @student.person.relationships.build
+    @possible_family = Person.all_alphabetical
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,12 +38,16 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     @student = Student.find(params[:id])
+    @student.person.relationships.build if @student.person.relationships.empty?
+    @possible_family = Person.all_alphabetical
   end
 
   # POST /students
   # POST /students.xml
   def create
     @student = Student.new(params[:student])
+    @student.person.relationships.build if @student.person.relationships.empty?
+    @possible_family = Person.all_alphabetical
     
     respond_to do |format|
       if @student.save
@@ -57,11 +63,11 @@ class StudentsController < ApplicationController
 
   # PUT /students/1
   # PUT /students/1.xml
-  def update
-    #params[:student][:existing_student_relation_attributes] ||= {}
-    
+  def update    
     @student = Student.find(params[:id])
-
+    @student.person.relationships.build if @student.person.relationships.empty?
+    @possible_family = Person.all_alphabetical
+    
     respond_to do |format|
       if @student.update_attributes(params[:student])
         flash[:notice] = 'Student was successfully updated.'
@@ -81,7 +87,7 @@ class StudentsController < ApplicationController
     @student.destroy
 
     respond_to do |format|
-      format.html { redirect_to(students_url) }
+      format.html { redirect_to(students_path) }
       format.xml  { head :ok }
     end
   end

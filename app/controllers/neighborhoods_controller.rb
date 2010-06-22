@@ -34,7 +34,7 @@ class NeighborhoodsController < ApplicationController
     respond_to do |format|
       if @neighborhood.save
         flash[:notice] = 'Neighborhood was successfully created.'
-        format.html { redirect_to(neighborhoods_url) }
+        format.html { redirect_to(neighborhoods_path) }
         format.xml  { render :xml => @neighborhood, :status => :created, :location => @neighborhood }
       else
         format.html { render :action => "new" }
@@ -51,7 +51,7 @@ class NeighborhoodsController < ApplicationController
     respond_to do |format|
       if @neighborhood.update_attributes(params[:neighborhood])
         flash[:notice] = 'Neighborhood was successfully updated.'
-        format.html { redirect_to(neighborhoods_url) }
+        format.html { redirect_to(neighborhoods_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -67,7 +67,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood.destroy
 
     respond_to do |format|
-      format.html { redirect_to(neighborhoods_url) }
+      format.html { redirect_to(neighborhoods_path) }
       format.xml  { head :ok }
     end
   end

@@ -2,8 +2,39 @@
 <h1><%= @school.name %> <%= link_to 'Edit', edit_school_path(@school) %></h1>
 
 <address>
-	<%= address(@school) %>
+	<%= address(@school.address) %>
 </address>
+
+	
+<%= display_and_remove_assets(@school) %>
+
+<% form_for(@school, :html => {:multipart => true, :class => "default"}) do |f| %>
+	<div>
+		<%= f.file_field :data %>
+	</div>
+	
+	<p>
+    <%= f.submit "Add attachment" %>
+  </p>
+<% end %>
+
+
+<h2><%= @school.comments.size %> Notes</h2>
+<% @school.comments.each do |comment| %>
+	<p><%= link_to comment.comment, edit_school_comment_path(@school, comment), :class => "text-like_link" %> &#8212; <%= link_to comment.user.login, edit_user_path(comment.user) %> <%= comment.updated_at.strftime("%b %d, %Y") %> (<%= link_to 'remove', school_comment_path(@school, comment), :confirm => 'Are you sure?', :method => :delete %>)</p>
+<% end %>
+
+<% form_for(@school, :html => {:multipart => true, :class => "default"}) do |f| %>
+	<div>
+		<% f.fields_for :comments, Comment.new do |cf| %>
+			<%= cf.hidden_field :user_id, :value => current_user.id %>
+			<%= cf.text_area :comment, :rows => 5 %>
+		<% end %>
+	</div>
+	
+	<p><%= f.submit "Add note" %></p>
+<% end %>
+
 
 <h2 class="clear"><%= @school.students.size %> Students</h2>
 <table cellspacing="0" cellpadding="0" border="0" class="index">
@@ -31,4 +62,6 @@
 	<% end %>
 	</tbody>
 </table>
-<p><%= link_to "New student", new_student_url %></p>
+<p><%= link_to "New student", new_student_path %></p>
+
+<%= javascript_include_tag "application" %>

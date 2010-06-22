@@ -3,7 +3,7 @@
 <ul>
 	<% @ethnicities.each do |ethnicity| %>
 		<li>
-			<%= ethnicity.ord %> - <%= link_to ethnicity.name, edit_ethnicity_url(ethnicity) %>
+			<%= ethnicity.ord %> - <%= link_to ethnicity.name, edit_ethnicity_path(ethnicity) %>
 		</li>
 	<% end %>
 </ul>

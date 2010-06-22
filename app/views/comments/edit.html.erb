@@ -1,0 +1,10 @@
+<h1>Edit comment</h1>
+<% form_for(@comment, :url => school_comment_path, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	
+	<%= f.text_area :comment, :rows => 10 %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

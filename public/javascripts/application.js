@@ -18,7 +18,7 @@ $(document).ready(function(){
 		return false;
 	})
 	
-	$('#family').delegate(".remove_association", "click", function(){
+	$('form.default').delegate(".remove_association", "click", function(){
 		var target = $(this).attr('href').replace(/#/, '.');
 		$(this).parents(target).hide();
 		var hidden_input = $(this).prev("input[type=hidden]");
@@ -27,8 +27,19 @@ $(document).ready(function(){
 		}
 	})
 	
-	$('.association_remove').live('click', function(){
-		$(this).parents('.associated_model').remove();
+	$('.remote_form').click(function(){
+		var target = $(this)
+		var href = target.attr('href');
+		$.ajax({
+			url: href,
+			success: function(data){
+				target.parents('li').addClass(data.klass);
+				target.parents('ul').prev('.remote_form_msg').text(data.msg);
+			},
+			error: function(){
+				
+			}
+		})
 		return false;
 	})
 })

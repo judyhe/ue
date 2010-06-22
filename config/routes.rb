@@ -1,12 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :user_comment_types
+  map.resources :addresses
 
-  map.resources :user_comments
+  map.resources :comments
+
+  map.resources :phone_number_types
+
+  map.resources :phone_numbers
 
   map.resources :organizations
   map.resources :relationship_types
   map.resources :relationships
-  map.resources :people
+  map.resources :people, :has_many => :comments
   map.resources :grades
   map.resources :ethnicities
   map.resources :neighborhoods
@@ -21,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
   map.resource :session
-  map.resources :schools
+  map.resources :schools, :has_many => :comments
   map.resources :students
 
   # The priority is based upon order of creation: first created -> highest priority.

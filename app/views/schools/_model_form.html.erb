@@ -8,6 +8,7 @@
 	
 	<div>		
 		<%= f.label :avatar, "Photo" %>
+		<%= image_tag(school.avatar.url(:thumb), :class => "float_left") %>
 		<%= f.file_field :avatar %>
 	</div>
 	

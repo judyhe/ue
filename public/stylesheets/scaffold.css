@@ -20,6 +20,7 @@ ol, ul, li {list-style: none; font-size: 1.0em; line-height: 1.8em;}
 h1{font-weight:normal;}
 
 img {display:block;}
+img.float_left{margin-right:5px;}
 
 .bulleted li{list-style-type:disc;}
 .numbered li{list-style-type:decimal}
@@ -84,6 +85,10 @@ a:hover{color:#009fdb;text-decoration:underline;}
 
 img.avatar{float:right;margin-left:10px;}
 h1 a{font-size:12px;}
+
+.deleted{text-decoration:line-through;}
+.text-like_link, .text-like_link:hover{color:#242424; text-decoration:none;}
+.text-like_link:hover{background:#fdffe1;}
 
 table.index{width:100%;}
 table.index td, table.index th{padding:5px;}

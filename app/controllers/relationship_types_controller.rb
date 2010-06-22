@@ -45,7 +45,7 @@ class RelationshipTypesController < ApplicationController
     respond_to do |format|
       if @relationship_type.save
         flash[:notice] = 'RelationshipType was successfully created.'
-        format.html { redirect_to(relationship_types_url) }
+        format.html { redirect_to(relationship_types_path) }
         format.xml  { render :xml => @relationship_type, :status => :created, :location => @relationship_type }
       else
         format.html { render :action => "new" }
@@ -62,7 +62,7 @@ class RelationshipTypesController < ApplicationController
     respond_to do |format|
       if @relationship_type.update_attributes(params[:relationship_type])
         flash[:notice] = 'RelationshipType was successfully updated.'
-        format.html { redirect_to(relationship_types_url) }
+        format.html { redirect_to(relationship_types_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -78,7 +78,7 @@ class RelationshipTypesController < ApplicationController
     @relationship_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to(relationship_types_url) }
+      format.html { redirect_to(relationship_types_path) }
       format.xml  { head :ok }
     end
   end

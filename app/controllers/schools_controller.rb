@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.xml
   def index
-    @schools = School.find_with_associations(:all)
+    @schools = School.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class SchoolsController < ApplicationController
   # GET /schools/1
   # GET /schools/1.xml
   def show
-    @school = School.find_with_associations(params[:id])
+    @school = School.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +25,8 @@ class SchoolsController < ApplicationController
   # GET /schools/new.xml
   def new
     @school = School.new
-
+    @school.build_address
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @school }
@@ -78,7 +79,7 @@ class SchoolsController < ApplicationController
     @school.destroy
 
     respond_to do |format|
-      format.html { redirect_to(schools_url) }
+      format.html { redirect_to(schools_path) }
       format.xml  { head :ok }
     end
   end

@@ -26,7 +26,7 @@
 			<td><%= student.gender %></td>
 			<td><%= associated_attribute(student.ethnicity, :name) %>	
 			<td><%= student.activities_list %></td>
-			<td><%= link_to student.school.name, school_url(student.school_id) if student.school %></td>
+			<td><%= link_to student.school.name, school_path(student.school_id) if student.school %></td>
 	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
 	  </tr>
 	<% end %>
