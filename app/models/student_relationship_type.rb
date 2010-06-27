@@ -1,7 +1,7 @@
 class StudentRelationshipType < ActiveRecord::Base
   
-  FATHER = self.first(:conditions => "name = 'Father'")
-  MOTHER = self.first(:conditions => "name = 'Mother'")
+  #FATHER = self.first(:conditions => "name = 'Father'")
+  #MOTHER = self.first(:conditions => "name = 'Mother'")
   
   #DAUGHTER = self.first(:conditions => "name = 'Daughter'")
   #SON = self.first(:conditions => "name = 'Son'")
