@@ -31,14 +31,22 @@
 			<dt>Ethnicity:</dt>
 			<dd><%= associated_attribute(@student.ethnicity, :name) %>&nbsp;</dd>
 			
-			<dt>Interests</dt>
+			<dt>Interests: </dt>
 			<dd><%= @student.activities_list %>&nbsp;</dd>
 		</dl>
 		
 		<dl>
 		<% @student.student_relationships.each do |relationship| %>
-			<dt><%= relationship.name %></dt> 
+			<dt><%= relationship.name %>: </dt> 
 			<dd><%= link_to relationship.student_relation.name, student_relation_path(relationship.student_relation) %></dd>
 		<% end %>
+			<dt>Siblings:</dt>
+			<dd>
+				<% @student.siblings.each do |sibling| %>
+					<%= link_to sibling.student.name, student_path(sibling.student) %><br />
+				<% end %>
+				&nbsp;
+			</dd>
 		</dl>
+			
 <p><%= link_to 'Back', students_path %></p>

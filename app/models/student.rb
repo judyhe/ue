@@ -28,12 +28,7 @@ class Student < ActiveRecord::Base
   end
   
   def siblings
-    # siblings are people who have relationships with the student_relations that this student has relationships with.
-    
-    self.student_relationships.each do |relationship|
-      other_relationships = StudentRelationship.all(:conditions => "student_relation_id = #{relationship.student_relation_id} and student_id != #{self.id}")
-      
-    end
+    sibling_relationships = StudentRelationship.all(:conditions => "student_relation_id = #{self.student_relationships.first.student_relation_id} and student_id != #{self.id}", :include => :student)
   end
   
   def self.find_with_default_associations(id)
