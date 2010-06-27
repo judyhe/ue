@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.xml
   def index
-    @schools = School.find(:all)
+    @schools = School.alphabetical
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +25,6 @@ class SchoolsController < ApplicationController
   # GET /schools/new.xml
   def new
     @school = School.new
-    @school.build_address
     
     respond_to do |format|
       format.html # new.html.erb

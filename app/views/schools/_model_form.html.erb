@@ -12,10 +12,19 @@
 		<%= f.file_field :avatar %>
 	</div>
 	
-	<%= render :partial => "people/address_fields", :locals => {:f => f, :extended => true}%>
+	<div>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
+	
+	<%= render :partial => "shared/contact_numbers", :locals => {:thing => school, :f => f}%>
+	
+	<%= render :partial => "shared/address_fields", :locals => {:f => f, :extended => true, :thing => school}%>
 
   <p>
     <%= f.submit %>
   </p>
 <% end %>
+
+<%= javascript_include_tag "application" %>
 

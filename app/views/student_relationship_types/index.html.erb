@@ -1,0 +1,9 @@
+<h1><%= @student_relationship_types.size %> Relationship Types <%= link_to 'new', new_student_relationship_type_path %></h1>
+
+
+<ul>
+<% @student_relationship_types.each do |student_relationship_type| %>
+	<li><%= link_to student_relationship_type.name, edit_student_relationship_type_path(student_relationship_type) %></li>
+<% end %>
+</ul>
+

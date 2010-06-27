@@ -1,11 +1,14 @@
 <%= image_tag(@school.avatar.url(:medium), :class => "avatar") %>
 <h1><%= @school.name %> <%= link_to 'Edit', edit_school_path(@school) %></h1>
 
-<address>
-	<%= address(@school.address) %>
-</address>
+<dl>
+	<% @school.contact_numbers.each do |number| %>
+		<dt><%= number.name %>:</dt> <dd><%= number.number %></dd>
+	<% end %>
+	<dt>Email:</dt> <dd><%= @school.email %><dd>
+	<dt>Address:</dt><dd><address><%= address(@school.address) %></address></dd>
+</dl>
 
-	
 <%= display_and_remove_assets(@school) %>
 
 <% form_for(@school, :html => {:multipart => true, :class => "default"}) do |f| %>

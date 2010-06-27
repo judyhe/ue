@@ -1,9 +1,0 @@
-<h1><%= @relationship_types.size %> Relationship Types <%= link_to 'new', new_relationship_type_path %></h1>
-
-
-<ul>
-<% @relationship_types.each do |relationship_type| %>
-	<li><%= link_to relationship_type.name, edit_relationship_type_path(relationship_type) %></li>
-<% end %>
-</ul>
-

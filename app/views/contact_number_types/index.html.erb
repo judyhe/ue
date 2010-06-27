@@ -1,0 +1,9 @@
+
+<h1>Listing Contact Number Types <%= link_to 'new', new_contact_number_type_path %></h1>
+
+<ul>
+<% @contact_number_types.each do |contact_number_type| %>
+ <li><%= link_to contact_number_type.name, edit_contact_number_type_path(contact_number_type) %></li>
+<% end %>
+</ul>
+

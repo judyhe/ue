@@ -1,0 +1,9 @@
+<h1><%= @school_staff_types.size %> school staff types <%= link_to 'new', new_school_staff_type_path %></h1>
+
+<ul>
+<% @school_staff_types.each do |school_staff_type| %>
+  <li><%= link_to school_staff_type.position, edit_school_staff_type_path(school_staff_type) %></li>
+<% end %>
+</ul>
+
+

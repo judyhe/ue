@@ -1,0 +1,14 @@
+<h1>Editing school staff type</h1>
+
+<% form_for(@school_staff_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', school_staff_types_path %>

@@ -1,72 +1,41 @@
 <% field_set_tag "Basics" do %>
-<div class="input_set clearfix">
-	<%= f.label :first_name, "Name" %>
-	<span class="half">
-		<%= f.text_field :first_name %>
-		<%= f.label :first_name, "First" %>
-	</span>
-	<span class="half">
-		<%= f.text_field :last_name	 %>
-		<%= f.label :last_name, "Last" %>
-	</span>
-</div>
+	<div class="input_set clearfix">
+		<%= f.label :first_name, "Name" %>
+		<span class="half">
+			<%= f.text_field :first_name %>
+			<%= f.label :first_name, "First" %>
+		</span>
+		<span class="half">
+			<%= f.text_field :last_name	 %>
+			<%= f.label :last_name, "Last" %>
+		</span>
+	</div>
 
-<div>
-	<%= f.label :avatar, "Photo" %>
-	<%= f.file_field :avatar %>
-</div>
+	<div>
+		<%= f.label :avatar, "Photo" %>
+		<%= f.file_field :avatar %>
+	</div>
 
-<div class="input_set clearfix">
-	<%= f.label :gender_m, "Gender" %>
-	<span>
-		<%= f.radio_button(:gender, "M") %>
-		<%= f.label :gender_m, "M", :class => "radio" %>
-	</span>
-	<span>
-		<%= f.radio_button(:gender, "F") %>
-		<%= f.label :gender_f, "F", :class => "radio" %>
-	</span>
-</div>
+	<div class="input_set clearfix">
+		<%= f.label :gender_m, "Gender" %>
+		<span>
+			<%= f.radio_button(:gender, "M") %>
+			<%= f.label :gender_m, "M", :class => "radio" %>
+		</span>
+		<span>
+			<%= f.radio_button(:gender, "F") %>
+			<%= f.label :gender_f, "F", :class => "radio" %>
+		</span>
+	</div>
 
-<div>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-</div>
-<% @person.phone_numbers.build if @person.phone_numbers.empty? %>
-<%= f.label :number, "Phone Numbers" %>
-<span id="phone_numbers">
-	<% f.fields_for :phone_numbers do |pf| %>
-		<div class="phone_number input_set clearfix">
-			<span>
-				<%= pf.text_field :number, :size => 25 %>
-				<%= pf.label :number %>
-			</span>
-			<span><%= pf.collection_select :phone_number_type_id, PhoneNumberType.all, :id, :name, {:include_blank => true} %> 
-				<%= remove_link_unless_new_record(pf) -%>
-				<%= pf.label :phone_number_type_id, "Type" %>
-			</span>
-		</div>
-	<% end %>
-</span>
-<p><%= link_to 'Add a phone number', '#phone_numbers', :class => "add_association", :rel => 'phone_number' %></p>
+	<div>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
 
-
+	<%= render :partial => "shared/contact_numbers", :locals => {:thing => person, :f => f}%>
 <% end %>
 
-<%= render :partial => "people/address_fields", :locals => {:f => f, :extended => true}%>
-
-<% @person.relationships.build if @person.relationships.empty? %>
-<% field_set_tag "Family" do %>
-	<span id="family">
-	<% f.fields_for :relationships do |rf| %>
-		<div class="relationship">
-			<%= rf.collection_select :relationship_type_id, RelationshipType.all, :id, :name, {:include_blank => true} %> of 
-			<%= rf.collection_select :relation_id, @possible_family, :id, :name, {:include_blank => true} %>	
-			<%= remove_link_unless_new_record(rf) -%>
-		</div>
-	<% end %>
-	</span>
-	<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'relationship' %></p>
-<% end %>
+	<%= render :partial => "shared/address_fields", :locals => {:f => f, :extended => true, :thing => person}%>
 
 <%= javascript_include_tag "application" %>

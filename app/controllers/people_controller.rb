@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.find_non_students(:all)
+    @people = Person.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,8 +25,6 @@ class PeopleController < ApplicationController
   # GET /people/new.xml
   def new
     @person = Person.new
-    @person.build_address
-    @possible_family = Person.find_students(:all)
     
     respond_to do |format|
       format.html # new.html.erb
@@ -37,15 +35,12 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    @possible_family = Person.find_students(:all)
   end
 
   # POST /people
   # POST /people.xml
   def create
     @person = Person.new(params[:person])
-    @person.relationships.build if @person.relationships.empty?
-    @possible_family = Person.find_students(:all)
     
     respond_to do |format|
       if @person.save
@@ -63,8 +58,6 @@ class PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     @person = Person.find(params[:id])
-    @person.relationships.build if @person.relationships.empty?
-    @possible_family = Person.find_students(:all)
 
     respond_to do |format|
       if @person.update_attributes(params[:person])

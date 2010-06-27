@@ -1,0 +1,21 @@
+<% form_for(school_staff, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+
+	<div>
+		<%= f.label :school_staff_type_id, "Position" %>
+		<%= f.collection_select :school_staff_type_id, SchoolStaffType.all, :id, :position, {:include_blank => true} %>
+	</div>
+	
+	<div>
+		<%= f.label :school_id %>
+		<%= f.collection_select :school_id, School.alphabetical, :id, :name, {:include_blank => true} %>
+	</div>
+	
+	<% f.fields_for :person do |person_fields| %>
+		<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => school_staff.person} %>
+	<% end %>
+	
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

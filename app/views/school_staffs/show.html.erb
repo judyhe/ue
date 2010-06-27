@@ -1,0 +1,15 @@
+<%= image_tag(@school_staff.person.avatar.url(:medium), :class => "avatar") %>
+<h1><%= @school_staff.name %> <%= link_to 'Edit', edit_school_staff_path(@school_staff) %></h1>
+
+
+<dl>
+		<dt>School:</dt> <dd><%= link_to @school_staff.school.name, school_path(@school_staff.school) %></dd>
+		<dt>Position:</dt> <dd><%= @school_staff.position %><dd>
+			
+		<dt>Gender:</dt> <dd><%= @school_staff.gender %></dd>
+		<dt>Email:</dt> <dd><%= @school_staff.email %>&nbsp;</dd>
+		<% @school_staff.person.contact_numbers.each do |number| %>
+			<dt><%= number.name %>:</dt> <dd><%= number.number %></dd>
+		<% end %>
+		<dt>Address:</dt><dd><address><%= address(@school_staff.person.address) %></address></dd>
+</dl>

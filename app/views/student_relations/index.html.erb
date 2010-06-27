@@ -1,0 +1,17 @@
+<h1><%= @student_relations.size %> Relatives <%= link_to 'new', new_student_relation_path %></h1>
+
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+  <tr>
+		<th>Name</th>
+  </tr>
+	</thead>
+	<tbody>
+	<% @student_relations.each do |relation| %>
+	  <tr>
+			<td><%= link_to relation.name, relation %></td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+

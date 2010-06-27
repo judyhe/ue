@@ -1,11 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :school_staff_types
+
+  map.resources :school_staffs
+
+  map.resources :student_relations
+
   map.resources :addresses
 
   map.resources :comments
 
-  map.resources :phone_number_types
+  map.resources :contact_number_types
 
-  map.resources :phone_numbers
+  map.resources :contact_numbers
 
   map.resources :organizations
   map.resources :relationship_types

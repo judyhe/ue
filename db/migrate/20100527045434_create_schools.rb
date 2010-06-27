@@ -3,6 +3,8 @@ class CreateSchools < ActiveRecord::Migration
     create_table :schools do |t|
       t.string :name, :null => false, :default => ""
       
+      t.string :email, :limit => 100
+      
       t.string :avatar_file_name
       t.string :avatar_content_type
       t.integer :avatar_file_size

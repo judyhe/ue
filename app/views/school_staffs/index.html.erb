@@ -1,0 +1,24 @@
+<h1><%= @school_staffs.size %> School Staff <%= link_to 'new', new_school_staff_path %></h1>
+
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+  <tr>
+		<th>Name</th>
+		<th>School</th>
+		<th>Position</th>
+		<th>Email</th>
+  </tr>
+	</thead>
+	<tbody>
+	<% @school_staffs.each do |staff| %>
+	  <tr>
+			<td><%= link_to staff.name, staff %></td>
+			<td><%= link_to staff.school.name, staff.school %></td>
+			<td><%= staff.position %></td>
+			<td><%= staff.email %></td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+
+

@@ -90,6 +90,9 @@ h1 a{font-size:12px;}
 .text-like_link, .text-like_link:hover{color:#242424; text-decoration:none;}
 .text-like_link:hover{background:#fdffe1;}
 
+dt{font-weight:bold; width:80px;float:left;clear:left;}
+dd{margin-bottom:5px;margin-left:85px;}
+
 table.index{width:100%;}
 table.index td, table.index th{padding:5px;}
 table.index td{border-bottom:1px solid #eee;}
