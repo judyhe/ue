@@ -1,8 +1,10 @@
 class StudentRelationship < ActiveRecord::Base
-  belongs_to :person
-  belongs_to :relation, :class_name => 'Person'
-  belongs_to :relationship_type
-
+  belongs_to :student
+  belongs_to :student_relation
+  belongs_to :student_relationship_type
+  
+  delegate :name, :to => :student_relationship_type
+  
   #after_update :create_inverse_relationship
 
 =begin

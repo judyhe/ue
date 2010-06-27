@@ -6,7 +6,7 @@ class SchoolStaff < ActiveRecord::Base
   
   accepts_nested_attributes_for :person, :school
   
-  delegate :name, :email, :gender, :to => :person
+  delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
   delegate :position, :to => :school_staff_type
   
   validates_presence_of :school_id 

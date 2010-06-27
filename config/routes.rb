@@ -14,8 +14,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contact_numbers
 
   map.resources :organizations
-  map.resources :relationship_types
-  map.resources :relationships
+  map.resources :student_relationship_types
+  map.resources :student_relationships
   map.resources :people, :has_many => :comments
   map.resources :grades
   map.resources :ethnicities

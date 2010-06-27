@@ -3,14 +3,14 @@
 	<div class="clearfix">
 	<div class="p1">
 		<% f.fields_for :person do |person_fields| %>
-			<%= render :partial => "people/person_fields", :locals => {:f => person_fields} %>
+			<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => student.person} %>
 		<% end %>
 	</div>
 	<div class="p2">
 		<% field_set_tag "Student details" do %>			
 		<div>
 			<%= f.label :birth_date %>
-			<%= f.date_select :birth_date, :start_year => Time.now.year-12, :end_year => Time.now.year-3, :order => [:month, :day, :year] %>
+			<%= f.date_select :birth_date, :start_year => Time.now.year-12, :end_year => Time.now.year-3, :order => [:month, :day, :year], :include_blank => true %>
 		</div>
 
 		<div>
@@ -37,9 +37,25 @@
 			</ul>
 			<% end %>
 		<% end %>		
+		
+		<% field_set_tag "Adult Relatives" do %>
+			<% student.student_relationships.build if student.student_relationships.empty? %>
+			<span id="family">
+			<% f.fields_for :student_relationships do |rf| %>
+				<div class="relationship">
+					<%= rf.collection_select :student_relation_id, StudentRelation.all, :id, :name, {:include_blank => true} %> is my	
+					<%= rf.collection_select :student_relationship_type_id, StudentRelationshipType.all, :id, :name, {:include_blank => true} %>
+					<%= remove_link_unless_new_record(rf) -%>
+				</div>
+			<% end %>
+			</span>
+			<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'relationship' %></p>
+		<% end %>
 	</div>
 	</div>
   <p>
     <%= f.submit %>
   </p>
 <% end %>
+
+<%= javascript_include_tag "application" %>

@@ -10,7 +10,17 @@
 			
 		<div class="p2">
 			<% field_set_tag "Related Students" do %>
-				
+				<% relative.student_relationships.build if relative.student_relationships.empty? %>
+				<span id="family">
+				<% f.fields_for :student_relationships do |rf| %>
+					<div class="relationship">
+						<%= rf.collection_select :student_relationship_type_id, StudentRelationshipType.all, :id, :name, {:include_blank => true} %> of 
+						<%= rf.collection_select :student_id, Student.all, :id, :name, {:include_blank => true} %>	
+						<%= remove_link_unless_new_record(rf) -%>
+					</div>
+				<% end %>
+				</span>
+				<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'relationship' %></p>
 			
 			<% end %>
 		</div><!-- end .p2 -->
@@ -19,3 +29,5 @@
     <%= f.submit %>
   </p>
 <% end %>
+
+<%= javascript_include_tag "application" %>

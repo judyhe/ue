@@ -1,5 +1,4 @@
-
-<h1>Listing Contact Number Types <%= link_to 'new', new_contact_number_type_path %></h1>
+<h1><%= @contact_number_types.size %> contact number types <%= link_to 'new', new_contact_number_type_path %></h1>
 
 <ul>
 <% @contact_number_types.each do |contact_number_type| %>

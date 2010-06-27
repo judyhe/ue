@@ -1,3 +1,4 @@
+<%= image_tag(@student_relation.person.avatar.url(:medium), :class => "avatar") %>
+<h1><%= @student_relation.person.name %> <%= link_to 'Edit', edit_student_relation_path(@student_relation) %></h1>
 
-<%= link_to 'Edit', edit_student_relation_path(@student_relation) %> |
-<%= link_to 'Back', student_relations_path %>
+<p><%= link_to 'Back', student_relations_path %></p>

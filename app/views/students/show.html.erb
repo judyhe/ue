@@ -1,60 +1,44 @@
 	<%= image_tag(@student.person.avatar.url(:medium), :class => "avatar") %>
 	<h1><%= @student.person.name %> <%= link_to 'Edit', edit_student_path(@student) %></h1>
 
-<h2 class="profile_header">General info</h2>
-<table cellspacing="0" cellpadding="0" border="0" class="attribute_list">
-	<tr>
-		<th>Birth date:</th>
-		<td><%= @student.birth_date.strftime("%b %d, %Y") %> (Age <%= @student.age %>)</td>
-	</tr>
-	<tr>
-		<th>Home neighborhood:</th>
-		<td><%= associated_attribute(@student.person.neighborhood, :name)%></td>
-	</tr>	
-	<tr>
-		<th>Gender:</th>
-		<td><%= @student.gender %></td>
-	</tr>
-	<tr>
-		<th>Ethnicity:</th>
-		<td><%= associated_attribute(@student.ethnicity, :name) %></td>
-	</tr>
-	<tr>
-		<th>Interests:</th>
-		<td><%= @student.activities_list %></td>
-	</tr>
-	<tr class="spacer">
-		<th>&nbsp;</th>
-		<td>&nbsp;</td>
-	</tr>
-	<tr>		
-		<th>School:</th>
-		<td><%= link_to @student.school.name, school_path(@student.school) if @student.school %></td>
-	</tr>
-	<tr>		
-		<th>Grade:</th>
-		<td><%= associated_attribute(@student.grade, :name) %></td>
-	</tr>	
-</table>
 
-<h2 class="profile_header">Contact info</h2>
-<table cellspacing="0" cellpadding="0" border="0" class="attribute_list">
-	<tr>
-		<th>Home contact:</th>
-		<td><%= @student.person.home_contact %></td>
-	</tr>
-	<tr>
-		<th>Cell contact:</th>
-		<td><%= @student.person.cell_contact %></td>
-	</tr>	
-	<tr>
-		<th>Email:</th>
-		<td><%= @student.person.email %></td>
-	</tr>
-	<tr>
-		<th>Address:</th>
-		<td>
-			<%= address(@student.person, false) %>
-		</td>
-	</tr>	
-</table>
+	<dl>
+			<dt>School:</dt> 
+			<dd><% if @student.school %><%= link_to @student.school.name, school_path(@student.school) %><% end %>&nbsp;</dd>
+			
+			<dt>Grade</dt>
+			<dd><%= associated_attribute(@student.grade, :name) %>&nbsp;</dd>
+			
+			<dt>Gender:</dt> 
+			<dd><%= @student.gender %>&nbsp;</dd>
+			
+			<% @student.contact_numbers.each do |number| %>
+				<dt><%= number.name %>:</dt> <dd><%= number.number %></dd>
+			<% end %>
+			
+			<dt>Address:</dt>
+			<dd><address><%= address(@student.address) %></address></dd>
+			
+			<dt>Email:</dt> 
+			<dd><%= @student.email %>&nbsp;</dd>
+			
+			<dt>Birthdate:</dt> 
+			<dd>
+			<% if @student.birth_date %>
+				 <%= @student.birth_date.strftime("%b %d, %Y") %> (Age <%= @student.age %>)
+			<% end %>&nbsp;</dd>
+			
+			<dt>Ethnicity:</dt>
+			<dd><%= associated_attribute(@student.ethnicity, :name) %>&nbsp;</dd>
+			
+			<dt>Interests</dt>
+			<dd><%= @student.activities_list %>&nbsp;</dd>
+		</dl>
+		
+		<dl>
+		<% @student.student_relationships.each do |relationship| %>
+			<dt><%= relationship.name %></dt> 
+			<dd><%= link_to relationship.student_relation.name, student_relation_path(relationship.student_relation) %></dd>
+		<% end %>
+		</dl>
+<p><%= link_to 'Back', students_path %></p>
