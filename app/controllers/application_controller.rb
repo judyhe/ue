@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
+  
+  
+  def test_exception_notifier
+    raise "This is a test."
+  end
 end
