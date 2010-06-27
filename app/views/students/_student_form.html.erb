@@ -42,14 +42,14 @@
 			<% student.student_relationships.build if student.student_relationships.empty? %>
 			<span id="family">
 			<% f.fields_for :student_relationships do |rf| %>
-				<div class="relationship">
+				<div class="student_relationship">
 					<%= rf.collection_select :student_relation_id, StudentRelation.all, :id, :name, {:include_blank => true} %> is my	
 					<%= rf.collection_select :student_relationship_type_id, StudentRelationshipType.all, :id, :name, {:include_blank => true} %>
 					<%= remove_link_unless_new_record(rf) -%>
 				</div>
 			<% end %>
 			</span>
-			<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'relationship' %></p>
+			<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'student_relationship' %></p>
 		<% end %>
 	</div>
 	</div>
