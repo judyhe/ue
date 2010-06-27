@@ -16,6 +16,7 @@ class Student < ActiveRecord::Base
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
       
   def age
+    return unless self.birth_date
     age = Date.today.year - self.birth_date.year
     unless Date.today.month > self.birth_date.month && Date.today.day > self.birth_date.day
       age = age - 1
@@ -28,6 +29,7 @@ class Student < ActiveRecord::Base
   end
   
   def siblings
+    return [] if self.student_relationships.empty?
     sibling_relationships = StudentRelationship.all(:conditions => "student_relation_id = #{self.student_relationships.first.student_relation_id} and student_id != #{self.id}", :include => :student)
   end
   

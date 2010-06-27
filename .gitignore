@@ -3,3 +3,4 @@
 /public/system
 /config/initializers/site_keys.rb
 /doc
+/config/database.yml

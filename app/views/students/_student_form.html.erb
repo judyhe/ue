@@ -10,7 +10,7 @@
 		<% field_set_tag "Student details" do %>			
 		<div>
 			<%= f.label :birth_date %>
-			<%= f.date_select :birth_date, :start_year => Time.now.year-12, :end_year => Time.now.year-3, :order => [:month, :day, :year], :include_blank => true %>
+			<%= f.date_select :birth_date, :start_year => 1995, :end_year => Time.now.year-3, :order => [:month, :day, :year], :include_blank => true %>
 		</div>
 
 		<div>
