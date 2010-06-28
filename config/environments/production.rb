@@ -28,3 +28,4 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 ExceptionNotification::Notifier.exception_recipients = %w(judy.w.he+ue@gmail.com)
+ExceptionNotification::Notifier.sender_address = %("Exception Notifier" <exception@likeabawss.com>)
