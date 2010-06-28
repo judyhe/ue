@@ -27,5 +27,6 @@ config.action_view.cache_template_loading            = true
 # Enable threaded mode
 # config.threadsafe!
 
+ExceptionNotification::Notifier.view_paths = ActionView::Base.process_view_paths(ExceptionNotification::Notifier.view_paths)
 ExceptionNotification::Notifier.exception_recipients = %w(judy.w.he+ue@gmail.com)
 ExceptionNotification::Notifier.sender_address = %("Exception Notifier" <exception@likeabawss.com>)
