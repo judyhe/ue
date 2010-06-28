@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
-  include ExceptionNotifiable
+  include ExceptionNotification::Notifiable
 
   before_filter :login_required
   helper :all # include all helpers, all the time
