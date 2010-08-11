@@ -1,4 +1,54 @@
-<%= image_tag(@student_relation.person.avatar.url(:medium), :class => "avatar") %>
-<h1><%= @student_relation.person.name %> <%= link_to 'Edit', edit_student_relation_path(@student_relation) %></h1>
+<div id="content_main">
+	<div class="clearfix">
+		<h1><%= @student_relation.name %></h1> 
+		
+		<div class="nav_model_util">
+			<%= link_to 'Edit Parent', edit_student_relation_path(@student_relation) %>
+		</div>
+	</div>
+	
+	<h2>Terms</h2>
 
-<p><%= link_to 'Back', student_relations_path %></p>
+	<p><%= link_to 'Back', student_relation_path %></p>
+</div>
+
+<div id="content_secondary">
+
+	<%= image_tag(@student_relation.person.avatar.url(:medium)) %>
+
+	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<% @student_relation.contact_numbers.each do |number| %>
+			<tr>
+				<th><%= number.name %>:</th> 
+				<td><%= number.number %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<th>Email:</th>
+			<td><%= @student_relation.email %></td>
+		</tr>
+		<tr>
+			<th>Address:</th>
+			<td><address><%= address(@student_relation.address) %></address></td>
+		</tr>
+		<% @student_relation.student_relationships.each_with_index do |relationship, index| %>
+			<% if index == 0 or @student_relation.student_relationships[index-1].name != relationship.name %>
+			<tr>
+				<th><%= relationship.name %> of: </th>
+				<td><ul>
+			<% end %>
+				<li><%= link_to relationship.student.name, student_path(relationship.student) %></li>
+		
+			<% if index != 0 and @student_relation.student_relationships[index-1].name != relationship.name %>
+				</ul>
+				</td></tr>
+			<% end %>		
+		<% end %>		
+	</table>
+
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @student_relation.person} %>
+
+	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @student_relation.person} %>
+</div>
+
+<%= javascript_include_tag "application" %>

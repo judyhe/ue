@@ -1,13 +1,9 @@
-class School < ActiveRecord::Base
-  has_attached_file :avatar, :url => "/system/:class/:id/:attachment_:basename_:style.:extension", :default_url => "/images/:class/:attachment_missing_:style.png", :styles => { :thumb => "32x32>", :medium => "100x100>"}
-
+class Organization < ActiveRecord::Base
+  
   acts_as_polymorphic_paperclip
   
-  has_many :school_staffs
-  
-  has_many :students, :include => [:person, :grade]
-
-  has_and_belongs_to_many :grades
+  has_many :organization_staffs
+  has_many :programs
   
   has_many :comments, :as => :commentable, :include => [:user]
   accepts_nested_attributes_for :comments, :reject_if => proc{|a| a['comment'].blank?}
@@ -22,6 +18,5 @@ class School < ActiveRecord::Base
   validates_presence_of :name
   
   named_scope :alphabetical, :order => "name"
-  
   
 end

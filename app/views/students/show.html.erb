@@ -1,52 +1,84 @@
-	<%= image_tag(@student.person.avatar.url(:medium), :class => "avatar") %>
-	<h1><%= @student.person.name %> <%= link_to 'Edit', edit_student_path(@student) %></h1>
-
-
-	<dl>
-			<dt>School:</dt> 
-			<dd><% if @student.school %><%= link_to @student.school.name, school_path(@student.school) %><% end %>&nbsp;</dd>
-			
-			<dt>Grade</dt>
-			<dd><%= associated_attribute(@student.grade, :name) %>&nbsp;</dd>
-			
-			<dt>Gender:</dt> 
-			<dd><%= @student.gender %>&nbsp;</dd>
-			
-			<% @student.contact_numbers.each do |number| %>
-				<dt><%= number.name %>:</dt> <dd><%= number.number %></dd>
-			<% end %>
-			
-			<dt>Address:</dt>
-			<dd><address><%= address(@student.address) %></address></dd>
-			
-			<dt>Email:</dt> 
-			<dd><%= @student.email %>&nbsp;</dd>
-			
-			<dt>Birthdate:</dt> 
-			<dd>
-			<% if @student.birth_date %>
-				 <%= @student.birth_date.strftime("%b %d, %Y") %> (Age <%= @student.age %>)
-			<% end %>&nbsp;</dd>
-			
-			<dt>Ethnicity:</dt>
-			<dd><%= associated_attribute(@student.ethnicity, :name) %>&nbsp;</dd>
-			
-			<dt>Interests: </dt>
-			<dd><%= @student.activities_list %>&nbsp;</dd>
-		</dl>
+<div id="content_main">
+	<div class="clearfix">
+		<h1><%= @student.name %></h1> 
 		
-		<dl>
-		<% @student.student_relationships.each do |relationship| %>
-			<dt><%= relationship.name %>: </dt> 
-			<dd><%= link_to relationship.student_relation.name, student_relation_path(relationship.student_relation) %></dd>
+		<div class="nav_model_util">
+			<%= link_to 'Edit Student', edit_student_path(@student) %>
+			<a href="#">New Application</a>
+		</div>
+	</div>
+	
+	<h2>Terms</h2>
+
+	<p><%= link_to 'Back', students_path %></p>
+</div>
+
+<div id="content_secondary">
+
+	<%= image_tag(@student.person.avatar.url(:medium)) %>
+
+	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<% @student.contact_numbers.each do |number| %>
+			<tr>
+				<th><%= number.name %>:</th> 
+				<td><%= number.number %></td>
+			</tr>
 		<% end %>
-			<dt>Siblings:</dt>
-			<dd>
+		<tr>
+			<th>Email:</th>
+			<td><%= @student.email %></td>
+		</tr>
+		<tr>
+			<th>Address:</th>
+			<td><address><%= address(@student.address) %></address></td>
+		</tr>
+		<tr>
+			<th>School:</th> 
+			<td><% if @student.school %><%= link_to @student.school.name, school_path(@student.school) %><% end %> </td>
+		</tr>
+		<tr>
+			<th>Grade:</th>
+			<td><%= associated_attribute(@student.grade, :name) %>&nbsp;</td>
+		</tr>
+		<tr>
+			<th>Gender:</th> 
+			<td><%= @student.gender %>&nbsp;</td>
+		</tr>
+		<tr>
+			<th>Birthdate:</th>
+			<td> 
+				<% if @student.birth_date %>
+					 <%= @student.birth_date.strftime("%m.%d.%y") %> (Age <%= @student.age %>)
+				<% end %>&nbsp;</dd>
+			</td>
+		</tr>
+		<tr>
+			<th>Ethnicity:</th>
+			<td><%= associated_attribute(@student.ethnicity, :name) %>&nbsp;</td>
+		</tr>		
+		<tr>
+			<th>Interests: </th>
+			<td><%= @student.activities_list %>&nbsp;</td>
+		</tr>	
+		<tr>
+			<th>Siblings: </th>
+			<td>
 				<% @student.siblings.each do |sibling| %>
 					<%= link_to sibling.student.name, student_path(sibling.student) %><br />
 				<% end %>
-				&nbsp;
-			</dd>
-		</dl>
-			
-<p><%= link_to 'Back', students_path %></p>
+			</td>
+		</tr>
+		<% @student.student_relationships.each do |relationship| %>
+			<tr>
+				<th><%= relationship.name %>: </th> 
+				<td><%= link_to relationship.student_relation.name, student_relation_path(relationship.student_relation) %></td>
+			</tr>
+		<% end %>		
+	</table>
+
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @student.person} %>
+
+	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @student.person} %>
+</div>
+
+<%= javascript_include_tag "application" %>

@@ -1,0 +1,20 @@
+<h1><%= @programs.size %> <%= correctly_pluralized_noun(@programs.size, "program") %> <%= link_to 'new', new_program_path %></h1>
+
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+  <tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Organization</th>
+  </tr>
+	</thead>
+	<tbody>
+	<% @programs.each do |program| %>
+	  <tr>
+			<td><%= link_to program.name, program %></td>
+			<td><%= program.description %></td>
+			<td><%= program.organization.name %>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>

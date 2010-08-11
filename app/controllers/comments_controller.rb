@@ -58,12 +58,11 @@ class CommentsController < ApplicationController
   # PUT /comments/1.xml
   def update
     @comment = Comment.find(params[:id])
-    @commentable = find_commentable
     
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
         flash[:notice] = 'Comment was successfully updated.'
-        format.html { redirect_to eval(commentable_url)}
+        format.html { redirect_to eval(commentable_url(@comment))}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -77,28 +76,16 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    @commentable = find_commentable
-
+    
     respond_to do |format|
-      format.html { redirect_to eval(commentable_url) }
+      format.html { redirect_to eval(commentable_url(@comment)) }
       format.xml  { head :ok }
     end
   end
   
-  def find_commentable
-    commentable_params[:name].classify.constantize.find(commentable_params[:val])
+
+  def commentable_url(comment)
+    return comment.commentable_type.downcase + "_path(" + comment.commentable_id.to_s + ")"
   end
-  
-  def commentable_url
-    commentable_params[:name] + "_url(" + commentable_params[:val] +  ")"
-  end
-  
-  def commentable_params
-    params.each do |name, value|
-      if name =~ /(.+)_id$/  
-        return {:name => $1, :val => value} 
-      end  
-    end  
-    nil      
-  end
+
 end

@@ -8,6 +8,6 @@ class StudentRelation < ActiveRecord::Base
   accepts_nested_attributes_for :person
   accepts_nested_attributes_for :student_relationships, :allow_destroy => true, :reject_if => proc{|a| a['student_id'].blank? or a['student_relationship_type_id'].blank? }
   
-  delegate :name, :email, :gender, :to => :person
+  delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
   
 end

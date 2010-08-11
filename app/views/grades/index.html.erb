@@ -1,4 +1,8 @@
-<h1><%= @grades.size %> grades <%= link_to 'new', new_grade_path %></h1>
+<h1>
+	<%= @grades.size %> 
+	<%= correctly_pluralized_noun(@grades.size, "grade") %> 
+	<%= link_to "new", new_grade_path %>
+</h1>
 
 <ul>
 <% @grades.each do |grade| %>
@@ -6,5 +10,3 @@
     <!--<td><%= link_to 'Destroy', grade, :confirm => 'Are you sure?', :method => :delete %></td>-->
 <% end %>
 </ul>
-
-

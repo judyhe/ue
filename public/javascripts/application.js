@@ -42,4 +42,11 @@ $(document).ready(function(){
 		})
 		return false;
 	})
+	
+	$('.click_to_expose').click(function(){
+		var target = $(this);
+		target.hide();
+		$(target.attr('href')).show();
+		return false;
+	})
 })

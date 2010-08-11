@@ -11,7 +11,7 @@ class AssetsController < ApplicationController
     end
 
     if asset_deleted
-      render_class = "deleted"
+      render_class = "hide"
       render_msg = "File deleted"
     else
       render_class = ""

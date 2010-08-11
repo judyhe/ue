@@ -30,15 +30,6 @@ module ApplicationHelper
     address
   end
   
-  def display_and_remove_assets(m)
-    html = "<h2>#{m.assets.size} attachments</h2>"
-    html += "<div class='remote_form_msg'></div>"
-    html += "<ul>"
-    m.assets.each do |asset|
-    	html += "<li>#{link_to asset.data_file_name, asset.url} (#{link_to "remove", {:controller => "assets", :action => "destroy", :id => asset.id}, :class => "remote_form"})</li>"
-    end
-    html += "</ul>"
-  end
   
   def remove_link_unless_new_record(fields)
     out = ''
@@ -47,4 +38,8 @@ module ApplicationHelper
     out
   end
   
+  def correctly_pluralized_noun(count, noun)
+    html = count == 1 ? noun : noun.pluralize
+  end
+    
 end

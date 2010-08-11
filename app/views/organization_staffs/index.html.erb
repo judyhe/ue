@@ -1,0 +1,25 @@
+<h1>
+	<%= @organization_staffs.size %> 
+	<%= correctly_pluralized_noun(@organization_staffs.size, "organization staffer") %> 
+	<%= link_to "new", new_organization_staff_path %>
+</h1>
+
+
+<table cellspacing="0" cellpadding="0" border="0" class="index">
+	<thead>
+  <tr>
+		<th>Name</th>
+		<th>Organization</th>
+		<th>Position</th>
+  </tr>
+	</thead>
+	<tbody>
+	<% @organization_staffs.each do |staff| %>
+	  <tr>
+			<td><%= link_to staff.name, staff %></td>
+			<td><%= staff.organization.name %></td>
+			<td><%= staff.position %></td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>

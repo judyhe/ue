@@ -1,4 +1,8 @@
-<h1><%= @students.size %> students <%= link_to 'new', new_student_path %></h1>
+<h1>
+	<%= @students.size %> 
+	<%= correctly_pluralized_noun(@students.size, "student") %> 
+	<%= link_to "new", new_student_path %>
+</h1>
 
 <table cellspacing="0" cellpadding="0" border="0" class="index">
 	<thead>

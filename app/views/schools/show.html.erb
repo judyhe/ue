@@ -1,70 +1,86 @@
-<%= image_tag(@school.avatar.url(:medium), :class => "avatar") %>
-<h1><%= @school.name %> <%= link_to 'Edit', edit_school_path(@school) %></h1>
-
-<dl>
-	<% @school.contact_numbers.each do |number| %>
-		<dt><%= number.name %>:</dt> <dd><%= number.number %></dd>
-	<% end %>
-	<dt>Email:</dt> <dd><%= @school.email %><dd>
-	<dt>Address:</dt><dd><address><%= address(@school.address) %></address></dd>
-</dl>
-
-<%= display_and_remove_assets(@school) %>
-
-<% form_for(@school, :html => {:multipart => true, :class => "default"}) do |f| %>
-	<div>
-		<%= f.file_field :data %>
+<div id="content_main">
+	<div class="clearfix">
+		<h1><%= @school.name %></h1> 
+		
+		<div class="nav_model_util">
+			<%= link_to 'Edit School', edit_school_path(@school) %>
+			<%= link_to "New Staff", new_school_staff_path %>
+			<%= link_to "New Student", new_student_path %>
+		</div>
 	</div>
 	
-	<p>
-    <%= f.submit "Add attachment" %>
-  </p>
-<% end %>
+	<h2>Students (<%= @school.students.size %>)</h2>
 
+	<h2>Staff (<%= @school.school_staffs.size%>)</h2>
+	
+	<% if @school.school_staffs.size > 0 %>
+	<table cellspacing="0" cellpadding="0" border="0" class="index">
+		<thead>
+		  <tr>
+				<th>&nbsp;</th>
+				<th>Name</th>
+		  </tr>
+		</thead>
+		<tbody>
 
-<h2><%= @school.comments.size %> Notes</h2>
-<% @school.comments.each do |comment| %>
-	<p><%= link_to comment.comment, edit_school_comment_path(@school, comment), :class => "text-like_link" %> &#8212; <%= link_to comment.user.login, edit_user_path(comment.user) %> <%= comment.updated_at.strftime("%b %d, %Y") %> (<%= link_to 'remove', school_comment_path(@school, comment), :confirm => 'Are you sure?', :method => :delete %>)</p>
-<% end %>
-
-<% form_for(@school, :html => {:multipart => true, :class => "default"}) do |f| %>
-	<div>
-		<% f.fields_for :comments, Comment.new do |cf| %>
-			<%= cf.hidden_field :user_id, :value => current_user.id %>
-			<%= cf.text_area :comment, :rows => 5 %>
+		<% @school.school_staffs.each do |staff| %>
+		  <tr>
+				<td><%= image_tag staff.person.avatar.url(:thumb) %></td>
+				<td><%= link_to staff.person.name, staff %></td>
+		  </tr>
 		<% end %>
-	</div>
-	
-	<p><%= f.submit "Add note" %></p>
-<% end %>
-
-
-<h2 class="clear"><%= @school.students.size %> Students</h2>
-<table cellspacing="0" cellpadding="0" border="0" class="index">
-	<thead>
-	  <tr>
-			<th>&nbsp;</th>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Age</th>
-			<th>Grade</th>
-			<th>Gender</th>
-	  </tr>
-	</thead>
-	<tbody>
-
-	<% @school.students.each do |student| %>
-	  <tr>
-			<td><%= image_tag student.person.avatar.url(:thumb) %></td>
-			<td><%= link_to student.person.name, student %></td>
-			<td><%= student.person.email %></td>
-			<td><%= student.age %></td>
-			<td><%= associated_attribute(student.grade, :name) %></td>
-			<td><%= student.gender %></td>
-	  </tr>
+		</tbody>
+	</table>
 	<% end %>
-	</tbody>
-</table>
-<p><%= link_to "New student", new_student_path %></p>
+		
+	<% if @school.students.size > 0 %>
+		<table cellspacing="0" cellpadding="0" border="0" class="index">
+			<thead>
+			  <tr>
+					<th>&nbsp;</th>
+					<th>Name</th>
+					<th>Age</th>
+			  </tr>
+			</thead>
+			<tbody>
+
+			<% @school.students.each do |student| %>
+			  <tr>
+					<td><%= image_tag student.person.avatar.url(:thumb) %></td>
+					<td><%= link_to student.person.name, student %></td>
+					<td><%= student.age %></td>
+			  </tr>
+			<% end %>
+			</tbody>
+		</table>
+	<% end %>
+	
+</div>
+
+<div id="content_secondary">
+
+	<%= image_tag(@school.avatar.url(:medium)) %>
+
+	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<% @school.contact_numbers.each do |number| %>
+			<tr>
+				<th><%= number.name %>:</th> 
+				<td><%= number.number %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<th>Email:</th>
+			<td><%= @school.email %></td>
+		</tr>
+		<tr>
+			<th>Address:</th>
+			<td><address><%= address(@school.address) %></address></td>
+		</tr>
+	</table>
+
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @school} %>
+
+	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @school} %>
+</div>
 
 <%= javascript_include_tag "application" %>

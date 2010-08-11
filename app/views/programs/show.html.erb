@@ -1,0 +1,33 @@
+<div id="content_main">
+	<div class="clearfix">
+		<h1><%= @program.name %></h1> 
+		
+		<div class="nav_model_util">
+			<%= link_to 'Edit Program', edit_program_path(@program) %>
+			<a href="#">New Term</a>
+			<a href="#">New Staffer</a>
+		</div>
+	</div>
+	
+	<h2>Terms</h2>
+	
+	<h2>Staffers</h2>
+
+	<p><%= link_to 'Back', program_path %></p>
+</div>
+
+<div id="content_secondary">
+
+	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<tr>
+			<th>Description:</th>
+			<td><%= @program.description %></th>
+		</tr>
+	</table>
+
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @program} %>
+
+	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @program} %>
+</div>
+
+<%= javascript_include_tag "application" %>

@@ -1,4 +1,8 @@
-<h1><%= @school_staffs.size %> school staff <%= link_to 'new', new_school_staff_path %></h1>
+<h1>
+	<%= @school_staffs.size %> 
+	<%= correctly_pluralized_noun(@school_staffs.size, "school staff member") %> 
+	<%= link_to "new", new_school_staff_path %>
+</h1>
 
 <table cellspacing="0" cellpadding="0" border="0" class="index">
 	<thead>

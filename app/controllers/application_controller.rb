@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
   def test_exception_notifier
     raise "This is a test."
   end
+
 end
