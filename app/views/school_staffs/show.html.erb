@@ -1,15 +1,31 @@
-<%= image_tag(@school_staff.person.avatar.url(:medium), :class => "avatar") %>
-<h1><%= @school_staff.name %> <%= link_to 'Edit', edit_school_staff_path(@school_staff) %></h1>
+<div id="content_main">
+	<div class="clearfix">
+		<div class="heading">
+			<h1><%= @school_staff.name %></h1>
+			<h3><%= @school_staff.position %> @<%= @school_staff.school.name %></h3>
+		</div>
+	
+		<div class="nav_model_util">
+			<%= link_to 'Edit Staffer', edit_school_staff_path(@school_staff) %>
+			<%= link_to "Edit #{@school_staff.school.name}", school_path(@school_staff.school) %>
+		</div>
+	</div>
 
+	<p><%= link_to 'Back', school_staffs_path %></p>
+</div>
 
-<dl>
-		<dt>School:</dt> <dd><%= link_to @school_staff.school.name, school_path(@school_staff.school) %></dd>
-		<dt>Position:</dt> <dd><%= @school_staff.position %><dd>
-			
-		<dt>Gender:</dt> <dd><%= @school_staff.gender %></dd>
-		<dt>Email:</dt> <dd><%= @school_staff.email %>&nbsp;</dd>
-		<% @school_staff.contact_numbers.each do |number| %>
-			<dt><%= number.name %>:</dt> <dd><%= number.number %></dd>
-		<% end %>
-		<dt>Address:</dt><dd><address><%= address(@school_staff.address) %></address></dd>
-</dl>
+<div id="content_secondary">
+
+	<%= image_tag(@school_staff.person.avatar.url(:medium)) %>
+
+	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<%= render :partial => "shared/person_content_secondary", :locals => {:local_model => @school_staff} %>
+	</table>
+
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @school_staff.person} %>
+
+	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @school_staff.person} %>
+</div>
+
+<%= javascript_include_tag "application" %>
+

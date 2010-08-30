@@ -1,22 +1,40 @@
 <% form_for(program, :html => {:class => "default"}) do |f| %>
   <%= f.error_messages %>
 
-	<div>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
-	</div>
+	<div class="clearfix">
+	<div class="p1">
+		<% field_set_tag "Basics" do %>
+			<div>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+			</div>
 
 	
-	<div>
-		<%= f.label :description %>
-		<%= f.text_area :description, :rows => 4, :cols => 60 %>
-	</div>
+			<div>
+				<%= f.label :description %>
+				<%= f.text_area :description %>
+			</div>
 	
-	<div>
-		<%= f.label :organization_id %>
-		<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name, {:include_blank => true} %>
-	</div>
+			<div>
+				<%= f.label :organization_id %>
+				<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name, {:include_blank => true} %>
+			</div>
+		<% end %>
+	</div><!-- end .p1-->
 	
+	<div class="p2">
+		<% field_set_tag "Activities" do %>
+			<% Activity.top_level_activities.each do |activity| %>
+			<ul class="float_left clearfix">
+				<li><%= check_box_tag "program[activity_ids][]", activity.id, program.activities.include?(activity) %> <strong><%= activity.name %></strong></li>
+				<% activity.children.each do |sub_activity| %>
+					<li><%= check_box_tag "program[activity_ids][]", sub_activity.id, program.activities.include?(sub_activity) %> <%= sub_activity.name %></li>
+				<% end %>
+			</ul>
+			<% end %>
+		<% end %>	
+	</div> <!-- end .p2 -->
+	</div><!-- end .clearfix -->
   <p>
     <%= f.submit %>
   </p>

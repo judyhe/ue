@@ -1,0 +1,18 @@
+<tr>
+	<th>Gender:</th>
+	<td><%= local_model.gender %></td>
+</tr>
+<% local_model.contact_numbers.each do |number| %>
+	<tr>
+		<th><%= number.name %>:</th> 
+		<td><%= number.number %></td>
+	</tr>
+<% end %>
+<tr>
+	<th>Email:</th>
+	<td><%= local_model.email %></td>
+</tr>
+<tr>
+	<th>Address:</th>
+	<td><address><%= address(local_model.address) %></address></td>
+</tr>

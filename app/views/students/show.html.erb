@@ -18,20 +18,9 @@
 	<%= image_tag(@student.person.avatar.url(:medium)) %>
 
 	<table cellpadding="0" cellspacing="0" border="0" class="info">
-		<% @student.contact_numbers.each do |number| %>
-			<tr>
-				<th><%= number.name %>:</th> 
-				<td><%= number.number %></td>
-			</tr>
-		<% end %>
-		<tr>
-			<th>Email:</th>
-			<td><%= @student.email %></td>
-		</tr>
-		<tr>
-			<th>Address:</th>
-			<td><address><%= address(@student.address) %></address></td>
-		</tr>
+		
+		<%= render :partial => "shared/person_content_secondary", :locals => {:local_model => @student} %>
+		
 		<tr>
 			<th>School:</th> 
 			<td><% if @student.school %><%= link_to @student.school.name, school_path(@student.school) %><% end %> </td>
@@ -39,10 +28,6 @@
 		<tr>
 			<th>Grade:</th>
 			<td><%= associated_attribute(@student.grade, :name) %>&nbsp;</td>
-		</tr>
-		<tr>
-			<th>Gender:</th> 
-			<td><%= @student.gender %>&nbsp;</td>
 		</tr>
 		<tr>
 			<th>Birthdate:</th>

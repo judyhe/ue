@@ -1,20 +1,36 @@
 <% form_for(organization_staff, :html => {:class => "default"}) do |f| %>
   <%= f.error_messages %>
 
-	<div>
-		<%= f.label :organization_staff_type_id, "Position" %>
-		<%= f.collection_select :organization_staff_type_id, OrganizationStaffType.all, :id, :position, {:include_blank => true} %>
-	</div>
+	<div class="clearfix">
 	
-	<div>
-		<%= f.label :organization_id %>
-		<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name, {:include_blank => true} %>
-	</div>
+	<div class="p1">
+		<% f.fields_for :person do |person_fields| %>
+			<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => organization_staff.person} %>
+		<% end %>
+	</div> 
+
 	
-	<% f.fields_for :person do |person_fields| %>
-		<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => organization_staff.person} %>
-	<% end %>
+	<div class="p2">
+		<% field_set_tag "Employment" do %>
+		<div>
+			<%= f.label :organization_staff_type_id, "Position" %>
+			<%= f.collection_select :organization_staff_type_id, OrganizationStaffType.all, :id, :position, {:include_blank => true} %>
+		</div>
 	
+		<div>
+			<%= f.label :organization_id %>
+			<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name, {:include_blank => true} %>
+		</div>
+		
+		<div>
+			<%= f.label :program_id %>
+			<%= f.collection_select(:program_ids, Program.alphabetical, :id, :name, { :selected => organization_staff.program_ids }, { :multiple => true, :size => 5, :name => 'organization_staff[program_ids][]' }) -%>
+		</div>
+		
+		<% end %>
+	</div> <!-- end .p2 -->
+	</div> <!-- end .clearfix -->
+		
   <p>
     <%= f.submit %>
   </p>

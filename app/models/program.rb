@@ -8,6 +8,8 @@ class Program < ActiveRecord::Base
   has_many :comments, :as => :commentable, :include => [:user]
   accepts_nested_attributes_for :comments, :reject_if => proc{|a| a['comment'].blank?}  
   
+  has_and_belongs_to_many :activities
+  
   validates_presence_of :name
   
   named_scope :alphabetical, :order => "name"

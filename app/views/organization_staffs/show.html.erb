@@ -1,3 +1,39 @@
+<div id="content_main">
+	<div class="clearfix">
+		<div class="heading">
+			<h1><%= @organization_staff.name %></h1>
+			<h3><%= @organization_staff.position %> @<%= @organization_staff.organization.name %></h3>
+		</div>
+	
+		<div class="nav_model_util">
+			<%= link_to 'Edit Staffer', edit_organization_staff_path(@organization_staff) %>
+			<%= link_to "Edit #{@organization_staff.organization.name}", organization_path(@organization_staff.organization) %>
+		</div>
+	</div>
 
-<%= link_to 'Edit', edit_organization_staff_path(@organization_staff) %> |
-<%= link_to 'Back', organization_staffs_path %>
+	<h2>Programs</h2>
+	<dl class="paragraphed">
+		<% @organization_staff.programs.each do |program| %>
+		<dt><%= link_to program.name, program_path(program) %></dt>
+		<dd><%= program.description %></dd>
+		<% end %>
+	</dl>
+
+	<p><%= link_to 'Back', organization_staffs_path %></p>
+</div>
+
+<div id="content_secondary">
+
+	<%= image_tag(@organization_staff.person.avatar.url(:medium)) %>
+
+	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<%= render :partial => "shared/person_content_secondary", :locals => {:local_model => @organization_staff} %>
+	</table>
+
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @organization_staff.person} %>
+
+	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @organization_staff.person} %>
+</div>
+
+<%= javascript_include_tag "application" %>
+

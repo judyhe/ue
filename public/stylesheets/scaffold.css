@@ -35,7 +35,7 @@ img.float_left{margin-right:5px;}
 .quarter{width:24%;}
 
 .hide{display:none;}
-
+.clear{clear:both;}
 .clearfix{*zoom:1}/* for ie */
 .clearfix:after{content: "."; display: block; height: 0; clear: both; visibility: hidden;}
 
@@ -97,8 +97,16 @@ a:hover{color:#009fdb;text-decoration:underline;}
 
 #content_main h1{
 	float:left;
+	margin-bottom:0.5em;
 }
 
+#content_main h3{
+	font-weight:normal;
+	color:#999;
+}
+#content_main .heading{
+	float:left;	
+}
 #content_main .nav_model_util{
 	float:right;
 	margin-left:20px;
@@ -178,6 +186,9 @@ a.button:hover{background:#0068ac;border-color:#000;}
 dt{font-weight:bold; width:80px;float:left;clear:left;}
 dd{margin-bottom:5px;margin-left:85px;}
 
+dl.paragraphed dt{float:none; width:auto;}
+dl.paragraphed dd{margin:0.5em 0 1em 0;}
+
 table.info{width:100%;margin:1em 0;font-size:0.9em;}
 table.info th{text-align:left;width:40%;padding-left:0;}
 table.info th, table.info td{padding:3px;vertical-align:top;}
@@ -191,7 +202,8 @@ table.index th{text-align:left;border-bottom:1px solid #dedede;}
 form.default label{display:block;line-height:1.6em;clear:both;font-weight:bold;}
 form.default fieldset ul{float:left;margin:1em 1em 1em 0;}
 form.default div{margin:6px 0;padding:3px 0;}
-form.default div input[type="text"]{width:98%;}
+form.default div input[type="text"], form.default textarea{border:1px solid #999; width:98%;padding:3px;}
+form.default textarea {height:50px;}
 form.default div input.auto{width:auto;}
 form.default div.fieldWithErrors{margin:0;padding:2px;}
 form.default div.input_set span{float:left; margin-right:10px;}
