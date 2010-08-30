@@ -9,8 +9,18 @@ class Program < ActiveRecord::Base
   accepts_nested_attributes_for :comments, :reject_if => proc{|a| a['comment'].blank?}  
   
   has_and_belongs_to_many :activities
+  has_and_belongs_to_many :ages
   
   validates_presence_of :name
   
   named_scope :alphabetical, :order => "name"
+  
+  
+  def ages_list
+    self.ages.collect{|a| a.age}.join(", ")
+  end
+  
+  def activities_list
+    self.activities.collect{|a| a.name}.join(", ")
+  end
 end

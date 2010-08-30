@@ -1,6 +1,9 @@
 <div id="content_main">
 	<div class="clearfix">
-		<h1><%= @program.name %></h1> 
+		<div class="heading">
+			<h1><%= @program.name %></h1> 
+			<h3><%= @program.description %></h3>
+		</div>
 		
 		<div class="nav_model_util">
 			<%= link_to 'Edit Program', edit_program_path(@program) %>
@@ -11,7 +14,12 @@
 	
 	<h2>Terms</h2>
 	
-	<h2>Staffers</h2>
+	<h2>Staffers (<%= @program.organization_staffs.size %>)</h2>
+	<ul>
+		<% @program.organization_staffs.each do |staff| %>
+		<li><%= link_to staff.name, organization_staff_path(staff) %> - <%= staff.position %></li>
+		<% end %>
+	</ul>
 
 	<p><%= link_to 'Back', program_path %></p>
 </div>
@@ -20,8 +28,16 @@
 
 	<table cellpadding="0" cellspacing="0" border="0" class="info">
 		<tr>
-			<th>Description:</th>
-			<td><%= @program.description %></th>
+			<th>Gender:</th>
+			<td><%= @program.gender %></td>
+		</tr>
+		<tr>
+			<th>Ages:</th>
+			<td><%= @program.ages_list %>
+		</tr>
+		<tr>
+			<th>Activities:</th>
+			<td><%= @program.activities_list %></td>
 		</tr>
 	</table>
 
