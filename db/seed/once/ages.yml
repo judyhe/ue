@@ -1,0 +1,52 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+
+one: 
+    id: 1
+    age: 3
+
+two: 
+    id: 2
+    age: 4
+
+three: 
+    id: 3
+    age: 5
+    
+four: 
+    id: 4
+    age: 6
+    
+five: 
+    id: 5
+    age: 7
+
+six: 
+    id: 6
+    age: 8
+    
+seven: 
+    id: 7
+    age: 9
+    
+eight: 
+    id: 8
+    age: 10
+    
+nine:
+    id: 9
+    age: 11
+    
+ten:
+    id: 10
+    age: 12
+
+eleven:
+    id: 11
+    age: 13    

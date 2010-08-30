@@ -19,6 +19,27 @@
 				<%= f.label :organization_id %>
 				<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name, {:include_blank => true} %>
 			</div>
+			
+			<div class="input_set clearfix">
+				<%= f.label :gender_m, "Gender" %>
+				<span>
+					<%= f.radio_button(:gender, "M") %>
+					<%= f.label :gender_m, "M", :class => "radio" %>
+				</span>
+				<span>
+					<%= f.radio_button(:gender, "F") %>
+					<%= f.label :gender_f, "F", :class => "radio" %>
+				</span>
+				<span>
+					<%= f.radio_button(:gender, "MF") %>
+					<%= f.label :gender_mf, "Both", :class => "radio" %>
+				</span>
+			</div>
+			
+			<div>
+				<%= f.label :ages %>
+				<%= f.collection_select(:age_ids, Age.all, :id, :age, { :selected => program.age_ids }, { :multiple => true, :size => 6, :name => 'program[age_ids][]' }) -%>
+			</div>
 		<% end %>
 	</div><!-- end .p1-->
 	
@@ -33,6 +54,7 @@
 			</ul>
 			<% end %>
 		<% end %>	
+			
 	</div> <!-- end .p2 -->
 	</div><!-- end .clearfix -->
   <p>

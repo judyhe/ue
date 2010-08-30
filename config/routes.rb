@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :ages
+
   map.resources :programs
 
   map.resources :organization_staff_types
