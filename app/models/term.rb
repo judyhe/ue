@@ -19,5 +19,8 @@ class Term < ActiveRecord::Base
   validates_presence_of :program_id
   validates_numericality_of :cost
   
+  def total_hours
+    term_sessions.sum :hours
+  end
   
 end

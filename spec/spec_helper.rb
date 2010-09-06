@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
 require 'spec/autorun'
 require 'spec/rails'
+include AuthenticatedTestHelper
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
@@ -31,7 +32,12 @@ Spec::Runner.configure do |config|
   # names with your fixtures.
   #
   # config.global_fixtures = :table_a, :table_b
-  #
+  
+  # add fixtures for all classes you have fixtures for:
+	fixtures_dir = Dir.new(File.dirname(__FILE__) + "/fixtures")
+	config.global_fixtures =   fixtures_dir.entries.select { |file| file =~ /.*\.yml\Z/ }.map{ |file_2| file_2.scan(/(.*)\.yml\Z/)[0][0].to_sym }
+  
+  
   # If you declare global fixtures, be aware that they will be declared
   # for all of your examples, even those that don't use them.
   #
