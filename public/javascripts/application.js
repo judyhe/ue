@@ -144,3 +144,30 @@ $(".edit_date").each( function(i) {
  });
 
 
+		
+$("#dialog-form").dialog({
+	autoOpen: false,
+	height: 300,
+	width: 350,
+	modal: true,
+	resizable: false,
+	draggable: false,
+	buttons: {
+		'Add New Session': function() {
+			$(this).dialog('close');
+			var clicked_item = $(this).data('clicked_item');
+			var form = $(this).find('form');
+			$.post(form.attr('action'), form.serialize(), function(data){$("#" + clicked_item.attr('target')).append(data)})
+		},
+		Cancel: function() {
+			$(this).dialog('close');
+		}
+	}
+});
+
+$('.click_for_modal').click(function(){
+	var dialog_form = $($(this).attr('href'));
+	dialog_form.data('clicked_item', $(this));
+	dialog_form.dialog('open');
+	return false;
+})

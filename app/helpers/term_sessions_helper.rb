@@ -17,8 +17,8 @@ module TermSessionsHelper
     end
       
     html = ""
-    months.each do |month, days|
-      html += "<h3>" + Date.new(2010, month, 1).strftime("%B") + "</h3>"
+    months.sort.each do |month, days|
+      html += "<h3>" + Date.new(days.first.year, month, 1).strftime("%B %Y") + "</h3>"
       html += "<table cellspacing='0' cellpadding='0' border='0' class='session_calendar'>"
       html += "<tr><th>Su</th><th>M</th><th>T</th><th>W</th><th>Th</th><th>F</th><th>S</th></tr>"
       day_count = 1      
@@ -26,6 +26,7 @@ module TermSessionsHelper
       days.each do |day|
         html += "<tr>" if day_count == 1
       
+        # fill in the week
         if day == days.first 
           (1..days.first.wday).each do |d|
             day_count += 1
@@ -36,13 +37,15 @@ module TermSessionsHelper
         css_class = session_days.find{|i| i == day} ? "selected" : ""
         html += "<td class='#{css_class}'>" + day.strftime('%e') + "</td>"
         
+        # fill in the week 
         if day == days.last
           (days.last.wday..6).each do |d|
             day_count += 1
             html += "<td>&nbsp;</td>"
           end
         end
-          
+        
+        # close the row at the end of the week
         html += "</tr>" if day_count == 7
         
         day_count >= 7 ? day_count = 1 : day_count += 1

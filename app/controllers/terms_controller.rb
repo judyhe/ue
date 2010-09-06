@@ -1,4 +1,23 @@
+require 'recurrence'
+
 class TermsController < ApplicationController
+  
+  def generate_sessions
+    @term = Term.find(params[:id])
+    
+    r = Recurrence.new(:every => :week, :on => params[:dow].map{|d| d.downcase.to_sym}, :starts => @term.start, :until => @term.end)
+    
+    ts = params[:term_session]
+    
+    r.events.each do |session|
+      start_time = Time.parse(session.to_s + " " + ts["start(4i)"] + ":" + ts["start(5i)"])
+      end_time = Time.parse(session.to_s + " " + ts["end(4i)"] + ":" + ts["end(5i)"])
+      term_session = TermSession.create(:day => session, :term_id => @term.id, :start => start_time, :end => end_time)
+    end
+    
+    redirect_to(@term)
+  end
+  
   # GET /terms
   # GET /terms.xml
   def index
