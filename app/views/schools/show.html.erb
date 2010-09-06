@@ -12,6 +12,27 @@
 	</div>
 	
 	<h2>Students (<%= @school.students.size %>)</h2> 
+	<% if @school.students.size > 0 %>
+		<table cellspacing="0" cellpadding="0" border="0" class="index">
+			<thead>
+			  <tr>
+					<th>&nbsp;</th>
+					<th>Name</th>
+					<th>Age</th>
+			  </tr>
+			</thead>
+			<tbody>
+
+			<% @school.students.each do |student| %>
+			  <tr>
+					<td><%= image_tag student.person.avatar.url(:thumb) %></td>
+					<td><%= link_to student.person.name, student %></td>
+					<td><%= student.age %></td>
+			  </tr>
+			<% end %>
+			</tbody>
+		</table>
+	<% end %>
 
 	<h2>Staff (<%= @school.school_staffs.size%>)</h2>
 	
@@ -36,28 +57,7 @@
 		</tbody>
 	</table>
 	<% end %>
-		
-	<% if @school.students.size > 0 %>
-		<table cellspacing="0" cellpadding="0" border="0" class="index">
-			<thead>
-			  <tr>
-					<th>&nbsp;</th>
-					<th>Name</th>
-					<th>Age</th>
-			  </tr>
-			</thead>
-			<tbody>
 
-			<% @school.students.each do |student| %>
-			  <tr>
-					<td><%= image_tag student.person.avatar.url(:thumb) %></td>
-					<td><%= link_to student.person.name, student %></td>
-					<td><%= student.age %></td>
-			  </tr>
-			<% end %>
-			</tbody>
-		</table>
-	<% end %>
 	
 </div>
 
