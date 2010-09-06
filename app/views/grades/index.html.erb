@@ -1,8 +1,9 @@
 <h1>
 	<%= @grades.size %> 
 	<%= correctly_pluralized_noun(@grades.size, "grade") %> 
-	<%= link_to "new", new_grade_path %>
 </h1>
+
+<p><%= link_to "New Grade", new_grade_path %></p>
 
 <ul>
 <% @grades.each do |grade| %>

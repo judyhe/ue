@@ -1,8 +1,9 @@
 <h1>
 	<%= @organization_staff_types.size %> 
 	<%= correctly_pluralized_noun(@organization_staff_types.size, "organization staff type") %> 
-	<%= link_to "new", new_organization_staff_type_path %>
 </h1>
+
+<p><%= link_to "New Organization Staff", new_organization_staff_type_path %></p>
 
 <ul>
 <% @organization_staff_types.each do |organization_staff_types| %>

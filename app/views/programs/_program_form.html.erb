@@ -17,7 +17,7 @@
 	
 			<div>
 				<%= f.label :organization_id %>
-				<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name, {:include_blank => true} %>
+				<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name %>
 			</div>
 			
 			<div class="input_set clearfix">
@@ -34,6 +34,13 @@
 					<%= f.radio_button(:gender, "MF") %>
 					<%= f.label :gender_mf, "Both", :class => "radio" %>
 				</span>
+				
+				
+			</div>
+			
+			<div class="input_set clearfix">
+				<%= f.label :scholarship, "Scholarship Available" %>
+				<%= f.check_box :scholarship %>
 			</div>
 			
 			<div>

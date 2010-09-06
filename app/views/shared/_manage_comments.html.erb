@@ -20,7 +20,7 @@
 
 			<p class="clearfix"><a href="#comment_form" class="button_green click_to_expose"><b>Add</b></a></p>
 
-			<% form_for(local_model, :html => {:multipart => true, :class => "hide", :id => "comment_form"}) do |f| %>
+			<% form_for(local_model, :html => {:class => "hide", :id => "comment_form"}) do |f| %>
 				<div>
 					<% f.fields_for :comments, Comment.new do |cf| %>
 						<%= cf.hidden_field :user_id, :value => current_user.id %>

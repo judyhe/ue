@@ -1,4 +1,7 @@
-<h1>Listing activities <%= link_to 'new', new_activity_path %></h1>
+<h1>Listing activities</h1>
+
+<p><%= link_to 'New Activity', new_activity_path %></p>
+
 <ul class="nested">
 <% @activities.each do |activity| %>
 	<li><%= link_to h(activity.name), edit_activity_path(activity) %>

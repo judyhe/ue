@@ -1,6 +1,4 @@
-<h1>Editing program</h1>
+<h1>Editing <%= link_to @program.name, @program %></h1>
 
 <%= render :partial => "program_form", :locals => {:program => @program}%>
 
-<%= link_to 'Show', @program %> |
-<%= link_to 'Back', programs_path %>

@@ -1,4 +1,6 @@
-<h1><%= @neighborhoods.size %> <%= correctly_pluralized_noun(@neighborhoods.size, "neighborhood") %> <%= link_to 'new', new_neighborhood_path %></h1>
+<h1><%= @neighborhoods.size %> <%= correctly_pluralized_noun(@neighborhoods.size, "neighborhood") %> </h1>
+
+<p><%= link_to 'New Neighborhood', new_neighborhood_path %></p>
 
 <ul>
 <% @neighborhoods.each do |neighborhood| %>

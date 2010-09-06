@@ -1,15 +1,10 @@
 <div id="content_main">
 	<div class="clearfix">
-		<h1><%= @student_relation.name %></h1> 
-		
-		<div class="nav_model_util">
-			<%= link_to 'Edit Parent', edit_student_relation_path(@student_relation) %>
-		</div>
+		<h1><%= link_to @student_relation.name, edit_student_relation_path(@student_relation) %></h1> 
 	</div>
 	
 	<h2>Terms</h2>
 
-	<p><%= link_to 'Back', student_relation_path %></p>
 </div>
 
 <div id="content_secondary">

@@ -1,6 +1,3 @@
-<h1>Editing organization</h1>
+<h1>Editing <%= link_to @organization.name, @organization %></h1>
 
 <%= render :partial => "organization_form", :locals => {:organization => @organization}%>
-
-<%= link_to 'Show', @organization %> |
-<%= link_to 'Back', organizations_path %>

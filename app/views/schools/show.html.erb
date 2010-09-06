@@ -1,15 +1,17 @@
 <div id="content_main">
 	<div class="clearfix">
-		<h1><%= @school.name %></h1> 
+		<div class="heading">
+			<h1><%= link_to @school.name, edit_school_path(@school) %></h1> 
+		</div>
 		
 		<div class="nav_model_util">
-			<%= link_to 'Edit School', edit_school_path(@school) %>
-			<%= link_to "New Staff", new_school_staff_path %>
+			<%= link_to "All Schools", schools_path %>
 			<%= link_to "New Student", new_student_path %>
+			<%= link_to "New Staff", new_school_staff_path %>
 		</div>
 	</div>
 	
-	<h2>Students (<%= @school.students.size %>)</h2>
+	<h2>Students (<%= @school.students.size %>)</h2> 
 
 	<h2>Staff (<%= @school.school_staffs.size%>)</h2>
 	
@@ -19,6 +21,7 @@
 		  <tr>
 				<th>&nbsp;</th>
 				<th>Name</th>
+				<th>Position</th>
 		  </tr>
 		</thead>
 		<tbody>
@@ -27,6 +30,7 @@
 		  <tr>
 				<td><%= image_tag staff.person.avatar.url(:thumb) %></td>
 				<td><%= link_to staff.person.name, staff %></td>
+				<td><%= staff.position %></td>
 		  </tr>
 		<% end %>
 		</tbody>

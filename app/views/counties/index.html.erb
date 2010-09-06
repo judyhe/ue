@@ -1,4 +1,6 @@
-<h1><%= @counties.size %> counties <%= link_to 'new', new_county_path %></h1>
+<h1><%= @counties.size %> counties</h1>
+
+<p><%= link_to 'New County', new_county_path %></p>
 
 <ul>
 <% @counties.each do |county| %>

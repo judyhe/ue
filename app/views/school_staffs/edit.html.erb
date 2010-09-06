@@ -1,5 +1,3 @@
-<h1>Editing school staff</h1>
+<h1>Editing <%= link_to @school_staff.name, @school_staff %></h1>
 
 <%= render :partial => "school_staff_form", :locals => {:school_staff => @school_staff}%>
-
-<%= link_to 'Back', school_staffs_path %>

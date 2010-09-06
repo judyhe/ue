@@ -1,5 +1,4 @@
-<h1>Editing adult relative</h1>
+<h1>Editing <%= link_to @student_relation.name, @student_relation %></h1>
 
 <%= render :partial => "student_relation_form", :locals => {:relative => @student_relation} %>
 
-<p><%= link_to 'Show', student_relation_path %> | <%= link_to 'Back', student_relations_path %></p>

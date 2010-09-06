@@ -1,5 +1,6 @@
-<h1><%= @student_relationship_types.size %> relationship types <%= link_to 'new', new_student_relationship_type_path %></h1>
+<h1><%= @student_relationship_types.size %> relationship types ></h1>
 
+<p><%= link_to 'New Relationship Type', new_student_relationship_type_path %></p>
 
 <ul>
 <% @student_relationship_types.each do |student_relationship_type| %>

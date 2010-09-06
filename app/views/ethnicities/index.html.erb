@@ -1,4 +1,6 @@
-<h1><%= @ethnicities.size %> ethnicities <%= link_to 'new', new_ethnicity_path %></h1>
+<h1><%= @ethnicities.size %> ethnicities </h1>
+
+<p><%= link_to 'New Ethnicity', new_ethnicity_path %></p>
 
 <ul>
 	<% @ethnicities.each do |ethnicity| %>

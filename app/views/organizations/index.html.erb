@@ -1,14 +1,15 @@
 <h1>
 	<%= @organizations.size %> 
 	<%= correctly_pluralized_noun(@organizations.size, "organization") %> 
-	<%= link_to "new", new_organization_path %>
 </h1>
 
+<p><%= link_to "New Organization", new_organization_path %></p>
 
 <table cellspacing="0" cellpadding="0" border="0" class="index">
 	<thead>
   <tr>
 		<th>Name</th>
+		<th>Description</th>
 		<th>Url</th>
   </tr>
 	</thead>
@@ -16,6 +17,7 @@
 	<% @organizations.each do |org| %>
 	  <tr>
 			<td><%= link_to org.name, org %></td>
+			<td><%= org.description %></td>
 			<td><%= org.url %></td>
 	  </tr>
 	<% end %>

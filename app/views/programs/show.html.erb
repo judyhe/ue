@@ -1,32 +1,60 @@
 <div id="content_main">
 	<div class="clearfix">
 		<div class="heading">
-			<h1><%= @program.name %></h1> 
+			<h1>
+				<div class="breadcrumbs_past"><%= link_to @program.organization.name, organization_path(@program.organization) %> ></div>
+				<%= link_to @program.name, edit_program_path(@program) %>			
+			</h1>
 			<h3><%= @program.description %></h3>
 		</div>
 		
 		<div class="nav_model_util">
-			<%= link_to 'Edit Program', edit_program_path(@program) %>
-			<a href="#">New Term</a>
-			<%= link_to 'New Staffer', new_organization_staff_path %>
+			<%= link_to 'All Programs', programs_path %>
+			<%= link_to 'New Term', new_term_path %>
+			<%= link_to 'New Staffer', new_organization_staff_path %>			
 		</div>
 	</div>
 	
-	<h2>Terms</h2>
+	<h2>Terms (<%= @program.terms.size %>)</h2>
+
+	<table cellspacing="0" cellpadding="0" border="0" class="index">
+		<thead>
+	  <tr>
+			<th>Start</th>
+			<th>End</th>
+			<th>Cost</th>
+			<th>Location</th>
+	  </tr>
+		</thead>
+		<tbody>
+		<% @program.terms.each do |term| %>
+		  <tr>
+				<td><%= link_to full_date(term.start), term_path(term) %></td>
+				<td><%= full_date(term.end) %></td>
+				<td><%= term.cost %></td>
+				<td><%= term.address.addressable.name %></td>
+		  </tr>
+		<% end %>
+		</tbody>
+	</table>	
 	
-	<h2>Staffers (<%= @program.organization_staffs.size %>)</h2>
+	
+	<h2>Staff (<%= @program.organization_staffs.size %>)</h2>
 	<ul>
 		<% @program.organization_staffs.each do |staff| %>
 		<li><%= link_to staff.name, organization_staff_path(staff) %> - <%= staff.position %></li>
 		<% end %>
 	</ul>
 
-	<p><%= link_to 'Back', program_path %></p>
 </div>
 
 <div id="content_secondary">
 
 	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<tr>
+			<th>Scholarships:</th>
+			<td><%= @program.scholarship %></td>
+		</tr>
 		<tr>
 			<th>Gender:</th>
 			<td><%= @program.gender %></td>
