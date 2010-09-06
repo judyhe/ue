@@ -1,4 +1,6 @@
-<h1><%= @programs.size %> <%= correctly_pluralized_noun(@programs.size, "program") %> <%= link_to 'new', new_program_path %></h1>
+<h1><%= @programs.size %> <%= correctly_pluralized_noun(@programs.size, "program") %> </h1>
+
+<p><%= link_to 'New Program', new_program_path %></p>
 
 <table cellspacing="0" cellpadding="0" border="0" class="index">
 	<thead>
@@ -6,6 +8,7 @@
 		<th>Name</th>
 		<th>Description</th>
 		<th>Organization</th>
+		<th>Activities</th>
   </tr>
 	</thead>
 	<tbody>
@@ -13,7 +16,8 @@
 	  <tr>
 			<td><%= link_to program.name, program %></td>
 			<td><%= program.description %></td>
-			<td><%= program.organization.name %>
+			<td><%= link_to program.organization.name, organization_path(program.organization) %></td>
+			<td><%= program.activities_list %></td>
 	  </tr>
 	<% end %>
 	</tbody>

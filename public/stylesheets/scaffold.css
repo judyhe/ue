@@ -18,7 +18,6 @@ p{font-size:1em;line-height:1.8em;margin:1em 0;}
 ol, ul, li {list-style: none; font-size: 1.0em; line-height: 1.8em;}
   
 h1{font-weight:normal;}
-h1 a{font-size:12px;}
 
 img {display:block;}
 img.float_left{margin-right:5px;}
@@ -96,8 +95,15 @@ a:hover{color:#009fdb;text-decoration:underline;}
 }
 
 #content_main h1{
-	float:left;
-	margin-bottom:0.5em;
+	margin:0;
+	line-height:1.2em;
+}
+
+#content_main h1 .breadcrumbs_past{font-size:12px;}
+
+#content_main h1 a
+{
+	font-size:inherit;
 }
 
 #content_main h3{
@@ -106,7 +112,9 @@ a:hover{color:#009fdb;text-decoration:underline;}
 }
 #content_main .heading{
 	float:left;	
+	margin-bottom:1em;
 }
+
 #content_main .nav_model_util{
 	float:right;
 	margin-left:20px;
@@ -194,7 +202,7 @@ table.info th{text-align:left;width:40%;padding-left:0;}
 table.info th, table.info td{padding:3px;vertical-align:top;}
 table.info td{padding-right:0;}
 
-table.index{width:100%;}
+table.index{width:100%;margin-bottom:2em;}
 table.index td, table.index th{padding:5px;}
 table.index td{border-bottom:1px solid #eee;}
 table.index th{text-align:left;border-bottom:1px solid #dedede;}
@@ -203,6 +211,7 @@ form.default label{display:block;line-height:1.6em;clear:both;font-weight:bold;}
 form.default fieldset ul{float:left;margin:1em 1em 1em 0;}
 form.default div{margin:6px 0;padding:3px 0;}
 form.default div input[type="text"], form.default textarea{border:1px solid #999; width:98%;padding:3px;}
+form.default div input[type="text"].auto {width:auto;}
 form.default textarea {height:50px;}
 form.default div input.auto{width:auto;}
 form.default div.fieldWithErrors{margin:0;padding:2px;}

@@ -1,9 +1,9 @@
 <h1>
 	<%= @organization_staffs.size %> 
 	<%= correctly_pluralized_noun(@organization_staffs.size, "organization staffer") %> 
-	<%= link_to "new", new_organization_staff_path %>
 </h1>
 
+<p><%= link_to "New Organization Staff", new_organization_staff_path %></p>
 
 <table cellspacing="0" cellpadding="0" border="0" class="index">
 	<thead>

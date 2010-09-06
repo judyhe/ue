@@ -1,13 +1,12 @@
 <div id="content_main">
 	<div class="clearfix">
 		<div class="heading">
-			<h1><%= @organization_staff.name %></h1>
-			<h3><%= @organization_staff.position %> @<%= @organization_staff.organization.name %></h3>
+			<h1><%= link_to @organization_staff.name, edit_organization_staff_path(@organization_staff) %></h1>
+			<h3><%= @organization_staff.position %> at <%= link_to @organization_staff.organization.name, organization_path(@organization_staff.organization) %></h3>
 		</div>
 	
 		<div class="nav_model_util">
-			<%= link_to 'Edit Staffer', edit_organization_staff_path(@organization_staff) %>
-			<%= link_to "Edit #{@organization_staff.organization.name}", organization_path(@organization_staff.organization) %>
+			<%= link_to "All Staffers", organization_staffs_path %>
 		</div>
 	</div>
 

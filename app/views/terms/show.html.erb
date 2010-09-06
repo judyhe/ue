@@ -1,0 +1,85 @@
+<div id="content_main">
+	<div class="clearfix">
+		<div class="heading">
+			<h1>
+				<div class="breadcrumbs_past"><%= link_to @term.program.organization.name, organization_path(@term.program.organization) %> > 
+				<%= link_to @term.program.name, program_path(@term.program) %> > </div>
+				<%= link_to(full_date(@term.start) + " - " + full_date(@term.end), edit_term_path) %>
+			</h1>
+		</div>
+
+	</div>
+	
+	<h2>Sessions (<%= @term.term_sessions.size%>)</h2>
+	<table cellspacing="0" cellpadding="0" border="0" class="index">
+		<thead>
+	  <tr>
+			<th>Date</th>
+			<th>Start Time</th>
+			<th>End Time</th>
+			<th>Hours</th>
+			<th>&nbsp;</th>
+	  </tr>
+		</thead>
+		<tbody>
+		<% @term.term_sessions.ordered.each do |term_session| %>
+		  <tr>
+				<td><%= link_to full_date(term_session.day), edit_term_session_path %></td>
+				<td><%= time(term_session.start) %></td>
+				<td><%= time(term_session.end) %></td>
+				<td><%= term_session.hours %></td>
+				<td><%= link_to 'remove', term_session, :class => "action_link", :confirm => 'Are you sure?', :method => :delete %></td>
+		  </tr>
+		<% end %>
+		</tbody>
+	</table>
+	
+	<p><a href="#term_session_form" class="click_to_expose">New Session</a></p>
+	
+	
+	<% form_for(@term, :html => {:class => "hide default", :id => "term_session_form"}) do |f| %>
+	  <%= f.error_messages %>
+		
+		<% f.fields_for :term_sessions, TermSession.new do |ts| %>
+			<div>
+				<%= ts.label :day %>
+				<%= ts.date_select :day, :order => [:month, :day, :year] %>
+			</div>
+
+			<div>
+				<%= ts.label :start %>
+				<%= ts.time_select :start, :minute_step => 15 %>
+			</div>
+
+			<div>
+				<%= ts.label :end %>
+				<%= ts.time_select :end, :minute_step => 15 %>
+			</div>
+		<% end %>
+	  <p>
+	    <%= f.submit 'Create' %>
+	  </p>
+	<% end %>
+
+
+</div>
+
+<div id="content_secondary">
+
+	<table cellpadding="0" cellspacing="0" border="0" class="info">
+		<tr>
+			<th>Cost:</th>
+			<td><%= @term.cost %>
+		</tr>
+		<tr>
+			<th>Location:</th>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @term} %>
+
+	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @term} %>
+</div>
+
+<%= javascript_include_tag "application" %>

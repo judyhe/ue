@@ -30,6 +30,13 @@ module ApplicationHelper
     address
   end
   
+  def full_date(date_to_format)
+    date_to_format.strftime("%b %e, %Y (%a)")
+  end
+  
+  def time(time_to_format)
+    time_to_format.strftime("%l:%M:%S %p")
+  end
   
   def remove_link_unless_new_record(fields)
     out = ''

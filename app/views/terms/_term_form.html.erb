@@ -1,0 +1,32 @@
+<% form_for(term, :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+
+	<div>
+		<%= f.label :program_id %>
+		<%= f.collection_select :program_id, Program.alphabetical, :id, :name %>
+	</div>
+	
+	<div>
+		<%= f.label :start %>
+		<%= f.date_select :start, :order => [:month, :day, :year] %>
+	</div>
+
+	<div>
+		<%= f.label :end %>
+		<%= f.date_select :end, :order => [:month, :day, :year] %>
+	</div>			
+
+	<div>
+		<%= f.label :cost %>
+		<%= f.text_field :cost, :size => 7, :class => "auto" %>
+	</div>
+	
+	<div>
+		<%= f.label :address_id, "Location" %>
+		<%= f.collection_select :address_id, Address.venues, :id, :addressable_name %>
+	</div>
+	
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

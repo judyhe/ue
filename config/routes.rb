@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :term_sessions
+
+  map.resources :terms
+
   map.resources :ages
 
   map.resources :programs

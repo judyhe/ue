@@ -1,26 +1,33 @@
 <% form_for(school, :html => {:multipart => true, :class => "default"}) do |f| %>
   <%= f.error_messages %>
 	
-	<div>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
+	<div class="clearfix">
+		<div class="p1">
+		<% field_set_tag "Basics" do %>
+			<div>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+			</div>
+	
+			<div>		
+				<%= f.label :avatar, "Photo" %>
+				<%= image_tag(school.avatar.url(:thumb), :class => "float_left") %>
+				<%= f.file_field :avatar %>
+			</div>
+	
+			<div>
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+			</div>
+			
+			<%= render :partial => "shared/contact_numbers", :locals => {:thing => school, :f => f}%>
+			
+		<% end %>
+		</div>
+		<div class="p2">	
+			<%= render :partial => "shared/address_fields", :locals => {:f => f, :extended => true, :thing => school}%>
+		</div>
 	</div>
-	
-	<div>		
-		<%= f.label :avatar, "Photo" %>
-		<%= image_tag(school.avatar.url(:thumb), :class => "float_left") %>
-		<%= f.file_field :avatar %>
-	</div>
-	
-	<div>
-		<%= f.label :email %>
-		<%= f.text_field :email %>
-	</div>
-	
-	<%= render :partial => "shared/contact_numbers", :locals => {:thing => school, :f => f}%>
-	
-	<%= render :partial => "shared/address_fields", :locals => {:f => f, :extended => true, :thing => school}%>
-
   <p>
     <%= f.submit %>
   </p>
