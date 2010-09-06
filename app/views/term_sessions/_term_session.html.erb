@@ -1,0 +1,13 @@
+<tr id="ts_<%= term_session.id %>">
+	<td>
+		<span class="editable edit_date" href="<%= url_for(term_session_path(term_session)) %>" name="term_session[day]"><%= full_date(term_session.day) %></span>
+	</td>
+	<td>
+		<span class="ts_start editable edit_time" href="<%= url_for(term_session_path(term_session)) %>" name="term_session[start]"><%= time(term_session.start) %></span>
+	</td>
+	<td>
+		<span class="ts_end editable edit_time" href="<%= url_for(term_session_path(term_session)) %>" name="term_session[end]"><%= time(term_session.end) %></span>
+	</td>
+	<td class="ts_hours"><%= term_session.hours %></td>
+	<td><%= link_to 'remove', term_session_path(term_session), :class => "action_link", :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

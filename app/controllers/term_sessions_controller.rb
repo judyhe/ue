@@ -41,17 +41,8 @@ class TermSessionsController < ApplicationController
   # POST /term_sessions.xml
   def create
     @term_session = TermSession.new(params[:term_session])
-
-    respond_to do |format|
-      if @term_session.save
-        flash[:notice] = 'TermSession was successfully created.'
-        format.html { redirect_to(@term_session) }
-        format.xml  { render :xml => @term_session, :status => :created, :location => @term_session }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @term_session.errors, :status => :unprocessable_entity }
-      end
-    end
+    @term_session.save 
+    render :partial => "term_session", :locals => {:term_session => @term_session}
   end
 
   # PUT /term_sessions/1
@@ -69,8 +60,9 @@ class TermSessionsController < ApplicationController
     @term_session.destroy
 
     respond_to do |format|
-      format.html { redirect_to(term_sessions_url) }
+      format.html { redirect_to(@term_session.term) }
       format.xml  { head :ok }
     end
   end
+  
 end
