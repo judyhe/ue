@@ -7,8 +7,6 @@
   <title><%= yield(:title) %> Urban Enrichment</title>
   <%= stylesheet_link_tag 'scaffold' %>
 	<%= stylesheet_link_tag 'jquery-ui-start/jquery-ui-1.8.4.custom' %>
-	<%= javascript_include_tag 'jquery-1.4.2.min'%>	
-	<%= javascript_include_tag 'jquery-ui-1.8.4.custom.min'%>
 </head>
 <body>
 	<div id="container">
@@ -55,5 +53,9 @@
 			<%= yield %>
 		</div>
 	</div>
+	<%= javascript_include_tag 'jquery-1.4.2.min'%>	
+	<%= javascript_include_tag 'jquery-ui-1.8.4.custom.min'%>
+	<%= javascript_include_tag 'jquery.jeditable.mini' %>	
+	<%= javascript_include_tag "application" %>
 </body>
 </html>

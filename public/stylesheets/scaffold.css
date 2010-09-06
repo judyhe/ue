@@ -47,6 +47,7 @@ img.float_left{margin-right:5px;}
 .action_link{font-size:0.9em;}
 
 .comment{margin:1em 0;}
+.editable:hover{background:#ffffcc;cursor:pointer;}
 
 address{font-style:normal;}
 

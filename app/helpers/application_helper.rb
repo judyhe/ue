@@ -35,7 +35,7 @@ module ApplicationHelper
   end
   
   def time(time_to_format)
-    time_to_format.strftime("%l:%M:%S %p")
+    time_to_format.strftime("%H:%M")
   end
   
   def remove_link_unless_new_record(fields)
