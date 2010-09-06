@@ -32,11 +32,7 @@ Spec::Runner.configure do |config|
   # names with your fixtures.
   #
   # config.global_fixtures = :table_a, :table_b
-  
-  # add fixtures for all classes you have fixtures for:
-	fixtures_dir = Dir.new(File.dirname(__FILE__) + "/fixtures")
-	config.global_fixtures =   fixtures_dir.entries.select { |file| file =~ /.*\.yml\Z/ }.map{ |file_2| file_2.scan(/(.*)\.yml\Z/)[0][0].to_sym }
-  
+	config.global_fixtures = :users
   
   # If you declare global fixtures, be aware that they will be declared
   # for all of your examples, even those that don't use them.
@@ -50,7 +46,7 @@ Spec::Runner.configure do |config|
   # RSpec uses its own mocking framework by default. If you prefer to
   # use mocha, flexmock or RR, uncomment the appropriate line:
   #
-  # config.mock_with :mocha
+  config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
   #

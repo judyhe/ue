@@ -5,7 +5,9 @@ describe Term do
     @valid_attributes = {
       :start => Date.today - 4.days,
       :end => Date.today,
-      :cost => 9.99
+      :cost => 9.99,
+      :program_id => 1,
+      :address_id => 1
     }
     @term = Term.new
   end
@@ -14,10 +16,10 @@ describe Term do
     Term.create!(@valid_attributes)
   end
   
-  it "should calculate total hours" do
-    term_sessions_proxy = mock('term_sessions')
-    term_sessions_proxy.should_receive(:sum).with(:hours).and_return(40)
-    @term.stub!(:term_sessions)
+  it "should calculate total hours as a sum of all sessions" do
+    term_sessions = mock('term_sessions')
+    term_sessions.expects(:sum).with(:hours).returns(40)
+    @term.stubs(:term_sessions).returns(term_sessions)
     @term.total_hours.should == 40
   end
 end
