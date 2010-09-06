@@ -116,6 +116,9 @@
 			<th>Cost:</th>
 			<td><%= @term.cost %>
 		</tr>
+		<tr
+			<th>Total Hours:</th>
+			<td><%= @term.total_hours %></td>
 		<tr>
 			<th>Location:</th>
 			<td><b><%= link_to @term.address.addressable.name, addressable_path(@term.address) %></b><br /> <%= address(@term.address) %></td>

@@ -20,7 +20,7 @@ class Term < ActiveRecord::Base
   validates_numericality_of :cost
   
   def total_hours
-    term_sessions.sum :hours
+    term_sessions.map{|t| t.hours}.sum
   end
   
 end
