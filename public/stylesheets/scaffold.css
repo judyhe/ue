@@ -47,6 +47,7 @@ img.float_left{margin-right:5px;}
 .action_link{font-size:0.9em;}
 
 .comment{margin:1em 0;}
+.editable:hover{background:#ffffcc;cursor:pointer;}
 
 address{font-style:normal;}
 
@@ -156,6 +157,11 @@ a:hover{color:#009fdb;text-decoration:underline;}
 	padding:5px;
 }
 
+#content_secondary h3{
+	font-size:11px;
+	text-align:center;
+}
+
 #content_secondary p{
 	line-height:1.3em;
 	margin:0.5em 0;
@@ -196,6 +202,10 @@ dd{margin-bottom:5px;margin-left:85px;}
 
 dl.paragraphed dt{float:none; width:auto;}
 dl.paragraphed dd{margin:0.5em 0 1em 0;}
+
+table.session_calendar{width:100%; font-size:10px;}
+table.session_calendar td{padding:2px;text-align:center;}
+table.session_calendar td.selected{background:#9eddaf;}
 
 table.info{width:100%;margin:1em 0;font-size:0.9em;}
 table.info th{text-align:left;width:40%;padding-left:0;}

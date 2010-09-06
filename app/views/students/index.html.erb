@@ -14,7 +14,6 @@
 			<th>Grade</th>
 			<th>Gender</th>
 			<th>Ethnicity</th>
-			<th>Interests</th>
 			<th>School</th>
 	  </tr>
 	</thead>
@@ -29,12 +28,12 @@
 			<td><%= associated_attribute(student.grade, :name) %>
 			<td><%= student.gender %></td>
 			<td><%= associated_attribute(student.ethnicity, :name) %>	
-			<td><%= student.activities_list %></td>
 			<td><%= link_to student.school.name, school_path(student.school_id) if student.school %></td>
 	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
 	  </tr>
 	<% end %>
 	</tbody>
 </table>
+
 
 <p><%= link_to "New Student", new_student_path %></p>

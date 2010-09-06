@@ -35,7 +35,11 @@ module ApplicationHelper
   end
   
   def time(time_to_format)
-    time_to_format.strftime("%l:%M:%S %p")
+    time_to_format.strftime("%H:%M")
+  end
+  
+  def addressable_path(address)
+    eval(address.addressable_type.downcase + "_path(" + address.addressable_id.to_s + ")")
   end
   
   def remove_link_unless_new_record(fields)
@@ -48,5 +52,6 @@ module ApplicationHelper
   def correctly_pluralized_noun(count, noun)
     html = count == 1 ? noun : noun.pluralize
   end
+  
     
 end

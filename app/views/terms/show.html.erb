@@ -23,11 +23,17 @@
 		</thead>
 		<tbody>
 		<% @term.term_sessions.ordered.each do |term_session| %>
-		  <tr>
-				<td><%= link_to full_date(term_session.day), edit_term_session_path %></td>
-				<td><%= time(term_session.start) %></td>
-				<td><%= time(term_session.end) %></td>
-				<td><%= term_session.hours %></td>
+		  <tr id="ts_<%= term_session.id %>">
+				<td>
+					<span class="editable edit_date" href="<%= url_for(term_session_path) %>" name="term_session[day]"><%= full_date(term_session.day) %></span>
+				</td>
+				<td>
+					<span class="ts_start editable edit_time" href="<%= url_for(term_session_path) %>" name="term_session[start]"><%= time(term_session.start) %></span>
+				</td>
+				<td>
+					<span class="ts_end editable edit_time" href="<%= url_for(term_session_path) %>" name="term_session[end]"><%= time(term_session.end) %></span>
+				</td>
+				<td class="ts_hours"><%= term_session.hours %></td>
 				<td><%= link_to 'remove', term_session, :class => "action_link", :confirm => 'Are you sure?', :method => :delete %></td>
 		  </tr>
 		<% end %>
@@ -65,7 +71,6 @@
 </div>
 
 <div id="content_secondary">
-
 	<table cellpadding="0" cellspacing="0" border="0" class="info">
 		<tr>
 			<th>Cost:</th>
@@ -73,13 +78,16 @@
 		</tr>
 		<tr>
 			<th>Location:</th>
-			<td>&nbsp;</td>
+			<td><b><%= link_to @term.address.addressable.name, addressable_path(@term.address) %></b><br /> <%= address(@term.address) %></td>
 		</tr>
 	</table>
+	
+	<div class="content_secondary_group">
+		<h2>Calendar</h2>
+		<%= session_calendar(@term.term_sessions) %>
+	</div>
 
 	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @term} %>
 
 	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @term} %>
 </div>
-
-<%= javascript_include_tag "application" %>

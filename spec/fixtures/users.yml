@@ -1,0 +1,7 @@
+admin:
+  email: admin@example.com
+# password is uenyc0rg:
+  crypted_password: bfaa1fd50a4c4feb77e67cf320e28ed7ef38a1d9
+  salt: c78cc4d29ddcef2764a96085cf7f39e6a6283cdb
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
