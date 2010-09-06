@@ -71,7 +71,6 @@
 </div>
 
 <div id="content_secondary">
-
 	<table cellpadding="0" cellspacing="0" border="0" class="info">
 		<tr>
 			<th>Cost:</th>
@@ -79,9 +78,14 @@
 		</tr>
 		<tr>
 			<th>Location:</th>
-			<td>&nbsp;</td>
+			<td><b><%= link_to @term.address.addressable.name, addressable_path(@term.address) %></b><br /> <%= address(@term.address) %></td>
 		</tr>
 	</table>
+	
+	<div class="content_secondary_group">
+		<h2>Calendar</h2>
+		<%= session_calendar(@term.term_sessions) %>
+	</div>
 
 	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @term} %>
 
