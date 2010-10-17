@@ -20,6 +20,24 @@
 				<%= f.text_field :email %>
 			</div>
 			
+			<div class="input_set clearfix">
+				<label>Stats</label>
+				<span>
+					<%= f.text_field :student_count, :size => 5 %>
+					<%= f.label :student_count, "# of Students" %>
+				</span>
+			
+				<span>
+					<%= f.text_field :minority_percentage, :size => 5 %>
+					<%= f.label :minority_percentage, "% Minority" %>
+				</span>
+			
+				<span>
+					<%= f.text_field :reduced_lunch_percentage, :size => 5 %>
+					<%= f.label :reduced_lunch_percentage, "% Reduced lunch" %>
+				</span>
+			</div>
+			
 			
 			<div class="input_set clearfix">
 				<%= f.label :grade, "Grades" %>

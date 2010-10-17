@@ -73,6 +73,18 @@
 			</tr>
 		<% end %>
 		<tr>
+			<th>Students: </th>
+			<td><%= @school.student_count %>&nbsp;</td>
+		</tr>
+		<tr>
+			<th>% Minority: </th>
+			<td><%= @school.minority_percentage %>&nbsp;</td>
+		</tr>
+		<tr>
+			<th>% Reduced lunch: </th>
+			<td><%= @school.reduced_lunch_percentage %>&nbsp;</td>
+		</tr>		
+		<tr>
 			<th>Grades: </th>
 			<td><%= cs_list(@school.grades) %>&nbsp;</td>
 		</tr>
