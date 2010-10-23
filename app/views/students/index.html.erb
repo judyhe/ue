@@ -2,6 +2,7 @@
 	<%= @students.size %> 
 	<%= correctly_pluralized_noun(@students.size, "student") %> 
 </h1>
+<p><%= link_to "export csv", :controller => "students", :action => "index", :format => :csv %></p>
 <p><%= link_to "New Student", new_student_path %></p>
 
 <table cellspacing="0" cellpadding="0" border="0" class="index">

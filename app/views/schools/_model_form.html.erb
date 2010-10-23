@@ -20,6 +20,38 @@
 				<%= f.text_field :email %>
 			</div>
 			
+			<div class="input_set clearfix">
+				<label>Stats</label>
+				<span>
+					<%= f.text_field :student_count, :size => 5 %>
+					<%= f.label :student_count, "# of Students" %>
+				</span>
+			
+				<span>
+					<%= f.text_field :minority_percentage, :size => 5 %>
+					<%= f.label :minority_percentage, "% Minority" %>
+				</span>
+			
+				<span>
+					<%= f.text_field :reduced_lunch_percentage, :size => 5 %>
+					<%= f.label :reduced_lunch_percentage, "% Reduced lunch" %>
+				</span>
+			</div>
+			
+			
+			<div class="input_set clearfix">
+				<%= f.label :grade, "Grades" %>
+				<ul class="float_left clearfix">
+				<% Grade.all.each_with_index do |grade, index| %>
+					<li><%= check_box_tag "school[grade_ids][]", grade.id, school.grades.include?(grade) %> <%= grade.name %></li>
+					<% if index != 0 and index%3 == 0  %>
+						</ul>
+						<ul class="float_left clearfix">
+					<% end %>
+				<% end %>
+				</ul>
+			</div>
+			
 			<%= render :partial => "shared/contact_numbers", :locals => {:thing => school, :f => f}%>
 			
 		<% end %>

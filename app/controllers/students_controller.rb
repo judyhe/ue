@@ -1,12 +1,15 @@
 class StudentsController < ApplicationController
+  
   # GET /students
   # GET /students.xml
+  # GET /students.csv
   def index
     @students = Student.find_with_default_associations(:all)
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @students }
+      format.csv { render :csv => @students}
     end
   end
 

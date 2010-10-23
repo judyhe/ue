@@ -53,5 +53,8 @@ module ApplicationHelper
     html = count == 1 ? noun : noun.pluralize
   end
   
+  def cs_list(things)
+    things.collect{|a| a.name}.join(", ")
+  end
     
 end
