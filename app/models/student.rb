@@ -14,7 +14,14 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :student_relationships, :allow_destroy => true, :reject_if => proc{|a| a['student_relation_id'].blank? or a['student_relationship_type_id'].blank? }
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
-      
+
+  comma do 
+    id
+    name
+    email
+    birth_date
+  end
+  
   def age
     return unless self.birth_date
     age = Date.today.year - self.birth_date.year
