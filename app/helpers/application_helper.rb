@@ -30,6 +30,16 @@ module ApplicationHelper
     address
   end
   
+  def unique_daytimes(set_of_events)    
+    unique_daytimes = set_of_events.map {|x| {:day_of_week => x.day.wday, :start_time => x.start, :end_time => x.end}}.uniq
+    
+    unique_daytimes.map{|x| Date::DAYNAMES[x[:day_of_week]] + " " + x[:start_time].strftime('%H:%M') + "-" + x[:end_time].strftime("%H:%M")}.join("<br />")
+  end
+  
+  def default_datefmt(date_to_format)
+    date_to_format.strftime("%b %e, %Y")
+  end
+  
   def full_date(date_to_format)
     date_to_format.strftime("%b %e, %Y (%a)")
   end

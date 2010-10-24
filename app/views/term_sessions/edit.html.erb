@@ -1,0 +1,25 @@
+<h1>Edit Session</h1>
+
+<% form_for(@term_session, :html => {:class => "default"}) do |f| %>
+	
+		<div>
+			<%= f.label :day %>
+			<%= f.date_select :day, :order => [:month, :day, :year] %>
+		</div>
+
+		<div>
+			<%= f.label :start %>
+			<%= f.time_select :start, :minute_step => 15 %>
+		</div>
+
+		<div>
+			<%= f.label :end %>
+			<%= f.time_select :end, :minute_step => 15 %>
+		</div>
+
+		<p>
+	    <%= f.submit %>
+	  </p>
+<% end %>
+
+<p><%= link_to 'Delete this session', term_session_path(@term_session), :class => "action_link", :confirm => 'Are you sure?', :method => :delete %></p>
