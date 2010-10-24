@@ -49,8 +49,17 @@ class TermSessionsController < ApplicationController
   # PUT /term_sessions/1.xml
   def update
     @term_session = TermSession.find(params[:id])
-    @term_session.update_attributes(params[:term_session])
-    render :inline => params[:term_session].values
+    
+    respond_to do |format|
+      if @term_session.update_attributes(params[:term_session])
+        flash[:notice] = 'Session was successfully updated.'
+        format.html { redirect_to @term_session.term}
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @term_session.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /term_sessions/1

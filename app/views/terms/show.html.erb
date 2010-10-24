@@ -11,8 +11,8 @@
 	</div>
 	
 	<h2>Sessions (<%= @term.term_sessions.size%>)</h2>
-	
-	<p><a href="#form_generate_sessions" class="click_to_expose">Generate Sessions</a></p>
+		
+	<p><a href="#form_generate_sessions" class="click_to_expose">Generate Recurring Sessions</a></p>
 	<form method="post" id="form_generate_sessions" action="<%= url_for(:action => "generate_sessions", :id => @term.id) %>" class="default hide">
 		<input type="hidden" value="<%=form_authenticity_token %>" name="authenticity_token" />
 		
@@ -57,32 +57,15 @@
 		
 		<div>
 			<label for="term_session_start">Start Time</label>
-			<%= time_select(:term_session, :start, :minute_step => 15) %>
+			<%= time_select(:term_session, :start, :minute_step => 5) %>
 		</div>
 		<div>
 			<label for="term_session_end">End Time</label>
-			<%= time_select(:term_session, :end, :minute_step => 15) %>
+			<%= time_select(:term_session, :end, :minute_step => 5) %>
 		</div>
 		
 		<input type="submit" value="Generate" />
 	</form>
-
-	<table cellspacing="0" cellpadding="0" border="0" class="index" id="term_sessions"> 
-		<thead>
-	  <tr>
-			<th>Date</th>
-			<th>Start Time</th>
-			<th>End Time</th>
-			<th>Hours</th>
-			<th>&nbsp;</th>
-	  </tr>
-		</thead>
-		<tbody>
-		<% @term.term_sessions.ordered.each do |term_session| %>
-		  <%= render :partial => "term_sessions/term_session", :locals => {:term_session => term_session} %>
-		<% end %>
-		</tbody>
-	</table>
 	
 	<p><a href="#dialog-form" class="click_for_modal" target="term_sessions">Add A Session</a></p>
 	
@@ -108,6 +91,9 @@
 			<%= f.hidden_field :term_id, :value => @term.id %>
 	<% end %>
 	</div>
+	
+	<%= session_calendar(@term.term_sessions) %>
+	
 </div>
 
 <div id="content_secondary">
@@ -116,20 +102,20 @@
 			<th>Cost:</th>
 			<td><%= @term.cost %>
 		</tr>
-		<tr
+		<tr>
 			<th>Total Hours:</th>
 			<td><%= @term.total_hours %></td>
+		</tr>
+		<tr>
+			<th>Days:</th>
+			<td><%= unique_daytimes(@term.term_sessions) %></td>
+		</tr>
 		<tr>
 			<th>Location:</th>
 			<td><b><%= link_to @term.address.addressable.name, addressable_path(@term.address) %></b><br /> <%= address(@term.address) %></td>
 		</tr>
 	</table>
 	
-	<div class="content_secondary_group">
-		<h2>Calendar</h2>
-		<%= session_calendar(@term.term_sessions) %>
-	</div>
-
 	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @term} %>
 
 	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @term} %>
