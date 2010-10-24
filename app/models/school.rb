@@ -6,8 +6,12 @@ class School < ActiveRecord::Base
   has_many :school_staffs
   
   has_many :students, :include => [:person, :grade]
-
+  
   has_and_belongs_to_many :grades
+  
+  has_many :ethnicities_schools
+  has_many :ethnicities, :through => :ethnicities_schools
+  accepts_nested_attributes_for :ethnicities_schools, :reject_if => proc{|a| a['percentage'].blank?}
   
   has_many :comments, :as => :commentable, :include => [:user]
   accepts_nested_attributes_for :comments, :reject_if => proc{|a| a['comment'].blank?}

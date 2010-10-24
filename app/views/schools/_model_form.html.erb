@@ -38,6 +38,20 @@
 				</span>
 			</div>
 			
+			<div class="input_set clearfix">
+				<%= f.label :ethnicities, "Ethnicity breakdown"  %>
+				
+				<% Ethnicity.all.each do |eth| %>
+					<% es = @school.ethnicities.include?(eth) ? EthnicitiesSchool.find_by_ethnicity_id(eth.id) : EthnicitiesSchool.new %>
+					<% f.fields_for :ethnicities_schools, es do |ef| %>
+						<span>
+							<%= ef.hidden_field :ethnicity_id, :value => eth.id %>
+							<%= ef.text_field :percentage, :size => 5 %>
+							<%= ef.label :percentage, eth.name %>
+						</span>
+					<% end %>
+				<% end %>
+			</div>
 			
 			<div class="input_set clearfix">
 				<%= f.label :grade, "Grades" %>
