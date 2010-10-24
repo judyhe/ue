@@ -199,7 +199,7 @@ a.button:hover{background:#0068ac;border-color:#000;}
 .tooltip_set {position:relative;}
 .tooltip_trigger{display:block;}
 .tooltip_trigger:hover + .tooltip_content{display:block;}
-.tooltip_content	{ position:absolute; left:20px; top:0; text-align:left;width:auto;  display:none;}
+.tooltip_content	{ position:absolute; left:20px; top:0; text-align:left;width:auto;  display:none; z-index:1;}
 
 .session_calendar .tooltip_content{white-space:nowrap; background:#f4f4f4;}
 
