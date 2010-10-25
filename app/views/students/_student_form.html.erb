@@ -20,8 +20,13 @@
 		<div>
 			<%= f.label :grade_id %>
 			<%= f.collection_select :grade_id, Grade.all, :id, :name, {:include_blank => true} %>
-
 		</div>
+		
+		<div>
+			<%= f.label :language_proficiency_id, "English language proficiency" %>
+			<%= f.collection_select :language_proficiency_id, LanguageProficiency.all, :id, :level %>
+		</div>
+		
 		<div class="input_set clearfix">
 			<%= f.label :ethnicity_id %>
 			<%= f.collection_select :ethnicity_id, Ethnicity.all, :id, :name, {:include_blank => true} %>
