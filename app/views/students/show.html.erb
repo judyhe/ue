@@ -36,6 +36,10 @@
 			<td><%= associated_attribute(@student.ethnicity, :name) %>&nbsp;</td>
 		</tr>		
 		<tr>
+			<th>English ability:</th>
+			<td><%= associated_attribute(@student.language_proficiency, :level) %></td>
+		</tr>
+		<tr>
 			<th>Interests: </th>
 			<td><%= @student.activities_list %>&nbsp;</td>
 		</tr>	

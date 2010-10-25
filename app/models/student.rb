@@ -4,6 +4,7 @@ class Student < ActiveRecord::Base
   belongs_to :ethnicity
   belongs_to :grade
   belongs_to :person, :include => [:address]
+  belongs_to :language_proficiency
   
   has_many :student_relationships, :include => [:student_relationship_type, :student_relation]
   #has_many :student_relations, :through => :student_relationships
