@@ -1,6 +1,13 @@
 class StudentRelation < ActiveRecord::Base
 
   belongs_to :person, :include => [:address]
+  belongs_to :country
+  
+  belongs_to :language
+  belongs_to :language_proficiency
+  belongs_to :citizenship
+  
+  has_and_belongs_to_many :languages
     
   has_many :student_relationships, :include => [:student, :student_relationship_type]
   #has_many :students, :through => :student_relationships

@@ -1,0 +1,11 @@
+<h1><%= @languages.size %> languages</h1>
+
+<p><%= link_to 'New Language', new_language_path %></p>
+
+<ul>
+<% @languages.each do |language| %>
+	<li><%= link_to language.name, edit_language_path(language) %></li>
+<% end %>
+</ul>
+
+<p></p>

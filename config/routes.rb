@@ -1,4 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :language_proficiencies
+
+  map.resources :citizenships
+
+  map.resources :countries
+
+  map.resources :languages
+
   map.resources :term_sessions
 
   map.resources :terms
