@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+
+one: 
+    id: 1
+    name: "English"
+
+two: 
+    id: 2
+    name: "Spanish"

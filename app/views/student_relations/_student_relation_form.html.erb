@@ -23,6 +23,46 @@
 				<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'student_relationship' %></p>
 			
 			<% end %>
+			
+			<% field_set_tag "Other Info" do %>
+				<div>
+					<%= f.label :country_id, "Country of origin" %>
+					<%= f.collection_select :country_id, Country.all, :id, :name %>
+				</div>
+				
+				<div class="input_set clearfix">
+					<%= f.label :language_id, "Languages spoken at home" %>
+						<% Language.all.each do |language| %>
+						<span>
+							<%= check_box_tag "student_relation[language_ids][]", language.id, relative.languages.include?(language) %><%= language.name %>
+						</span>
+						<% end %>
+					</ul>
+				</div>
+				
+				<div>
+					<%= f.label :language_proficiency_id, "English language proficiency" %>
+					<%= f.collection_select :language_proficiency_id, LanguageProficiency.all, :id, :level %>
+				</div>
+				
+				<div>
+					<%= f.label :citizenship_id, "Citizenship Status" %>
+					<%= f.collection_select :citizenship_id, Citizenship.all, :id, :level %>
+				</div>
+				
+				<div class="input_set clearfix">
+					<%= f.label :tax_docs, "Tax Documentation? Comments" %>
+					<span><%= f.check_box :tax_docs %></span>
+					<span><%= f.text_field :tax_docs_comment %></span>
+				</div>
+
+				<div>
+					<%= f.label :income, "Household income" %>
+					<%= f.text_field :income %>
+				</div>
+				
+				
+			<% end %>
 		</div><!-- end .p2 -->
 	</div>
   <p>

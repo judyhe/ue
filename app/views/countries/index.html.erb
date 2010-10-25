@@ -1,0 +1,11 @@
+<h1><%= @countries.size %> countries</h1>
+
+<p><%= link_to 'New Country', new_country_path %></p>
+
+<ul>
+<% @countries.each do |country| %>
+	<li><%= link_to country.name, edit_country_path(country) %></li>
+<% end %>
+</ul>
+
+<p></p>

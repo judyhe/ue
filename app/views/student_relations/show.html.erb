@@ -12,8 +12,33 @@
 	<%= image_tag(@student_relation.person.avatar.url(:medium)) %>
 
 	<table cellpadding="0" cellspacing="0" border="0" class="info">
-		<%= render :partial => "shared/person_content_secondary", :locals => {:local_model => @student_relation} %>
-		
+		<%= render :partial => "shared/person_content_secondary", :locals => {:local_model => @student_relation} %>		
+		<tr>
+			<th>Origin country:</th>
+			<td><%= @student_relation.country.name %></td>
+		</tr>
+		<tr>
+			<th>English proficiency:</th>
+			<td><%= @student_relation.language_proficiency.level %></td>
+		</tr>
+		<tr>
+			<th>Spoken at home:</th>
+			<td><%= cs_list(@student_relation.languages) %></td>
+		</tr>		
+		<tr>
+			<th>Citizenship:</th>
+			<td><%= @student_relation.citizenship.level %></td>
+		</tr>
+		<tr>
+			<th>Tax docs?</th>
+			<td><%= @student_relation.tax_docs? ? "Yes" : "No" %> 
+					<%= @student_relation.tax_docs_comment %>
+			</td>
+		</tr>
+		<tr>
+			<th>Household income:</th>
+			<td><%= @student_relation.income %>
+		</tr>
 		<% @student_relation.student_relationships.each_with_index do |relationship, index| %>
 			<% if index == 0 or @student_relation.student_relationships[index-1].name != relationship.name %>
 			<tr>
