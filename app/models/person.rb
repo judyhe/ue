@@ -4,6 +4,11 @@ class Person < ActiveRecord::Base
   
   acts_as_polymorphic_paperclip
   
+  has_one :student
+  has_one :student_relation
+  has_one :school_staff
+  has_one :organization_staff
+  
   has_many :contact_numbers, :as => :contactable
   accepts_nested_attributes_for :contact_numbers, :allow_destroy => true, :reject_if => proc{|a| a['number'].blank? or a['contact_number_type_id'].blank?}
   

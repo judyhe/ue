@@ -65,7 +65,7 @@
 		</tr>
 	</table>
 
-	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @organization} %>
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @organization, :return_model => false} %>
 
 	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @organization} %>
 </div>

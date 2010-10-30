@@ -29,7 +29,7 @@
 		<%= render :partial => "shared/person_content_secondary", :locals => {:local_model => @organization_staff} %>
 	</table>
 
-	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @organization_staff.person} %>
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @organization_staff.person, :return_model => :organization_staff} %>
 
 	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @organization_staff.person} %>
 </div>

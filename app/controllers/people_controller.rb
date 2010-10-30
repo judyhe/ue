@@ -58,11 +58,13 @@ class PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     @person = Person.find(params[:id])
-
+    @return_model = params[:return_model]
+    @return_model = @return_model ? eval("@person." + @return_model) : @person
+     
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        flash[:notice] = 'Person was successfully updated.'
-        format.html { redirect_to(@person) }
+        flash[:notice] = "#{@return_model.class} was successfully updated."
+        format.html { redirect_to(@return_model) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
