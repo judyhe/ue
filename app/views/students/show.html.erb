@@ -59,7 +59,7 @@
 		<% end %>		
 	</table>
 
-	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @student.person} %>
+	<%= render :partial => "shared/manage_assets", :locals => {:local_model => @student.person, :return_model => :student} %>
 
 	<%= render :partial => "shared/manage_comments", :locals => {:local_model => @student.person} %>
 </div>
