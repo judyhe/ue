@@ -26,9 +26,7 @@ class Student < ActiveRecord::Base
   def age
     return unless self.birth_date
     age = Date.today.year - self.birth_date.year
-    unless Date.today.month > self.birth_date.month && Date.today.day > self.birth_date.day
-      age = age - 1
-    end
+    age -= 1 if Date.today < self.birth_date + age.years
     age
   end  
   
