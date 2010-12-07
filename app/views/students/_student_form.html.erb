@@ -15,7 +15,7 @@
 
 		<div>
 				<%= f.label :school_id %>
-				<%= f.collection_select :school_id, School.all, :id, :name, {:include_blank => true} %>
+				<%= f.collection_select :school_id, School.alphabetical, :id, :name, {:include_blank => true} %>
 		</div>
 		<div>
 			<%= f.label :grade_id %>
@@ -33,11 +33,13 @@
 		</div>
 		<% end %>
 		<% field_set_tag "Interests" do %>
-			<% Activity.top_level_activities.each do |activity| %>
+		
+			<% student_activity_ids = student.activities.collect{|a| a.id} %>		
+			<% Activity.top_level.each do |activity| %>
 			<ul class="float_left clearfix">
-				<li><%= check_box_tag "student[activity_ids][]", activity.id, student.activities.include?(activity) %> <strong><%= activity.name %></strong></li>
+				<li><%= check_box_tag "student[activity_ids][]", activity.id, student_activity_ids.include?(activity.id) %> <strong><%= activity.name %></strong></li>
 				<% activity.children.each do |sub_activity| %>
-					<li><%= check_box_tag "student[activity_ids][]", sub_activity.id, student.activities.include?(sub_activity) %> <%= sub_activity.name %></li>
+					<li><%= check_box_tag "student[activity_ids][]", sub_activity.id, student_activity_ids.include?(sub_activity.id) %> <%= sub_activity.name %></li>
 				<% end %>
 			</ul>
 			<% end %>
@@ -48,7 +50,7 @@
 			<span id="family">
 			<% f.fields_for :student_relationships do |rf| %>
 				<div class="student_relationship">
-					<%= rf.collection_select :student_relation_id, StudentRelation.all, :id, :name, {:include_blank => true} %> is my	
+					<%= rf.collection_select :student_relation_id, StudentRelation.alphabetical, :id, :name, {:include_blank => true} %> is my	
 					<%= rf.collection_select :student_relationship_type_id, StudentRelationshipType.all, :id, :name, {:include_blank => true} %>
 					<%= remove_link_unless_new_record(rf) -%>
 				</div>

@@ -4,8 +4,6 @@ class Activity < ActiveRecord::Base
   has_and_belongs_to_many :students
   has_and_belongs_to_many :programs
 
+  named_scope :top_level, :conditions => "parent_id IS NULL"
 
-  def self.top_level_activities
-    Activity.all(:conditions => "parent_id IS NULL")
-  end
 end

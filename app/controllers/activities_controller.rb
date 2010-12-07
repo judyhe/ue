@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.xml
   def index
-    @activities = Activity.top_level_activities
+    @activities = Activity.top_level
 
     respond_to do |format|
       format.html # index.html.erb

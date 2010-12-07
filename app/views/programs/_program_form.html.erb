@@ -52,11 +52,12 @@
 	
 	<div class="p2">
 		<% field_set_tag "Activities" do %>
-			<% Activity.top_level_activities.each do |activity| %>
+			<% program_activity_ids = program.activities.collect{|a| a.id} %>
+			<% Activity.top_level.each do |activity| %>
 			<ul class="float_left clearfix">
-				<li><%= check_box_tag "program[activity_ids][]", activity.id, program.activities.include?(activity) %> <strong><%= activity.name %></strong></li>
+				<li><%= check_box_tag "program[activity_ids][]", activity.id, program_activity_ids.include?(activity.id) %> <strong><%= activity.name %></strong></li>
 				<% activity.children.each do |sub_activity| %>
-					<li><%= check_box_tag "program[activity_ids][]", sub_activity.id, program.activities.include?(sub_activity) %> <%= sub_activity.name %></li>
+					<li><%= check_box_tag "program[activity_ids][]", sub_activity.id, program_activity_ids.include?(sub_activity.id) %> <%= sub_activity.name %></li>
 				<% end %>
 			</ul>
 			<% end %>

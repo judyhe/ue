@@ -1,0 +1,5 @@
+<h1>Edit Student Term</h1>
+
+<%= render :partial => "student_term_form", :locals => {:term => @student_term.term, :student_term => @student_term}%>
+
+<%= link_to 'Back', term_path(@student_term.term) %>

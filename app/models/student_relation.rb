@@ -9,6 +9,8 @@ class StudentRelation < ActiveRecord::Base
   
   has_and_belongs_to_many :languages
     
+  has_one :student_term_payment, :as => :payer    
+  
   has_many :student_relationships, :include => [:student, :student_relationship_type]
   #has_many :students, :through => :student_relationships
   
@@ -17,6 +19,6 @@ class StudentRelation < ActiveRecord::Base
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
   
-  named_scope :ordered, :include => [:person], :order => "people.last_name, people.first_name"
+  named_scope :alphabetical, :include => [:person], :order => "people.last_name, people.first_name"
   
 end

@@ -7,8 +7,65 @@
 				<%= link_to(full_date(@term.start) + " - " + full_date(@term.end), edit_term_path) %>
 			</h1>
 		</div>
-
 	</div>
+	<!-- only show the students who have been placed -->
+	<h2>Students (<%= @term.placed_terms.size %>)</h2>
+	<table cellspacing="0" cellpadding="0" border="0" class="index">
+		<thead>
+			<tr>
+				<th>Applied On</th>
+				<th>Student</th>
+				<th>Cost</th>
+				<th>Outcome</th>
+			</tr>
+		</thead>
+		<tbody>					
+			<% @term.placed_terms.each do |student_term| %>
+				<tr>
+					<td><%= link_to default_datefmt(student_term.application_date), edit_term_student_term_path(@term, student_term) %></td>
+					<td><ul>
+								<li><%= link_to student_term.student.name, student_path(student_term.student) %></li>
+								<% if student_term.school %>
+									<li><%= link_to student_term.school_name, school_path(student_term.school) %></li>
+								<% end %>
+								<li><%= student_term.grade_name %></li>
+								<li><%= student_term.activities.collect{|a| a.name}.join(", ") %></li>
+							</ul>
+					</td>
+					<td>
+						<ul>
+							<li><%= student_term.cost %></li>
+							<% student_term.student_term_payments.each do |payment| %>
+								<li><%= payment.payer_type_name %>: <%= payment.amount %></li>
+							<% end %>
+						</ul>
+					</td>
+					<td><ul>
+							<% if student_term.not_placed_reason_id %>
+								<li>Not Placed: <%= student_term.reason %> <%= student_term.not_placed_reason_other %></li>
+							<% end %>
+							
+								<li>Completed: <%= bool_to_eng(student_term.completed) %></li>
+								<li>Student Eval: <%= bool_to_eng(student_term.student_eval) %></li>
+								<li>Program Eval: <%= bool_to_eng(student_term.program_eval) %></li>
+								<li>Parent Eval: <%= bool_to_eng(student_term.parent_eval) %></li>
+								<li>Teacher Eval: <%= bool_to_eng(student_term.teacher_eval) %></li>
+							</ul>
+					</td>
+				</tr>
+			<% end %>
+			
+			<% @term.not_placed_terms.each do |student_term| %>
+				<tr>
+					<td><%= default_datefmt(student_term.application_date) %></td>
+					<td><%= link_to student_term.student.name, student_path(student_term.student) %></td>
+					<td>Total: <%= student_term.cost %></td>
+					<td><%= link_to "Edit", edit_term_student_term_path(@term, student_term) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<p><%= link_to "Sign a student up", new_term_student_term_path(@term) %></p>
 	
 	<h2>Sessions (<%= @term.term_sessions.size%>)</h2>
 		

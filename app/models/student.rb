@@ -3,6 +3,7 @@ class Student < ActiveRecord::Base
   belongs_to :school
   belongs_to :ethnicity
   belongs_to :grade
+  
   belongs_to :person, :include => [:address]
   belongs_to :language_proficiency
   
@@ -11,12 +12,16 @@ class Student < ActiveRecord::Base
   
   has_and_belongs_to_many :activities
 
+  has_many :student_terms
+  has_many :terms, :through => :student_terms
+  
+
   accepts_nested_attributes_for :person
   accepts_nested_attributes_for :student_relationships, :allow_destroy => true, :reject_if => proc{|a| a['student_relation_id'].blank? or a['student_relationship_type_id'].blank? }
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
   
-  named_scope :ordered, :include => [:person], :order => "people.last_name, people.first_name"
+  named_scope :alphabetical, :include => [:person], :order => "people.last_name, people.first_name"
   
   named_scope :with_default_associations, :include => [:grade, :ethnicity, :school]
 

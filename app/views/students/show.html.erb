@@ -4,7 +4,53 @@
 	</div>
 	
 	<h2>Terms</h2>
-
+	<table cellspacing="0" cellpadding="0" border="0" class="index">
+		<thead>
+			<tr>
+				<th>Applied On</th>
+				<th>Program</th>
+				<th>Cost</th>
+				<th>Outcome</th>
+			</tr>
+		</thead>
+		<tbody>					
+			<% @student.student_terms.each do |student_term| %>
+				<% term = student_term.term %>
+				<tr>
+					<td><%= default_datefmt(student_term.application_date) %></td>
+					<td>
+						<ul>
+							<li><%= link_to term.program.organization.name, organization_path(term.program.organization) %></li>
+							<li><%= link_to term.name, program_path(term.program) %></li>
+							<li><%= link_to "#{default_datefmt(term.start)} - #{default_datefmt(term.end)}", term_path(term) %></li>
+							<li><%= unique_daytimes(student_term.term.term_sessions) %></li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li><%= student_term.cost %></li>
+							<% student_term.student_term_payments.each do |payment| %>
+								<li><%= payment.payer_type_name %>: <%= payment.amount %></li>
+							<% end %>
+						</ul>
+					</td>
+					<td><ul>
+							<% if student_term.not_placed_reason_id %>
+								<li>Not Placed: <%= student_term.reason %> <%= student_term.not_placed_reason_other %></li>
+							<% end %>
+							
+								<li>Completed: <%= bool_to_eng(student_term.completed) %></li>
+								<li>Student Eval: <%= bool_to_eng(student_term.student_eval) %></li>
+								<li>Program Eval: <%= bool_to_eng(student_term.program_eval) %></li>
+								<li>Parent Eval: <%= bool_to_eng(student_term.parent_eval) %></li>
+								<li>Teacher Eval: <%= bool_to_eng(student_term.teacher_eval) %></li>
+							</ul>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	</ul>
 </div>
 
 <div id="content_secondary">
