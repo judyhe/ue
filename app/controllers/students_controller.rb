@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
   # GET /students.xml
   # GET /students.csv
   def index
-    @students = Student.ordered.with_default_associations
+    @students = Student.alphabetical.with_default_associations
 
     respond_to do |format|
       format.html # index.html.erb

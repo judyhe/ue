@@ -15,6 +15,8 @@ class Organization < ActiveRecord::Base
   delegate :address1, :address2, :city, :state, :county, :neighborhood, :zip, :to => :address
   accepts_nested_attributes_for :address
   
+  has_one :student_term_payment, :as => :payer
+  
   validates_presence_of :name
   
   named_scope :alphabetical, :order => "name"

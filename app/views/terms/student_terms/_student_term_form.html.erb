@@ -1,0 +1,104 @@
+<% form_for([term, student_term], :html => {:class => "default"}) do |f| %>
+  <%= f.error_messages %>
+	<div class="clearfix">
+		<div class="p1">
+			<% field_set_tag "Basic" do %>
+				<div>
+					<%= f.label :application_date %>
+					<%= f.date_select :application_date, :order => [:month, :day, :year] %>
+				</div>
+				
+				<div>
+					<%= f.label :cost %>
+					<%= f.text_field :cost, :size => 7, :class => "auto" %>
+				</div>
+	
+				<div>
+					<%= f.label :income, "Household Income" %>
+					<%= f.text_field :income, :size => 7, :class => "auto" %>
+				</div>
+
+				<div>
+					<%= f.label :not_placed_reason_id, "If not placed, why?" %>
+					<span>
+						<%= f.collection_select :not_placed_reason_id, StudentTermNotPlacedReason.all, :id, :reason, {:include_blank => true} %>
+				</div>
+				<div>
+						<%= f.label :not_placed_other, "Other reason for not being placed" %>
+						<%= f.text_field :not_placed_other %>
+					</span>
+				</div>
+
+				<div class="input_set clearfix">
+					<div><strong>Evaluations filled?</strong></div>
+					<span>
+						<%= f.label :student_eval, "Student Evaluation" %>
+						<%= f.check_box :student_eval %>
+					</span>
+					<span>
+						<%= f.label :program_eval, "Program Evaluation" %>
+						<%= f.check_box :program_eval %>
+					</span>
+					<span>
+						<%= f.label :parent_eval, "Parent Evaluation" %>
+						<%= f.check_box :parent_eval %>
+					</span>
+					<span>
+						<%= f.label :teacher_eval, "Teacher Evaluation" %>
+						<%= f.check_box :teacher_eval %>
+					</span>
+				</div>
+			<% end %>
+		</div>
+		<div class="p2">
+			<% field_set_tag "Student Info" do %>
+				<div>
+					<%= f.label :student_id %>
+					<%= f.collection_select :student_id, Student.alphabetical, :id, :name %>
+				</div>
+				<div>
+						<%= f.label :school_id %>
+						<%= f.collection_select :school_id, School.alphabetical, :id, :name, {:selected => student_term.school_id, :include_blank => true} %>
+				</div>
+				<div>
+					<%= f.label :grade_id %>
+					<%= f.collection_select :grade_id, Grade.all, :id, :name, {:selected => student_term.grade_id, :include_blank => true} %>
+				</div>
+				
+				<% student_term_activity_ids = student_term.activities.collect{|a| a.id} %>
+				<% Activity.top_level.each do |activity| %>
+				<ul class="float_left clearfix">
+					<li><%= check_box_tag "student_term[activity_ids][]", activity.id, student_term_activity_ids.include?(activity.id) %> <strong><%= activity.name %></strong></li>
+					<% activity.children.each do |sub_activity| %>
+						<li><%= check_box_tag "student_term	[activity_ids][]", sub_activity.id, student_term_activity_ids.include?(sub_activity.id) %> <%= sub_activity.name %></li>
+					<% end %>
+				</ul>
+				<% end %>
+			<% end %>
+			
+			<% field_set_tag "Payment" do %>
+				<% student_term.student_term_payments.build if student_term.student_term_payments.empty? %>
+				<span id="payments">
+					<% f.fields_for :student_term_payments do |pf| %>
+					<div class='payment input_set clearfix'>
+						<span>
+							<%= pf.text_field :amount, :size => 7, :class => "auto" %>
+						</span>
+					
+						<span>
+							<%= pf.collection_select :payer_type_id, PayerType.all, :id, :name %>
+						</span>
+						
+						<span><%= remove_link_unless_new_record(pf) -%></span>
+					</div>
+				</span>
+				<p><%= link_to 'Add a payment', '#payments', :class => "add_association", :rel => 'payment' %></p>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

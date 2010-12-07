@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100830045318) do
+ActiveRecord::Schema.define(:version => 20101128001035) do
 
   create_table "activities", :force => true do |t|
     t.string  "name"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
     t.integer "activity_id", :null => false
     t.integer "program_id",  :null => false
   end
+
+  create_table "activities_student_terms", :id => false, :force => true do |t|
+    t.integer "activity_id",     :null => false
+    t.integer "student_term_id", :null => false
+  end
+
+  add_index "activities_student_terms", ["activity_id"], :name => "index_activities_student_terms_on_activity_id"
+  add_index "activities_student_terms", ["student_term_id"], :name => "index_activities_student_terms_on_student_term_id"
 
   create_table "activities_students", :id => false, :force => true do |t|
     t.integer "activity_id", :null => false
@@ -67,6 +75,10 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
   add_index "attachings", ["asset_id"], :name => "index_attachings_on_asset_id"
   add_index "attachings", ["attachable_id"], :name => "index_attachings_on_attachable_id"
 
+  create_table "citizenships", :force => true do |t|
+    t.string "level"
+  end
+
   create_table "comments", :force => true do |t|
     t.text     "comment"
     t.integer  "user_id"
@@ -92,9 +104,19 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
     t.integer "state_id",                :null => false
   end
 
+  create_table "countries", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "ethnicities", :force => true do |t|
     t.string  "name", :null => false
     t.integer "ord"
+  end
+
+  create_table "ethnicities_schools", :force => true do |t|
+    t.integer "ethnicity_id"
+    t.integer "school_id"
+    t.decimal "percentage",   :precision => 5, :scale => 2
   end
 
   create_table "grades", :force => true do |t|
@@ -104,6 +126,19 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
   create_table "grades_schools", :id => false, :force => true do |t|
     t.integer "grade_id",  :null => false
     t.integer "school_id", :null => false
+  end
+
+  create_table "language_proficiencies", :force => true do |t|
+    t.string "level"
+  end
+
+  create_table "languages", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "languages_student_relations", :id => false, :force => true do |t|
+    t.integer "language_id",         :null => false
+    t.integer "student_relation_id", :null => false
   end
 
   create_table "neighborhoods", :force => true do |t|
@@ -138,6 +173,10 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
     t.datetime "updated_at"
   end
 
+  create_table "payer_types", :force => true do |t|
+    t.string "name", :null => false
+  end
+
   create_table "people", :force => true do |t|
     t.string   "first_name",          :limit => 100, :default => "", :null => false
     t.string   "last_name",           :limit => 100, :default => "", :null => false
@@ -158,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gender",          :limit => 2
+    t.boolean  "scholarship",                  :default => false
   end
 
   create_table "school_staff_types", :force => true do |t|
@@ -173,14 +213,17 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string   "name",                               :default => "", :null => false
-    t.string   "email",               :limit => 100
+    t.string   "name",                                                                  :default => "", :null => false
+    t.string   "email",                    :limit => 100
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "student_count",                                                         :default => 0
+    t.decimal  "minority_percentage",                     :precision => 5, :scale => 2
+    t.decimal  "reduced_lunch_percentage",                :precision => 5, :scale => 2
   end
 
   create_table "states", :force => true do |t|
@@ -192,6 +235,12 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
+    t.decimal  "income",                  :precision => 8, :scale => 2
+    t.boolean  "tax_docs",                                              :default => true
+    t.string   "tax_docs_comment"
+    t.integer  "language_proficiency_id"
+    t.integer  "citizenship_id"
   end
 
   create_table "student_relationship_types", :force => true do |t|
@@ -206,12 +255,78 @@ ActiveRecord::Schema.define(:version => 20100830045318) do
     t.datetime "updated_at"
   end
 
+  create_table "student_term_not_placed_reasons", :force => true do |t|
+    t.string "reason", :null => false
+  end
+
+  create_table "student_term_payments", :force => true do |t|
+    t.integer  "student_term_id",                                 :null => false
+    t.decimal  "amount",           :precision => 10, :scale => 2
+    t.integer  "payer_type_id",                                   :null => false
+    t.string   "payer_type_other"
+    t.integer  "payer_id",                                        :null => false
+    t.string   "payer_type",                                      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "student_term_payments", ["payer_id", "payer_type"], :name => "index_student_term_payments_on_payer_id_and_payer_type"
+  add_index "student_term_payments", ["payer_type_id"], :name => "index_student_term_payments_on_payer_type_id"
+  add_index "student_term_payments", ["student_term_id"], :name => "index_student_term_payments_on_student_term_id"
+
+  create_table "student_terms", :force => true do |t|
+    t.integer  "student_id",                                                             :null => false
+    t.integer  "term_id",                                                                :null => false
+    t.datetime "application_date"
+    t.decimal  "cost",                 :precision => 10, :scale => 2
+    t.integer  "school_id"
+    t.integer  "grade_id"
+    t.decimal  "income",               :precision => 8,  :scale => 2
+    t.decimal  "decimal",              :precision => 8,  :scale => 2
+    t.boolean  "placed",                                              :default => false
+    t.integer  "not_placed_reason_id"
+    t.string   "not_placed_other"
+    t.boolean  "completed",                                           :default => false
+    t.boolean  "student_eval",                                        :default => false
+    t.boolean  "program_eval",                                        :default => false
+    t.boolean  "parent_eval",                                         :default => false
+    t.boolean  "teacher_eval",                                        :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "student_terms", ["grade_id"], :name => "index_student_terms_on_grade_id"
+  add_index "student_terms", ["not_placed_reason_id"], :name => "index_student_terms_on_not_placed_reason_id"
+  add_index "student_terms", ["school_id"], :name => "index_student_terms_on_school_id"
+  add_index "student_terms", ["student_id"], :name => "index_student_terms_on_student_id"
+  add_index "student_terms", ["term_id"], :name => "index_student_terms_on_term_id"
+
   create_table "students", :force => true do |t|
     t.integer  "person_id"
     t.date     "birth_date"
     t.integer  "grade_id"
     t.integer  "school_id"
     t.integer  "ethnicity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "language_proficiency_id"
+  end
+
+  create_table "term_sessions", :force => true do |t|
+    t.date     "day"
+    t.time     "start"
+    t.time     "end"
+    t.integer  "term_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "terms", :force => true do |t|
+    t.date     "start"
+    t.date     "end"
+    t.decimal  "cost",       :precision => 10, :scale => 2
+    t.integer  "program_id"
+    t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

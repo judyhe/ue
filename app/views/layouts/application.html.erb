@@ -20,30 +20,30 @@
 
 		<div id="nav_primary">
 			<ul>
-				<li><%= link_with_highlight "Students", :controller => "students" %></li>
-				<li><%= link_with_highlight "Parents", :controller => "student_relations" %></li>
-				<li><%= link_with_highlight "Schools", :controller => "schools" %></li>
-				<li><%= link_with_highlight "School Staff", :controller => "school_staffs" %></li>
-				<li><%= link_with_highlight "Organizations", :controller => "organizations" %></li>
-				<li><%= link_with_highlight "Organization Staff", :controller => "organization_staffs" %></li>
-				<li><%= link_with_highlight "Programs", :controller => "programs" %></li>
+				<li><%= link_to "Students", students_path, :class => set_active("students" ) %></li>
+				<li><%= link_to "Parents", student_relations_path, :class => set_active("student_relations") %></li>
+				<li><%= link_to "Schools", schools_path, :class => set_active("schools") %></li>
+				<li><%= link_to "School Staff", school_staffs_path, :class => set_active("school_staffs") %></li>
+				<li><%= link_to "Organizations", organizations_path, :class => set_active("organizations") %></li>
+				<li><%= link_to "Organization Staff", organization_staffs_path, :class => set_active("organization_staffs") %></li>
+				<li><%= link_to "Programs", programs_path, :class => set_active("programs") %></li>
 			
-				<li><%= link_with_highlight "Users", :controller => "users" %></li>
+				<li><%= link_to "Users", users_path, :class => set_active("users") %></li>
 			</ul>
 
 			<ul>
-				<li><%= link_with_highlight "Activities", :controller => "activities" %></li>
-				<li><%= link_with_highlight "Counties", :controller => "counties" %></li>
-				<li><%= link_with_highlight "Countries", :controller => "countries" %></li>
-				<li><%= link_with_highlight "Languages", :controller => "languages" %></li>
-				<li><%= link_with_highlight "Neighborhoods", :controller => "neighborhoods" %></li>
-				<li><%= link_with_highlight "States", :controller => "states" %></li>
-				<li><%= link_with_highlight "Ethnicities", :controller => "ethnicities" %></li>
-				<li><%= link_with_highlight "Grades", :controller => "grades" %></li>
-				<li><%= link_with_highlight "Relationship Types", :controller => "student_relationship_types" %></li>
-				<li><%= link_with_highlight "Contact# Types", :controller => "contact_number_types" %></li>
-				<li><%= link_with_highlight "School Staff Types", :controller => "school_staff_types" %></li>
-				<li><%= link_with_highlight "Org Staff Types", :controller => "organization_staff_types" %></li>
+				<li><%= link_to "Activities", activities_path, :class => set_active("activities") %></li>
+				<li><%= link_to "Counties", counties_path, :class => set_active("counties") %></li>
+				<li><%= link_to "Countries", countries_path, :class => set_active("countries") %></li>
+				<li><%= link_to "Languages", languages_path, :class => set_active("languages") %></li>
+				<li><%= link_to "Neighborhoods", neighborhoods_path, :class => set_active("neighborhoods") %></li>
+				<li><%= link_to "States", states_path, :class => set_active("states") %></li>
+				<li><%= link_to "Ethnicities", ethnicities_path, :class => set_active("ethnicities") %></li>
+				<li><%= link_to "Grades", grades_path, :class => set_active("grades") %></li>
+				<li><%= link_to "Relationship Types", student_relationship_types_path, :class => set_active("student_relationship_types") %></li>
+				<li><%= link_to "Contact# Types", contact_number_types_path, :class => set_active("contact_number_types") %></li>
+				<li><%= link_to "School Staff Types", school_staff_types_path, :class => set_active("school_staff_types") %></li>
+				<li><%= link_to "Org Staff Types", organization_staff_types_path, :class => set_active("organization_staff_types") %></li>
 			</ul>
 
 		</div>		

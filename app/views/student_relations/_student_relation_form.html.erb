@@ -15,7 +15,7 @@
 				<% f.fields_for :student_relationships do |rf| %>
 					<div class="student_relationship">
 						<%= rf.collection_select :student_relationship_type_id, StudentRelationshipType.all, :id, :name, {:include_blank => true} %> of 
-						<%= rf.collection_select :student_id, Student.all, :id, :name, {:include_blank => true} %>	
+						<%= rf.collection_select :student_id, Student.alphabetical, :id, :name, {:include_blank => true} %>	
 						<%= remove_link_unless_new_record(rf) -%>
 					</div>
 				<% end %>

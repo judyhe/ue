@@ -1,12 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-  def link_with_highlight(name, options)
-    if options[:controller] == controller.controller_name
-      link_to(name, options, :class => "current")
-    else
-      link_to(name, options)
-    end
+  def set_active(controller_name)
+    controller.controller_name == controller_name ? "current" : ""
   end
   
   def associated_attribute(assoc_model, attribute)
@@ -28,6 +24,10 @@ module ApplicationHelper
       address += associated_attribute(f.county, :name)
     end
     address
+  end
+  
+  def bool_to_eng(bool)
+    bool ? "yes" : "no"
   end
   
   def unique_daytimes(set_of_events)    

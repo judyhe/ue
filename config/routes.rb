@@ -1,40 +1,25 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :student_terms
   map.resources :language_proficiencies
-
   map.resources :citizenships
-
   map.resources :countries
-
   map.resources :languages
-
   map.resources :term_sessions
-
-  map.resources :terms
-
+  map.resources :terms do |terms|
+    terms.resources :student_terms, :controller => "terms/student_terms"
+  end
   map.resources :ages
-
   map.resources :programs
-
   map.resources :organization_staff_types
-
   map.resources :organization_staffs
-
   map.resources :organizations
-
   map.resources :school_staff_types
-
   map.resources :school_staffs
-
   map.resources :student_relations
-
   map.resources :addresses
-
   map.resources :comments
-
   map.resources :contact_number_types
-
   map.resources :contact_numbers
-
   map.resources :student_relationship_types
   map.resources :student_relationships
   map.resources :people
@@ -44,6 +29,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :states
   map.resources :counties
   map.resources :activities
+  map.resources :schools
+  map.resources :students do |students|
+    students.resources :student_terms, :controller => "students/student_terms"
+  end
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
@@ -52,8 +41,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
   map.resource :session
-  map.resources :schools
-  map.resources :students
 
   # The priority is based upon order of creation: first created -> highest priority.
 

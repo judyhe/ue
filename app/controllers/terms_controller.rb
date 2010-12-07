@@ -32,7 +32,7 @@ class TermsController < ApplicationController
   # GET /terms/1
   # GET /terms/1.xml
   def show
-    @term = Term.find(params[:id])
+    @term = Term.with_default_associations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
