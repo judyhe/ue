@@ -15,6 +15,10 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :student_relationships, :allow_destroy => true, :reject_if => proc{|a| a['student_relation_id'].blank? or a['student_relationship_type_id'].blank? }
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
+  
+  named_scope :ordered, :include => [:person], :order => "people.last_name, people.first_name"
+  
+  named_scope :with_default_associations, :include => [:grade, :ethnicity, :school]
 
   comma do 
     id
@@ -37,12 +41,6 @@ class Student < ActiveRecord::Base
   def siblings
     return [] if self.student_relationships.empty?
     sibling_relationships = StudentRelationship.all(:conditions => "student_relation_id = #{self.student_relationships.first.student_relation_id} and student_id != #{self.id}", :include => :student)
-  end
-  
-  def self.find_with_default_associations(id)
-    Student.find(id, 
-      :include => [:person, :grade, :ethnicity, :school],
-      :order => "people.last_name, people.first_name")
   end
   
 end
