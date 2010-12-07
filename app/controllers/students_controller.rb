@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
   # GET /students.xml
   # GET /students.csv
   def index
-    @students = Student.find_with_default_associations(:all)
+    @students = Student.ordered.with_default_associations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.xml
   def show
-    @student = Student.find_with_default_associations(params[:id])
+    @student = Student.with_default_associations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

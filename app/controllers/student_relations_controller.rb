@@ -2,7 +2,7 @@ class StudentRelationsController < ApplicationController
   # GET /student_relations
   # GET /student_relations.xml
   def index
-    @student_relations = StudentRelation.all
+    @student_relations = StudentRelation.ordered
 
     respond_to do |format|
       format.html # index.html.erb

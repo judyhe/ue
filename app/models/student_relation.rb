@@ -17,4 +17,6 @@ class StudentRelation < ActiveRecord::Base
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
   
+  named_scope :ordered, :include => [:person], :order => "people.last_name, people.first_name"
+  
 end
