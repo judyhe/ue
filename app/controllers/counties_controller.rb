@@ -2,7 +2,7 @@ class CountiesController < ApplicationController
   # GET /counties
   # GET /counties.xml
   def index
-    @counties = County.all(:order => :state_id, :include => :state)
+    @counties = County.joins(:state).alphabetical
 
     respond_to do |format|
       format.html # index.html.erb

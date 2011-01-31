@@ -30,3 +30,21 @@ class Person < ActiveRecord::Base
   end
   
 end
+
+# == Schema Information
+#
+# Table name: people
+#
+#  id                  :integer(4)      not null, primary key
+#  first_name          :string(100)     default(""), not null
+#  last_name           :string(100)     default(""), not null
+#  gender              :string(1)
+#  email               :string(100)
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer(4)
+#  avatar_updated_at   :datetime
+#  created_at          :datetime
+#  updated_at          :datetime
+#
+

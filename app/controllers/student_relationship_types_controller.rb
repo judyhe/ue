@@ -10,17 +10,6 @@ class StudentRelationshipTypesController < ApplicationController
     end
   end
 
-  # GET /student_relationship_types/1
-  # GET /student_relationship_types/1.xml
-  def show
-    @student_relationship_type = StudentRelationshipType.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @student_relationship_type }
-    end
-  end
-
   # GET /student_relationship_types/new
   # GET /student_relationship_types/new.xml
   def new

@@ -2,22 +2,11 @@ class LanguagesController < ApplicationController
   # GET /languages
   # GET /languages.xml
   def index
-    @languages = Language.all
+    @languages = Language.alphabetical
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @languages }
-    end
-  end
-
-  # GET /languages/1
-  # GET /languages/1.xml
-  def show
-    @language = Language.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @language }
     end
   end
 
@@ -45,7 +34,7 @@ class LanguagesController < ApplicationController
     respond_to do |format|
       if @language.save
         flash[:notice] = 'Language was successfully created.'
-        format.html { redirect_to(@language) }
+        format.html { redirect_to(languages_url) }
         format.xml  { render :xml => @language, :status => :created, :location => @language }
       else
         format.html { render :action => "new" }
@@ -62,7 +51,7 @@ class LanguagesController < ApplicationController
     respond_to do |format|
       if @language.update_attributes(params[:language])
         flash[:notice] = 'Language was successfully updated.'
-        format.html { redirect_to(@language) }
+        format.html { redirect_to(languages_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

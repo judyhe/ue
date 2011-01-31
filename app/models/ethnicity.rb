@@ -5,7 +5,17 @@ class Ethnicity < ActiveRecord::Base
   has_many :ethnicities_schools
   has_many :schools, :through => :ethnicities_schools
   
-  validates_presence_of :name
+  validates :name, :presence => true, :uniqueness => true
   validates_numericality_of :ord
   
 end
+
+# == Schema Information
+#
+# Table name: ethnicities
+#
+#  id   :integer(4)      not null, primary key
+#  name :string(255)     not null
+#  ord  :integer(4)
+#
+

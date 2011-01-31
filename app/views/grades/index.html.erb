@@ -1,7 +1,4 @@
-<h1>
-	<%= @grades.size %> 
-	<%= correctly_pluralized_noun(@grades.size, "grade") %> 
-</h1>
+<h1><%= @grades.size %> grades</h1>
 
 <p><%= link_to "New Grade", new_grade_path %></p>
 

@@ -231,8 +231,8 @@ form.default div{margin:6px 0;padding:3px 0;}
 form.default div input[type="text"], form.default textarea{border:1px solid #999; width:98%;padding:3px;}
 form.default div input[type="text"].auto {width:auto;}
 form.default textarea {height:50px;}
+form.default .error {padding-left:5px; color:red;}
 form.default div input.auto{width:auto;}
-form.default div.fieldWithErrors{margin:0;padding:2px;}
 form.default div.input_set span{float:left; margin-right:10px;}
 form.default div.input_set span.full{float:none;margin-bottom:5px;display:block;}
 form.default div.input_set span.half{width:46%;}
@@ -246,7 +246,7 @@ form.default div.p2{float:right;width:48%;}
 
 /* rails error stuff */
 .flash_notice, .flash_error, .flash_alert {
-  padding: 5px 8px;
+  padding: 3px 8px;
   margin: 10px 0;
 }
 .flash_notice {
@@ -257,36 +257,4 @@ form.default div.p2{float:right;width:48%;}
   background-color: #ffcccc;
   border: solid 1px #cc6666;
 }
-
-.fieldWithErrors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
-#errorExplanation {
-  width: 400px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
-}
-
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
-}
-
 

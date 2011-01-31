@@ -29,3 +29,22 @@ class School < ActiveRecord::Base
   
   
 end
+
+# == Schema Information
+#
+# Table name: schools
+#
+#  id                       :integer(4)      not null, primary key
+#  name                     :string(255)     default(""), not null
+#  email                    :string(100)
+#  avatar_file_name         :string(255)
+#  avatar_content_type      :string(255)
+#  avatar_file_size         :integer(4)
+#  avatar_updated_at        :datetime
+#  created_at               :datetime
+#  updated_at               :datetime
+#  student_count            :integer(4)      default(0)
+#  minority_percentage      :decimal(5, 2)
+#  reduced_lunch_percentage :decimal(5, 2)
+#
+

@@ -11,3 +11,20 @@ class Address < ActiveRecord::Base
     self.addressable.name 
   end
 end
+
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id               :integer(4)      not null, primary key
+#  address1         :string(255)
+#  address2         :string(255)
+#  city             :string(100)
+#  zip              :string(10)
+#  state_id         :integer(4)
+#  county_id        :integer(4)
+#  neighborhood_id  :integer(4)
+#  addressable_id   :integer(4)
+#  addressable_type :string(255)
+#
+

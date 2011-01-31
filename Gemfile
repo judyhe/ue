@@ -13,9 +13,19 @@ gem 'comma'
 gem 'paperclip'
 gem 'exception_notification_rails3', :require => 'exception_notifier'
 gem 'ancestry'
+gem 'recurrence'
+gem 'jquery-rails'
+gem 'simple_form'
 
 group :development do 
-  gem 'jquery-rails'
+  gem 'rspec-rails'
+  gem 'annotate'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'webrat'
+  gem 'factory_girl_rails'
 end
 
 # Use unicorn as the web server

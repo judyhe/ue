@@ -4,11 +4,11 @@
 
 <ul class="nested">
 <% @activities.each do |activity| %>
-	<li><%= link_to h(activity.name), edit_activity_path(activity) %>
+	<li><%= link_to activity.name, edit_activity_path(activity) %>
 	<% unless activity.children.empty? %>
 		<ul>
-		<% activity.children.each do |sub_activity| %>
-			<li><%= link_to h(sub_activity.name), edit_activity_path(sub_activity) %></li>
+		<% activity.children.alphabetical.each do |sub_activity| %>
+			<li><%= link_to sub_activity.name, edit_activity_path(sub_activity) %></li>
 		<% end %>
 		</ul>
 	<% end %>

@@ -28,3 +28,18 @@ class Program < ActiveRecord::Base
     self.activities.collect{|a| a.name}.join(", ")
   end
 end
+
+# == Schema Information
+#
+# Table name: programs
+#
+#  id              :integer(4)      not null, primary key
+#  name            :string(255)
+#  description     :text
+#  organization_id :integer(4)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  gender          :string(2)
+#  scholarship     :boolean(1)      default(FALSE)
+#
+

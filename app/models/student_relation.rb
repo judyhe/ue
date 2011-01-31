@@ -22,3 +22,20 @@ class StudentRelation < ActiveRecord::Base
   scope :alphabetical, :include => [:person], :order => "people.last_name, people.first_name"
   
 end
+
+# == Schema Information
+#
+# Table name: student_relations
+#
+#  id                      :integer(4)      not null, primary key
+#  person_id               :integer(4)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  country_id              :integer(4)
+#  income                  :decimal(8, 2)
+#  tax_docs                :boolean(1)      default(TRUE)
+#  tax_docs_comment        :string(255)
+#  language_proficiency_id :integer(4)
+#  citizenship_id          :integer(4)
+#
+

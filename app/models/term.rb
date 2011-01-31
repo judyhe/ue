@@ -38,3 +38,18 @@ class Term < ActiveRecord::Base
     self.student_terms - self.not_placed_terms
   end
 end
+
+# == Schema Information
+#
+# Table name: terms
+#
+#  id         :integer(4)      not null, primary key
+#  start      :date
+#  end        :date
+#  cost       :decimal(10, 2)
+#  program_id :integer(4)
+#  address_id :integer(4)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

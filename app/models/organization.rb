@@ -22,3 +22,16 @@ class Organization < ActiveRecord::Base
   scope :alphabetical, :order => "name"
   
 end
+# == Schema Information
+#
+# Table name: organizations
+#
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)
+#  description :text
+#  url         :string(255)
+#  email       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

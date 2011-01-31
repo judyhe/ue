@@ -1,7 +1,6 @@
+<%= simple_form_for(student_relationship_type, :html => {:class => "default"}) do |f| %>
 
-<% form_for(student_relationship_type) do |f| %>
-  <%= f.error_messages %>
+	<%= f.input :name, :input_html => {:class => 'auto'} %>
+  <p><%= f.button :submit %></p>
 
-	<p><%= f.text_field :name %></p>
-  <p><%= f.submit %></p>
 <% end %>

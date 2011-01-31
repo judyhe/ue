@@ -17,3 +17,16 @@ class SchoolStaff < ActiveRecord::Base
   #scope :vices, :conditions => "school_staff_type_id = #{SchoolStaffType::VICE.id}"
   
 end
+
+# == Schema Information
+#
+# Table name: school_staffs
+#
+#  id                   :integer(4)      not null, primary key
+#  person_id            :integer(4)
+#  school_id            :integer(4)
+#  school_staff_type_id :integer(4)
+#  created_at           :datetime
+#  updated_at           :datetime
+#
+

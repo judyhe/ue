@@ -1,11 +1,11 @@
 <h1>Editing Contact Number Type</h1>
 
-<% form_for(@contact_number_type) do |f| %>
-  <%= f.error_messages %>
-	<%= f.text_field :name %>
+<%= simple_form_for(@contact_number_type, :html => {:class => 'default'}) do |f| %>
+	<%= f.input :name, :input_html => {:class => 'auto'} %>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.button :submit %>
   </p>
 <% end %>
+
 
 <p><%= link_to 'Back', contact_number_types_path %></p>

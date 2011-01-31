@@ -10,17 +10,6 @@ class SchoolStaffTypesController < ApplicationController
     end
   end
 
-  # GET /school_staff_types/1
-  # GET /school_staff_types/1.xml
-  def show
-    @school_staff_type = SchoolStaffType.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @school_staff_type }
-    end
-  end
-
   # GET /school_staff_types/new
   # GET /school_staff_types/new.xml
   def new

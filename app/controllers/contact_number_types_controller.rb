@@ -10,17 +10,6 @@ class ContactNumberTypesController < ApplicationController
     end
   end
 
-  # GET /contact_number_types/1
-  # GET /contact_number_types/1.xml
-  def show
-    @contact_number_type = ContactNumberType.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @contact_number_type }
-    end
-  end
-
   # GET /contact_number_types/new
   # GET /contact_number_types/new.xml
   def new

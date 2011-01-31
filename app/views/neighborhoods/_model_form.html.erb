@@ -1,24 +1,12 @@
-
-<% form_for(neighborhood, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for(neighborhood, :html => {:class => "default"}) do |f| %>
 	
-	<div class="input_set clearfix">
-		<span>
-			<%= f.label :ord, "Order" %>
-			<%= f.text_field :ord, :size => 1 %>
-		</span>
-		<span>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-		</span>
-	</div>
+	<%= f.input :ord, :label => 'Order', :input_html => {:size => 2} %>
+	<%= f.input :name, :input_html => {:class => 'auto'} %>
 	
-	<div>
-		<%= f.label :county_id %>
-		<%= f.collection_select :county_id, County.all, :id, :name, {:include_blank => true} %>
-	</div>
+	<%= f.association :county %>
+	
   <p>
-    <%= f.submit %>
+    <%= f.button :submit %>
   </p>
 <% end %>
 

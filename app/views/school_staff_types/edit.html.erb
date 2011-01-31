@@ -1,13 +1,9 @@
 <h1>Editing school staff type</h1>
 
-<% form_for(@school_staff_type) do |f| %>
-  <%= f.error_messages %>
-
+<%= simple_form_for(@school_staff_type, :html => {:class => 'default'}) do |f| %>
+	<%= f.input :position, :input_html => {:class => 'auto'} %>
   <p>
-    <%= f.text_field :position %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
+    <%= f.button :submit %>
   </p>
 <% end %>
 

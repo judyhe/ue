@@ -15,3 +15,16 @@ class OrganizationStaff < ActiveRecord::Base
   has_and_belongs_to_many :programs
   
 end
+
+# == Schema Information
+#
+# Table name: organization_staffs
+#
+#  id                         :integer(4)      not null, primary key
+#  person_id                  :integer(4)
+#  organization_id            :integer(4)
+#  organization_staff_type_id :integer(4)
+#  created_at                 :datetime
+#  updated_at                 :datetime
+#
+

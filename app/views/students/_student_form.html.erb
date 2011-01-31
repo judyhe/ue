@@ -35,7 +35,7 @@
 		<% field_set_tag "Interests" do %>
 		
 			<% student_activity_ids = student.activities.collect{|a| a.id} %>		
-			<% Activity.top_level.each do |activity| %>
+			<% Activity.roots.each do |activity| %>
 			<ul class="float_left clearfix">
 				<li><%= check_box_tag "student[activity_ids][]", activity.id, student_activity_ids.include?(activity.id) %> <strong><%= activity.name %></strong></li>
 				<% activity.children.each do |sub_activity| %>

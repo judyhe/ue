@@ -1,11 +1,13 @@
 class StudentRelationshipType < ActiveRecord::Base
   
-  #FATHER = self.first(:conditions => "name = 'Father'")
-  #MOTHER = self.first(:conditions => "name = 'Mother'")
-  
-  #DAUGHTER = self.first(:conditions => "name = 'Daughter'")
-  #SON = self.first(:conditions => "name = 'Son'")
-  
-  #SISTER = self.first(:conditions => "name = 'Sister'")
-  #BROTHER = self.first(:conditions => "name = 'Brother'")
+  validates :name, :presence => true, :uniqueness => true
 end
+
+# == Schema Information
+#
+# Table name: student_relationship_types
+#
+#  id   :integer(4)      not null, primary key
+#  name :string(255)
+#
+

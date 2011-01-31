@@ -1,7 +1,6 @@
-<% form_for(language, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
-	
-	<p><%= f.text_field :name %></p>
+<%= simple_form_for(language, :html => {:class => "default"}) do |f| %>
+
+	<%= f.input :name, :input_html => {:class => 'auto'} %>
 	
   <p>
     <%= f.submit %>

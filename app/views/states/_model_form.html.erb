@@ -1,20 +1,10 @@
+<%= simple_form_for(state, :html => {:class => "default"}) do |f| %>
 
-<% form_for(state, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
-	
-	<div class="input_set clearfix">
-		<span>
-			<%= f.label :abbr %>
-			<%= f.text_field :abbr, :size => 2 %>
-		</span>
-		<span>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-		</span>
-	</div>
+	<%= f.input :abbr, :label => "Abbreviation", :input_html => {:size => 2, :class => 'auto'} %>
+	<%= f.input :name, :input_html => {:class => 'auto'} %>
 	
   <p>
-    <%= f.submit %>
+    <%= f.button :submit %>
   </p>
 <% end %>
 
