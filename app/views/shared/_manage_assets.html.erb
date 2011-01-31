@@ -16,7 +16,7 @@
 
 		<p class="clearfix"><a href="#attachment_form" class="button_green click_to_expose"><b>Add</b></a></p>
 
-		<% form_for(local_model, :html => {:multipart => true, :class => "hide", :id => "attachment_form"}) do |f| %>
+		<%= simple_form_for(local_model, :html => {:multipart => true, :class => "hide", :id => "attachment_form"}) do |f| %>
 		 <% if return_model %>
 			<%= hidden_field_tag :return_model, return_model %>
 		 <% end %>

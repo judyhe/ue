@@ -1,32 +1,23 @@
-<% form_for(organization_staff, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for(organization_staff, :html => {:class => "default"}) do |f| %>
 
 	<div class="clearfix">
 	
 	<div class="p1">
-		<% f.fields_for :person do |person_fields| %>
+		<%= f.fields_for :person do |person_fields| %>
 			<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => organization_staff.person} %>
 		<% end %>
 	</div> 
 
 	
 	<div class="p2">
-		<% field_set_tag "Employment" do %>
-		<div>
-			<%= f.label :organization_staff_type_id, "Position" %>
-			<%= f.collection_select :organization_staff_type_id, OrganizationStaffType.all, :id, :position, {:include_blank => true} %>
-		</div>
+		<%= field_set_tag "Employment" do %>
+		
+		<%= f.association :organization_staff_type, :label => "Position" %>
 	
-		<div>
-			<%= f.label :organization_id %>
-			<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name, {:include_blank => true} %>
-		</div>
-		
-		<div>
-			<%= f.label :program_id %>
-			<%= f.collection_select(:program_ids, Program.alphabetical, :id, :name, { :selected => organization_staff.program_ids }, { :multiple => true, :size => 5, :name => 'organization_staff[program_ids][]' }) -%>
-		</div>
-		
+	  <%= f.association :organization %>
+    
+    <%= f.association :programs %>
+
 		<% end %>
 	</div> <!-- end .p2 -->
 	</div> <!-- end .clearfix -->

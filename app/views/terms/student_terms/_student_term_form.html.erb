@@ -1,8 +1,7 @@
-<% form_for([term, student_term], :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for([term, student_term], :html => {:class => "default"}) do |f| %>
 	<div class="clearfix">
 		<div class="p1">
-			<% field_set_tag "Basic" do %>
+			<%= field_set_tag "Basic" do %>
 				<div>
 					<%= f.label :application_date %>
 					<%= f.date_select :application_date, :order => [:month, :day, :year] %>
@@ -51,14 +50,14 @@
 			<% end %>
 		</div>
 		<div class="p2">
-			<% field_set_tag "Student Info" do %>
+			<%= field_set_tag "Student Info" do %>
 				<div>
 					<%= f.label :student_id %>
 					<%= f.collection_select :student_id, Student.alphabetical, :id, :name %>
 				</div>
 				<div>
 						<%= f.label :school_id %>
-						<%= f.collection_select :school_id, School.alphabetical, :id, :name, {:selected => student_term.school_id, :include_blank => true} %>
+						<%= f.collection_select :school_id, School.all, :id, :name, {:selected => student_term.school_id, :include_blank => true} %>
 				</div>
 				<div>
 					<%= f.label :grade_id %>
@@ -76,7 +75,7 @@
 				<% end %>
 			<% end %>
 			
-			<% field_set_tag "Payment" do %>
+			<%= field_set_tag "Payment" do %>
 				<% student_term.student_term_payments.build if student_term.student_term_payments.empty? %>
 				<span id="payments">
 					<% f.fields_for :student_term_payments do |pf| %>

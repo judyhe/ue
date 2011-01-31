@@ -20,7 +20,7 @@ class School < ActiveRecord::Base
   accepts_nested_attributes_for :contact_numbers, :allow_destroy => true, :reject_if => proc{|a| a['number'].blank? or a['contact_number_type_id'].blank?}
 
   has_one :address, :as => :addressable, :include => [:state, :county, :neighborhood]
-  delegate :address1, :address2, :city, :state, :county, :neighborhood, :zip, :to => :address
+  delegate :address1, :address2, :city, :state, :county, :neighborhood, :zip, :to => :address, :allow_nil => true
   accepts_nested_attributes_for :address
   
   validates_presence_of :name
@@ -28,7 +28,7 @@ class School < ActiveRecord::Base
   delegate :name, :to => :neighborhood, :prefix => true, :allow_nil => true
   delegate :name, :to => :county, :prefix => true, :allow_nil => true
   
-  scope :alphabetical, :order => "name"
+  default_scope order(:name)
   
   
 end

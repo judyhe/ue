@@ -2,7 +2,7 @@ class ProgramsController < ApplicationController
   # GET /programs
   # GET /programs.xml
   def index
-    @programs = Program.alphabetical
+    @programs = Program.alphabetical.default_associations
 
     respond_to do |format|
       format.html # index.html.erb

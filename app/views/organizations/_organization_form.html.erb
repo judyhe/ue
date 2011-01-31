@@ -1,27 +1,15 @@
-<% form_for(organization, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for(organization, :html => {:class => "default"}) do |f| %>
 	<div class="clearfix">
 		<div class='p1'>
-			<% field_set_tag "Basics" do %>
-			<div>
-				<%= f.label :name %>
-				<%= f.text_field :name %>
-			</div>
-	
-			<div>
-				<%= f.label :url %>
-				<%= f.text_field :url %>
-			</div>
-	
-			<div>
-				<%= f.label :email %>
-				<%= f.text_field :email %>
-			</div>
-	
-			<div>
-				<%= f.label :description %>
-				<%= f.text_area :description, :rows => 4, :cols => 60 %>
-			</div>
+			<%= field_set_tag "Basics" do %>
+
+			<%= f.input :name %>
+	    
+	    <%= f.input :url %>
+	  
+	    <%= f.input :email %>
+	    <%= f.input :description, :as => :text %>
+
 		<%= render :partial => "shared/contact_numbers", :locals => {:thing => organization, :f => f}%>
 		<% end %>
 		</div>

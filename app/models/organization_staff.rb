@@ -14,6 +14,8 @@ class OrganizationStaff < ActiveRecord::Base
   
   has_and_belongs_to_many :programs
   
+  scope :alphabetical, includes(:person) & Person.alphabetical
+  scope :default_associations, includes(:organization, :organization_staff_type)
 end
 
 # == Schema Information

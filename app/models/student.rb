@@ -38,6 +38,7 @@ class Student < ActiveRecord::Base
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
   delegate :name, :to => :grade, :prefix => true, :allow_nil => true
   delegate :name, :to => :ethnicity, :prefix => true, :allow_nil => true
+  delegate :level, :to => :language_proficiency, :prefix => true, :allow_nil => true
   
   scope :with_default_associations, includes(:grade, :school, :ethnicity)
   scope :alphabetical, includes(:person) & Person.alphabetical

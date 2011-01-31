@@ -2,7 +2,7 @@ class SchoolStaffsController < ApplicationController
   # GET /school_staffs
   # GET /school_staffs.xml
   def index
-    @school_staffs = SchoolStaff.all
+    @school_staffs = SchoolStaff.alphabetical.default_associations
 
     respond_to do |format|
       format.html # index.html.erb

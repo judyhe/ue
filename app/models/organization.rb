@@ -19,7 +19,7 @@ class Organization < ActiveRecord::Base
   
   validates_presence_of :name
   
-  scope :alphabetical, :order => "name"
+  default_scope order(:name)
   
 end
 # == Schema Information

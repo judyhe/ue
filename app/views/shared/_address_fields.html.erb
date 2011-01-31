@@ -1,7 +1,7 @@
 <% thing.build_address unless thing.address %>
 
-<% f.fields_for :address do |af| %>
-	<% field_set_tag "Address" do %>
+<%= f.fields_for :address do |af| %>
+	<%= field_set_tag "Address" do %>
 	<div class="input_set clearfix">
 		<span class="full">
 			<%= af.text_field :address1 %>

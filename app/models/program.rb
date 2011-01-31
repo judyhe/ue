@@ -16,8 +16,8 @@ class Program < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :organization_id
   
-  scope :alphabetical, :order => "name"
-  scope :with_default_associations, :include => [:organization]
+  scope :alphabetical, order(:name)
+  scope :default_associations, includes(:organization, :activities)
   
   
   def ages_list

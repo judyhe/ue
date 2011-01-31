@@ -1,10 +1,9 @@
 <h1>Edit comment</h1>
-<% form_for(@comment, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for(@comment, :html => {:class => "default"}) do |f| %>
 	
-	<%= f.text_area :comment, :rows => 10 %>
+	<%= f.input :comment, :as => :text, :input_html => {:rows => 10} %>
 
   <p>
-    <%= f.submit %>
+    <%= f.button :submit %>
   </p>
 <% end %>

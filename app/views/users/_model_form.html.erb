@@ -1,17 +1,10 @@
 <% user.password = user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>
-<% form_for(user, :html => {:class => "default"}) do |f| -%>
+<%= simple_form_for(user, :html => {:class => "default"}) do |f| -%>
 
-<p>
-	<%= f.label :login %>
-	<%= f.text_field :login %>
-</p>
-
-<p>
-<%= f.label :email %>
-<%= f.text_field :email %>
-</p>
+<%= f.input :login %>
+<%= f.input :email %>
 
 <div class="input_set clearfix">
 	<%= f.label :password %>
@@ -37,14 +30,8 @@
 	</span>
 </div>
 
-<p>
-	<%= f.label :phone %>
-	<%= f.text_field :phone %>
-</p>
-<p>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
-</p>
+<%= f.input :phone %>
+<%= f.input :title %>
 
 <p><%= submit_tag %></p>
 <% end -%>

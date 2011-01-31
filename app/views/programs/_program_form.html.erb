@@ -1,24 +1,12 @@
-<% form_for(program, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
-
+<%= simple_form_for(program, :html => {:class => "default"}) do |f| %>
 	<div class="clearfix">
 	<div class="p1">
-		<% field_set_tag "Basics" do %>
-			<div>
-				<%= f.label :name %>
-				<%= f.text_field :name %>
-			</div>
-
-	
-			<div>
-				<%= f.label :description %>
-				<%= f.text_area :description %>
-			</div>
-	
-			<div>
-				<%= f.label :organization_id %>
-				<%= f.collection_select :organization_id, Organization.alphabetical, :id, :name %>
-			</div>
+		<%= field_set_tag "Basics" do %>
+			<%= f.input :name %>
+			
+			<%= f.input :description, :as => :text %>
+			
+			<%= f.association :organization %>
 			
 			<div class="input_set clearfix">
 				<%= f.label :gender_m, "Gender" %>
@@ -33,25 +21,17 @@
 				<span>
 					<%= f.radio_button(:gender, "MF") %>
 					<%= f.label :gender_mf, "Both", :class => "radio" %>
-				</span>
-				
-				
+				</span>				
 			</div>
 			
-			<div class="input_set clearfix">
-				<%= f.label :scholarship, "Scholarship Available" %>
-				<%= f.check_box :scholarship %>
-			</div>
-			
-			<div>
-				<%= f.label :ages %>
-				<%= f.collection_select(:age_ids, Age.all, :id, :age, { :selected => program.age_ids }, { :multiple => true, :size => 6, :name => 'program[age_ids][]' }) -%>
-			</div>
+			<%= f.input :scholarship, :as => :boolean %>
+      
+      <%= f.association :ages, :label_method => :age %>
 		<% end %>
 	</div><!-- end .p1-->
 	
 	<div class="p2">
-		<% field_set_tag "Activities" do %>
+		<%= field_set_tag "Activities" do %>
 			<% program_activity_ids = program.activities.collect{|a| a.id} %>
 			<% Activity.roots.each do |activity| %>
 			<ul class="float_left clearfix">

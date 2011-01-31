@@ -1,7 +1,7 @@
 <% thing.contact_numbers.build if thing.contact_numbers.empty? %>
 <%= f.label :number, "Contact Numbers" %>
 <span id="contact_numbers">
-	<% f.fields_for :contact_numbers do |pf| %>
+	<%= f.fields_for :contact_numbers do |pf| %>
 		<div class="contact_number input_set clearfix">
 			<span>
 				<%= pf.text_field :number, :size => 25 %>

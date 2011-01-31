@@ -1,28 +1,19 @@
-<% form_for(school_staff, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
-
+<%= simple_form_for(school_staff, :html => {:class => "default"}) do |f| %>
 	<div class="clearfix">
 	
 	<div class="p1">
-		<% f.fields_for :person do |person_fields| %>
+		<%= f.fields_for :person do |person_fields| %>
 			<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => school_staff.person} %>
 		<% end %>
 	</div> 
 
 	
 	<div class="p2">
-		<% field_set_tag "Employment" do %>
+		<%= field_set_tag "Employment" do %>
 		
-		<div>
-			<%= f.label :school_staff_type_id, "Position" %>
-			<%= f.collection_select :school_staff_type_id, SchoolStaffType.all, :id, :position, {:include_blank => true} %>
-		</div>
-
-		<div>
-			<%= f.label :school_id %>
-			<%= f.collection_select :school_id, School.alphabetical, :id, :name, {:include_blank => true} %>
-		</div>
+		  <%= f.association :school_staff_type, :label => "Position", :label_method => :position %>
 		
+		  <%= f.association :school %>
 		<% end %>
 	</div> <!-- end .p2 -->
 	</div> <!-- end .clearfix -->

@@ -32,8 +32,6 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @student.build_person
-    #@student.person.relationships.build
-    #@possible_family = Person.all_alphabetical
 
     respond_to do |format|
       format.html # new.html.erb

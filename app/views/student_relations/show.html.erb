@@ -15,11 +15,11 @@
 		<%= render :partial => "shared/person_content_secondary", :locals => {:local_model => @student_relation} %>		
 		<tr>
 			<th>Origin country:</th>
-			<td><%= associated_attribute(@student_relation.country, :name) %></td>
+			<td><%= @student_relation.country_name %></td>
 		</tr>
 		<tr>
 			<th>English ability:</th>
-			<td><%= associated_attribute(@student_relation.language_proficiency, :level) %></td>
+			<td><%= @student_relation.language_proficiency_level %></td>
 		</tr>
 		<tr>
 			<th>Spoken at home:</th>
@@ -27,7 +27,7 @@
 		</tr>		
 		<tr>
 			<th>Citizenship:</th>
-			<td><%= associated_attribute(@student_relation.citizenship, :level) %></td>
+			<td><%= @student_relation.citizenship_level %></td>
 		</tr>
 		<tr>
 			<th>Tax docs?</th>

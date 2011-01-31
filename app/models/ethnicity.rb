@@ -8,6 +8,8 @@ class Ethnicity < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates_numericality_of :ord
   
+  default_scope order(:ord)
+  
 end
 
 # == Schema Information

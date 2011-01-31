@@ -127,8 +127,7 @@
 	<p><a href="#dialog-form" class="click_for_modal" target="term_sessions">Add A Session</a></p>
 	
 	<div id="dialog-form" title="Add A Session">
-	<% form_for(TermSession.new, :html => {:class => "default"}) do |f| %>
-	  <%= f.error_messages %>
+	<%= simple_form_for(TermSession.new, :html => {:class => "default"}) do |f| %>
 		
 			<div>
 				<%= f.label :day %>

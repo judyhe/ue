@@ -1,4 +1,4 @@
-<% field_set_tag "Basics" do %>
+<%= field_set_tag "Basics" do %>
 	<div class="input_set clearfix">
 		<%= f.label :first_name, "Name" %>
 		<span class="half">
@@ -28,10 +28,7 @@
 		</span>
 	</div>
 
-	<div>
-		<%= f.label :email %>
-		<%= f.text_field :email %>
-	</div>
+  <%= f.input :email %>
 
 	<%= render :partial => "shared/contact_numbers", :locals => {:thing => person, :f => f}%>
 <% end %>

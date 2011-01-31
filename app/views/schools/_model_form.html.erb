@@ -1,24 +1,17 @@
-<% form_for(school, :html => {:multipart => true, :class => "default"}) do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for(school, :html => {:multipart => true, :class => "default"}) do |f| %>
 	
 	<div class="clearfix">
 		<div class="p1">
-		<% field_set_tag "Basics" do %>
-			<div>
-				<%= f.label :name %>
-				<%= f.text_field :name %>
-			</div>
-	
+		<%= field_set_tag "Basics" do %>
+			<%= f.input :name %>
+			
 			<div>		
 				<%= f.label :avatar, "Photo" %>
 				<%= image_tag(school.avatar.url(:thumb), :class => "float_left") %>
 				<%= f.file_field :avatar %>
 			</div>
 	
-			<div>
-				<%= f.label :email %>
-				<%= f.text_field :email %>
-			</div>
+			<%= f.input :email %>
 			
 			<div class="input_set clearfix">
 				<label>Stats</label>
@@ -53,18 +46,7 @@
 				<% end %>
 			</div>
 			
-			<div class="input_set clearfix">
-				<%= f.label :grade, "Grades" %>
-				<ul class="float_left clearfix">
-				<% Grade.all.each_with_index do |grade, index| %>
-					<li><%= check_box_tag "school[grade_ids][]", grade.id, school.grades.include?(grade) %> <%= grade.name %></li>
-					<% if index != 0 and index%3 == 0  %>
-						</ul>
-						<ul class="float_left clearfix">
-					<% end %>
-				<% end %>
-				</ul>
-			</div>
+			<%= f.association :grades, :as => :check_boxes %>
 			
 			<%= render :partial => "shared/contact_numbers", :locals => {:thing => school, :f => f}%>
 			

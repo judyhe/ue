@@ -2,7 +2,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = Organization.alphabetical
+    @organizations = Organization.all
     
     respond_to do |format|
       format.html # index.html.erb

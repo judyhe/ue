@@ -1,11 +1,7 @@
-<% form_for(term, :html => {:class => "default"}) do |f| %>
-  <%= f.error_messages %>
+<%= simple_form_for(term, :html => {:class => "default"}) do |f| %>
 
-	<div>
-		<%= f.label :program_id %>
-		<%= f.collection_select :program_id, Program.alphabetical, :id, :name %>
-	</div>
-	
+  <%= f.association :program %>
+
 	<div>
 		<%= f.label :start %>
 		<%= f.date_select :start, :order => [:month, :day, :year] %>

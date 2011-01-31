@@ -12,6 +12,8 @@ class SchoolStaff < ActiveRecord::Base
   validates_presence_of :school_id 
   validates_presence_of :school_staff_type_id
   
+  scope :alphabetical, includes(:person) & Person.alphabetical
+  scope :default_associations, includes(:school, :school_staff_type)
 end
 
 # == Schema Information

@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.xml
   def index
-    @schools = School.alphabetical
+    @schools = School.includes(:address)
 
     respond_to do |format|
       format.html # index.html.erb

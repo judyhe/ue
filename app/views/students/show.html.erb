@@ -67,7 +67,7 @@
 		</tr>
 		<tr>
 			<th>Grade:</th>
-			<td><%= associated_attribute(@student.grade, :name) %>&nbsp;</td>
+			<td><%= @student.grade_name %>&nbsp;</td>
 		</tr>
 		<tr>
 			<th>Birthdate:</th>
@@ -79,11 +79,11 @@
 		</tr>
 		<tr>
 			<th>Ethnicity:</th>
-			<td><%= associated_attribute(@student.ethnicity, :name) %>&nbsp;</td>
+			<td><%= @student.ethnicity_name %>&nbsp;</td>
 		</tr>		
 		<tr>
 			<th>English ability:</th>
-			<td><%= associated_attribute(@student.language_proficiency, :level) %></td>
+			<td><%= @student.language_proficiency_level %></td>
 		</tr>
 		<tr>
 			<th>Interests: </th>

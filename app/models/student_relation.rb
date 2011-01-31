@@ -18,8 +18,11 @@ class StudentRelation < ActiveRecord::Base
   accepts_nested_attributes_for :student_relationships, :allow_destroy => true, :reject_if => proc{|a| a['student_id'].blank? or a['student_relationship_type_id'].blank? }
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
+  delegate :name, :to => :country, :allow_nil => true, :prefix => true
+  delegate :level, :to => :language_proficiency, :allow_nil => true, :prefix => true
+  delegate :level, :to => :citizenship, :allow_nil => true, :prefix => true
   
-  scope :alphabetical, :include => [:person], :order => "people.last_name, people.first_name"
+  scope :alphabetical, includes(:person) & Person.alphabetical
   
 end
 

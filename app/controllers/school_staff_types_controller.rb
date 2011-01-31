@@ -2,7 +2,7 @@ class SchoolStaffTypesController < ApplicationController
   # GET /school_staff_types
   # GET /school_staff_types.xml
   def index
-    @school_staff_types = SchoolStaffType.all
+    @school_staff_types = SchoolStaffType.alphabetical
 
     respond_to do |format|
       format.html # index.html.erb
