@@ -29,6 +29,7 @@
 			<td><%= student.gender %></td>
 			<td><%= student.ethnicity_name %>	
 			<td><%= link_to student.school.name, school_path(student.school_id) if student.school %></td>
+	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
 	  </tr>
 	<% end %>
 	</tbody>

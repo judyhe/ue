@@ -20,7 +20,7 @@ class Student < ActiveRecord::Base
   belongs_to :ethnicity
   belongs_to :grade
   
-  belongs_to :person, :include => [:address]
+  belongs_to :person
   belongs_to :language_proficiency
   
   has_many :student_relationships, :include => [:student_relationship_type, :student_relation]
@@ -39,8 +39,8 @@ class Student < ActiveRecord::Base
   delegate :name, :to => :grade, :prefix => true, :allow_nil => true
   delegate :name, :to => :ethnicity, :prefix => true, :allow_nil => true
   
-  scope :alphabetical, :joins => :person, :order => "people.last_name, people.first_name"
-  scope :with_default_associations, :include => [:grade, :ethnicity, :school]
+  scope :with_default_associations, includes(:grade, :school, :ethnicity)
+  scope :alphabetical, includes(:person) & Person.alphabetical
   
   def self.to_csv(students)
     tsv_str = FasterCSV.generate(:col_sep => "\t") do |tsv|

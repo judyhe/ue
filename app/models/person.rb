@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
   validates_presence_of :last_name  
   validates_inclusion_of :gender, :in => %w(M F)  
   
-  scope :alphabetical, :order => "last_name, first_name"
+  scope :alphabetical, :order => "people.last_name, people.first_name"
   
   def name
     self.first_name + " " + self.last_name
