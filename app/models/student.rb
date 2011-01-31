@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: students
+#
+#  id                      :integer(4)      not null, primary key
+#  person_id               :integer(4)
+#  birth_date              :date
+#  grade_id                :integer(4)
+#  school_id               :integer(4)
+#  ethnicity_id            :integer(4)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  language_proficiency_id :integer(4)
+#
+
+
 class Student < ActiveRecord::Base
   
   belongs_to :school
@@ -20,9 +36,10 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :student_relationships, :allow_destroy => true, :reject_if => proc{|a| a['student_relation_id'].blank? or a['student_relationship_type_id'].blank? }
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
+  delegate :name, :to => :grade, :prefix => true, :allow_nil => true
+  delegate :name, :to => :ethnicity, :prefix => true, :allow_nil => true
   
-  scope :alphabetical, :include => [:person], :order => "people.last_name, people.first_name"
-  
+  scope :alphabetical, :joins => :person, :order => "people.last_name, people.first_name"
   scope :with_default_associations, :include => [:grade, :ethnicity, :school]
 
   comma do 
@@ -45,23 +62,7 @@ class Student < ActiveRecord::Base
   
   def siblings
     return [] if self.student_relationships.empty?
-    sibling_relationships = StudentRelationship.all(:conditions => "student_relation_id = #{self.student_relationships.first.student_relation_id} and student_id != #{self.id}", :include => :student)
+    sibling_relationships = StudentRelationship.where("student_relation_id = #{self.student_relationships.first.student_relation_id} and student_id != #{self.id}").join(:student)
   end
   
 end
-
-# == Schema Information
-#
-# Table name: students
-#
-#  id                      :integer(4)      not null, primary key
-#  person_id               :integer(4)
-#  birth_date              :date
-#  grade_id                :integer(4)
-#  school_id               :integer(4)
-#  ethnicity_id            :integer(4)
-#  created_at              :datetime
-#  updated_at              :datetime
-#  language_proficiency_id :integer(4)
-#
-

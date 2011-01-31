@@ -1,4 +1,4 @@
-<h1><%= @schools.size %> <%= correctly_pluralized_noun(@schools.size, "school") %> </h1>
+<h1><%= @schools.size %> schools </h1>
 <p><%= link_to "New School", new_school_path %></p>
 
 <table cellspacing="0" cellpadding="0" border="0" class="index">
@@ -19,10 +19,10 @@
 			<td><%= link_to school.name, school %></td>
 			<td><%= school.address1 %> <%= school.address2 %></td>
 			<td><%= school.city %></td>
-			<td><%= associated_attribute(school.state, :abbr) %></td>
+			<td><%= school.state_abbr %></td>
 			<td><%= school.zip %></td>
-			<td><%= associated_attribute(school.neighborhood, :name) %></td>
-			<td><%= associated_attribute(school.county, :name) %></td>
+			<td><%= school.neighborhood_name %></td>
+			<td><%= school.county_name %></td>
 			<!--
 	    <td><%= link_to 'Edit', edit_school_path(school) %></td>
 	    <td><%= link_to 'Destroy', school, :confirm => 'Are you sure?', :method => :delete %></td>-->

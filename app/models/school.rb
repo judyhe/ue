@@ -24,6 +24,9 @@ class School < ActiveRecord::Base
   accepts_nested_attributes_for :address
   
   validates_presence_of :name
+  delegate :abbr, :to => :state, :prefix => true, :allow_nil => true
+  delegate :name, :to => :neighborhood, :prefix => true, :allow_nil => true
+  delegate :name, :to => :county, :prefix => true, :allow_nil => true
   
   scope :alphabetical, :order => "name"
   

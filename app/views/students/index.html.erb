@@ -1,6 +1,5 @@
 <h1>
-	<%= @students.size %> 
-	<%= correctly_pluralized_noun(@students.size, "student") %> 
+	<%= @students.size %> students
 </h1>
 <p><%= link_to "export csv", :controller => "students", :action => "index", :format => :csv %></p>
 <p><%= link_to "New Student", new_student_path %></p>
@@ -26,11 +25,10 @@
 			<td><%= link_to student.name, student %></td>
 			<td><%= student.person.email %></td>
 			<td><%= student.age %></td>
-			<td><%= associated_attribute(student.grade, :name) %>
+			<td><%= student.grade_name %>
 			<td><%= student.gender %></td>
-			<td><%= associated_attribute(student.ethnicity, :name) %>	
+			<td><%= student.ethnicity_name %>	
 			<td><%= link_to student.school.name, school_path(student.school_id) if student.school %></td>
-	    <!--<td><%= link_to 'Edit', edit_student_path(student) %></td>-->
 	  </tr>
 	<% end %>
 	</tbody>
