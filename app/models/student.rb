@@ -21,9 +21,9 @@ class Student < ActiveRecord::Base
   
   delegate :name, :email, :gender, :contact_numbers, :address, :to => :person
   
-  named_scope :alphabetical, :include => [:person], :order => "people.last_name, people.first_name"
+  scope :alphabetical, :include => [:person], :order => "people.last_name, people.first_name"
   
-  named_scope :with_default_associations, :include => [:grade, :ethnicity, :school]
+  scope :with_default_associations, :include => [:grade, :ethnicity, :school]
 
   comma do 
     id

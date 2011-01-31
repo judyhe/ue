@@ -12,8 +12,8 @@ class SchoolStaff < ActiveRecord::Base
   validates_presence_of :school_id 
   validates_presence_of :school_staff_type_id
   
-  #named_scope :teachers, :conditions => "school_staff_type_id = #{SchoolStaffType::TEACHER.id}"
-  #named_scope :principals, :conditions => "school_staff_type_id = #{SchoolStaffType::PRINCIPAL.id}"
-  #named_scope :vices, :conditions => "school_staff_type_id = #{SchoolStaffType::VICE.id}"
+  #scope :teachers, :conditions => "school_staff_type_id = #{SchoolStaffType::TEACHER.id}"
+  #scope :principals, :conditions => "school_staff_type_id = #{SchoolStaffType::PRINCIPAL.id}"
+  #scope :vices, :conditions => "school_staff_type_id = #{SchoolStaffType::VICE.id}"
   
 end

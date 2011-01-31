@@ -1,87 +1,99 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :student_terms
-  map.resources :language_proficiencies
-  map.resources :citizenships
-  map.resources :countries
-  map.resources :languages
-  map.resources :term_sessions
-  map.resources :terms do |terms|
-    terms.resources :student_terms, :controller => "terms/student_terms"
-  end
-  map.resources :ages
-  map.resources :programs
-  map.resources :organization_staff_types
-  map.resources :organization_staffs
-  map.resources :organizations
-  map.resources :school_staff_types
-  map.resources :school_staffs
-  map.resources :student_relations
-  map.resources :addresses
-  map.resources :comments
-  map.resources :contact_number_types
-  map.resources :contact_numbers
-  map.resources :student_relationship_types
-  map.resources :student_relationships
-  map.resources :people
-  map.resources :grades
-  map.resources :ethnicities
-  map.resources :neighborhoods
-  map.resources :states
-  map.resources :counties
-  map.resources :activities
-  map.resources :schools
-  map.resources :students do |students|
-    students.resources :student_terms, :controller => "students/student_terms"
+Ue::Application.routes.draw do
+  devise_for :users
+
+  resources :users, :only => :index
+  resources :student_terms
+  resources :language_proficiencies
+  resources :citizenships
+  resources :countries
+  resources :languages
+  resources :term_sessions
+  resources :terms do
+    resources :student_terms
   end
 
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.register '/register', :controller => 'users', :action => 'create'
-  map.signup '/signup', :controller => 'users', :action => 'new'
+  resources :ages
+  resources :programs
+  resources :organization_staff_types
+  resources :organization_staffs
+  resources :organizations
+  resources :school_staff_types
+  resources :school_staffs
+  resources :student_relations
+  resources :addresses
+  resources :comments
+  resources :contact_number_types
+  resources :contact_numbers
+  resources :student_relationship_types
+  resources :student_relationships
+  resources :people
+  resources :grades
+  resources :ethnicities
+  resources :neighborhoods
+  resources :states
+  resources :counties
+  resources :activities
+  resources :schools
+  resources :students do
+      resources :student_terms
+  end
 
-  map.resources :users
-  map.resource :session
-
-  # The priority is based upon order of creation: first created -> highest priority.
+  root :to => "home#index"
+  
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
 
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
+  #   resources :products
 
   # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
 
   # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
   # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', :on => :collection
+  #     end
   #   end
 
   # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
   #   end
 
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-    map.root :controller => "home"
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  # root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id(.:format)))'
 end

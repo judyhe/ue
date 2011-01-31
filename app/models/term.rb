@@ -22,9 +22,9 @@ class Term < ActiveRecord::Base
   validates_presence_of :program_id
   validates_numericality_of :cost
   
-  named_scope :with_default_associations, :include => [:program, :address, :student_terms, :students, :term_sessions]
+  scope :with_default_associations, :include => [:program, :address, :student_terms, :students, :term_sessions]
   
-  named_scope :ordered, :order => :start
+  scope :ordered, :order => :start
   
   def total_hours
     term_sessions.map{|t| t.hours}.sum

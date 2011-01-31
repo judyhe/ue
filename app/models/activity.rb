@@ -1,9 +1,9 @@
 class Activity < ActiveRecord::Base
 
-  acts_as_tree :order => "name"
+  has_ancestry
   has_and_belongs_to_many :students
   has_and_belongs_to_many :programs
 
-  named_scope :top_level, :conditions => "parent_id IS NULL"
+  scope :top_level, :conditions => "parent_id IS NULL"
 
 end

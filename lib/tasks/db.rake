@@ -9,7 +9,7 @@ namespace :db do
   private
  
   def load_fixtures(dir, always = false)
-    Dir.glob(File.join(RAILS_ROOT, 'db', dir, '*.yml')).each do |fixture_file|
+    Dir.glob(File.join(Rails.root, 'db', dir, '*.yml')).each do |fixture_file|
       table_name = File.basename(fixture_file, '.yml')
  
       if table_empty?(table_name) || always

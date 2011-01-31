@@ -25,7 +25,7 @@ class School < ActiveRecord::Base
   
   validates_presence_of :name
   
-  named_scope :alphabetical, :order => "name"
+  scope :alphabetical, :order => "name"
   
   
 end
