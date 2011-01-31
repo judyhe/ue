@@ -1,4 +1,7 @@
+require 'iconv'
+
 class StudentsController < ApplicationController
+  BOM = "\377\376" #Byte Order Mark
   
   # GET /students
   # GET /students.xml
@@ -9,7 +12,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @students }
-      format.csv { render :csv => @students}
+      format.csv { export_csv(Student.alphabetical)}
     end
   end
 
@@ -93,5 +96,13 @@ class StudentsController < ApplicationController
       format.html { redirect_to(students_path) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  def export_csv(students)
+    filename = I18n.l(Time.now, :format => :short) + "- Students.csv"
+    content = Student.to_csv(students)
+    content = BOM + Iconv.conv("utf-16le", "utf-8", content)
+    send_data content, :filename => filename
   end
 end

@@ -35,8 +35,6 @@ GEM
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
     cancan (1.5.1)
-    comma (0.4.1)
-      activesupport (>= 2.2.2)
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
@@ -119,7 +117,6 @@ DEPENDENCIES
   ancestry
   annotate
   cancan
-  comma
   devise
   exception_notification_rails3
   factory_girl_rails

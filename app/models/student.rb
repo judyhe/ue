@@ -41,12 +41,14 @@ class Student < ActiveRecord::Base
   
   scope :alphabetical, :joins => :person, :order => "people.last_name, people.first_name"
   scope :with_default_associations, :include => [:grade, :ethnicity, :school]
-
-  comma do 
-    id
-    name
-    email
-    birth_date
+  
+  def self.to_csv(students)
+    tsv_str = FasterCSV.generate(:col_sep => "\t") do |tsv|
+      tsv << ['Id', 'Email', 'Name', 'Birthdate']
+      students.each do |s|
+        tsv << [s.id, s.email, s.name, s.birth_date]
+      end
+    end
   end
   
   def age
