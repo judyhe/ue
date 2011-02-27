@@ -33,7 +33,7 @@ class OrganizationStaffTypesController < ApplicationController
 
     respond_to do |format|
       if @organization_staff_type.save
-        flash[:notice] = 'OrganizationStaffType was successfully created.'
+        flash[:notice] = 'Organization Staff Type was successfully created.'
         format.html { redirect_to(organization_staff_types_url) }
         format.xml  { render :xml => @organization_staff_type, :status => :created, :location => @organization_staff_type }
       else
@@ -50,7 +50,7 @@ class OrganizationStaffTypesController < ApplicationController
 
     respond_to do |format|
       if @organization_staff_type.update_attributes(params[:organization_staff_type])
-        flash[:notice] = 'OrganizationStaffType was successfully updated.'
+        flash[:notice] = 'Organization Staff Type was successfully updated.'
         format.html { redirect_to(organization_staff_types_url) }
         format.xml  { head :ok }
       else

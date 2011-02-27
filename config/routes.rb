@@ -1,7 +1,9 @@
 Ue::Application.routes.draw do
-  devise_for :users
+  get 'logout' => 'sessions#destroy', :as => :logout
+  get 'login' => 'sessions#new', :as => :login
+  post 'login' => 'sessions#create'
 
-  resources :users, :only => :index
+  resources :users
   resources :student_terms
   resources :language_proficiencies
   resources :citizenships

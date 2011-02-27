@@ -1,6 +1,6 @@
-<%= simple_form_for(activity, :html => {:class => "default"}) do |f| %>
+<%= simple_form_for(activity) do |f| %>
 
-  <%= f.input :name, :input_html => {:class => "auto"} %>	
+  <%= f.input :name %>	
   
   <%= f.input :ancestry, :label => 'Parent', :collection => Activity.roots %>
   

@@ -33,7 +33,7 @@ class ContactNumberTypesController < ApplicationController
 
     respond_to do |format|
       if @contact_number_type.save
-        flash[:notice] = 'ContactNumberType was successfully created.'
+        flash[:notice] = 'Contact Number Type was successfully created.'
         format.html { redirect_to(contact_number_types_path) }
         format.xml  { render :xml => @contact_number_type, :status => :created, :location => @contact_number_type }
       else
@@ -50,7 +50,7 @@ class ContactNumberTypesController < ApplicationController
 
     respond_to do |format|
       if @contact_number_type.update_attributes(params[:contact_number_type])
-        flash[:notice] = 'ContactNumberType was successfully updated.'
+        flash[:notice] = 'Contact Number Type was successfully updated.'
         format.html { redirect_to(contact_number_types_path) }
         format.xml  { head :ok }
       else

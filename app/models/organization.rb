@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
   
-  acts_as_polymorphic_paperclip
+  #acts_as_polymorphic_paperclip
   
   has_many :organization_staffs
   has_many :programs

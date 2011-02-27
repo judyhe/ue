@@ -1,7 +1,7 @@
-<%= simple_form_for(state, :html => {:class => "default"}) do |f| %>
+<%= simple_form_for(state) do |f| %>
 
-	<%= f.input :abbr, :label => "Abbreviation", :input_html => {:size => 2, :class => 'auto'} %>
-	<%= f.input :name, :input_html => {:class => 'auto'} %>
+	<%= f.input :abbr, :label => "Abbreviation", :input_html => {:size => 2} %>
+	<%= f.input :name %>
 	
   <p>
     <%= f.button :submit %>

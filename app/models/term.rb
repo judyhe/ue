@@ -1,6 +1,6 @@
 class Term < ActiveRecord::Base
 
-  acts_as_polymorphic_paperclip
+  #acts_as_polymorphic_paperclip
     
   belongs_to :program, :include => :organization
   delegate :name, :to => :program

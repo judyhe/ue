@@ -1,6 +1,6 @@
-<h1>Editing school staff type</h1>
+<% title 'Editing school staff type' %>
 
-<%= simple_form_for(@school_staff_type, :html => {:class => 'default'}) do |f| %>
+<%= simple_form_for(@school_staff_type) do |f| %>
 	<%= f.input :position, :input_html => {:class => 'auto'} %>
   <p>
     <%= f.button :submit %>

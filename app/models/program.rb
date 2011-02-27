@@ -1,6 +1,6 @@
 class Program < ActiveRecord::Base
 
-  acts_as_polymorphic_paperclip
+  #acts_as_polymorphic_paperclip
 
   has_and_belongs_to_many :organization_staffs
   belongs_to :organization

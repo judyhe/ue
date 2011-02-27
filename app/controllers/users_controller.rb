@@ -1,45 +1,32 @@
 class UsersController < ApplicationController
+  
+  def index
+    @users = User.order("email").all
+  end
+  
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to users_url, :notice => "User created"
+    else
+      render :action => 'new'
+    end
+  end
 
   def edit
     @user = User.find(params[:id])
   end
 
-  # render new.rhtml
-  def new
-    @user = User.new
-  end
-  
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = 'User was successfully updated.'
-      redirect_to(users_path)
+      redirect_to users_url, :notice => "User was updated."
     else
-      render :action => "edit"
+      render :action => 'edit'
     end
   end
- 
-  def create
-    #logout_keeping_session!
-    @user = User.new(params[:user])
-    success = @user && @user.save
-    if success && @user.errors.empty?
-            # Protects against session fixation attacks, causes request forgery
-      # protection if visitor resubmits an earlier form using back
-      # button. Uncomment if you understand the tradeoffs.
-      # reset session
-      # self.current_user = @user # !! now logged in
-      # redirect_back_or_default('/')
-      redirect_to users_path
-      flash[:notice] = "User has been created"
-    else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
-      render :action => 'new'
-    end
-  end
-  
-  def index
-    @users = User.all
-  end
-  
 end

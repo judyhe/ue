@@ -1,7 +1,7 @@
-<h1>Editing Contact Number Type</h1>
+<% title 'Editing Contact Number Type' %>
 
-<%= simple_form_for(@contact_number_type, :html => {:class => 'default'}) do |f| %>
-	<%= f.input :name, :input_html => {:class => 'auto'} %>
+<%= simple_form_for(@contact_number_type) do |f| %>
+	<%= f.input :name %>
   <p>
     <%= f.button :submit %>
   </p>

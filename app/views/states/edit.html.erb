@@ -1,4 +1,4 @@
-<h1><%= @state.name ? "Edit" : "New" %> state</h1>
+<% title 'Edit State' %>
 
 <%= render :partial => "model_form", :locals => {:state => @state}%>
 

@@ -1,6 +1,6 @@
-<%= simple_form_for(county, :html => {:class => "default"}) do |f| %>
+<%= simple_form_for(county) do |f| %>
 	
-  <%= f.input :name, :input_html => {:class => 'auto'} %>
+  <%= f.input :name %>
   <%= f.association :state %>
   <p>
     <%= f.button :submit %>

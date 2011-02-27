@@ -1,6 +1,6 @@
-<%= simple_form_for(student_relationship_type, :html => {:class => "default"}) do |f| %>
+<%= simple_form_for(student_relationship_type) do |f| %>
 
-	<%= f.input :name, :input_html => {:class => 'auto'} %>
+	<%= f.input :name %>
   <p><%= f.button :submit %></p>
 
 <% end %>

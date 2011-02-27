@@ -1,7 +1,7 @@
-<%= simple_form_for(ethnicity, :html => {:class => "default"}) do |f| %>
+<%= simple_form_for(ethnicity) do |f| %>
 
   <%= f.input :ord, :label => 'Order', :input_html => {:size => 2} %>
-	<%= f.input :name, :input_html => {:class => 'auto'} %>
+	<%= f.input :name %>
 	
 	<p>
     <%= f.button :submit %>

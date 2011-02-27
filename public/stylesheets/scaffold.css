@@ -225,7 +225,14 @@ table.index td, table.index th{padding:5px;}
 table.index td{border-bottom:1px solid #eee;}
 table.index th{text-align:left;border-bottom:1px solid #dedede;}
 
-form.default label{display:block;line-height:1.6em;clear:both;font-weight:bold;}
+
+form.simple_form label {display:block;line-height:1.6em;clear:both;font-weight:bold;}
+form.simple_form div.input, form.simple_form div.input_set{margin:6px 0; padding:3px 0; clear:both;}
+form.simple_form div.input_set span {float:left; margin-right:10px;}
+form.simple_form div.input_set span label{font-weight:normal;font-size:11px;margin-top:2px;}
+
+
+form.default label {display:block;line-height:1.6em;clear:both;font-weight:bold;}
 form.default fieldset ul{float:left;margin:1em 1em 1em 0;}
 form.default div{margin:6px 0;padding:3px 0;}
 form.default div input[type="text"], form.default textarea{border:1px solid #999; width:98%;padding:3px;}
@@ -258,3 +265,11 @@ form.default div.p2{float:right;width:48%;}
   border: solid 1px #cc6666;
 }
 
+.field_with_errors label {
+  color:red;
+}
+
+.field_with_errors span.error {
+  margin-left:5px;
+  color:red;
+}

@@ -1,8 +1,10 @@
 class Person < ActiveRecord::Base
   
-  has_attached_file :avatar, :url => "/system/:class/:id/:attachment_:basename_:style.:extension", :default_url => "/images/:class/:attachment_missing_:style.png", :styles => { :thumb => "32x32>", :medium => "150x150>"}
+  # has_attached_file :avatar, :url => "/system/:class/:id/:attachment_:basename_:style.:extension", :default_url => "/images/:class/:attachment_missing_:style.png", :styles => { :thumb => "32x32>", :medium => "150x150>"}
   
-  acts_as_polymorphic_paperclip
+  #mount_uploader :avatar, AvatarUploader, :mount_on => :avatar_file_name
+  
+  #acts_as_polymorphic_paperclip
   
   has_one :student
   has_one :student_relation

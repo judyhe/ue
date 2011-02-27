@@ -6,7 +6,6 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'devise'
 gem 'cancan'
 gem 'fastercsv'
 gem 'paperclip'
@@ -15,16 +14,20 @@ gem 'ancestry'
 gem 'recurrence'
 gem 'jquery-rails'
 gem 'simple_form'
+# gem 'carrierwave'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 group :development do 
   gem 'rspec-rails'
   gem 'annotate'
+  gem 'nifty-generators'
 end
 
 group :test do
   gem 'rspec'
   gem 'webrat'
   gem 'factory_girl_rails'
+  gem 'mocha'
 end
 
 # Use unicorn as the web server
@@ -49,4 +52,3 @@ end
 # group :development, :test do
 #   gem 'webrat'
 # end
-

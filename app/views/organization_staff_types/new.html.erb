@@ -1,7 +1,7 @@
-<h1>New organization staff type</h1>
+<% title 'New organization staff type' %>
 
-<%= simple_form_for(@organization_staff_type, :html => {:class => 'default'}) do |f| %>
-	<%= f.input :position, :input_html => {:class => 'auto'} %>
+<%= simple_form_for(@organization_staff_type) do |f| %>
+  <%= f.input :position, :input_html => {:class => 'auto'} %>
   <p>
     <%= f.button :submit %>
   </p>

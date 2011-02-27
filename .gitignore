@@ -6,3 +6,8 @@ tmp/**/*
 public/system
 doc
 .rvmrc
+.idea/.generators
+.idea/.name
+.idea/.rakeTasks
+.idea/workspace.xml
+.rspec

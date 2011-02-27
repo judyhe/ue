@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Urban Enrichment" %></title>
+    <%= stylesheet_link_tag "scaffold" %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="header">
+      <a href="/" id="branding">Urban Enrichment nyc</a>
+    </div>
+
+    <div id="session_mgmt">
+      <%= render :partial => 'layouts/messages' %>
+      
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
-<%= simple_form_for(neighborhood, :html => {:class => "default"}) do |f| %>
+<%= simple_form_for(neighborhood) do |f| %>
 	
 	<%= f.input :ord, :label => 'Order', :input_html => {:size => 2} %>
-	<%= f.input :name, :input_html => {:class => 'auto'} %>
+	<%= f.input :name %>
 	
 	<%= f.association :county %>
 	
