@@ -1,34 +1,41 @@
 <div class="content_secondary_group">
-		<h2>Notes (<%= local_model.comments.size %>)</h2>
+  <h2>Notes (<%= local_model.comments.size %>)</h2>
 		
-		<div class="content_secondary_group_content">
-			<% local_model.comments.each do |comment| %>
-				<div class="comment">
+  <div class="content_secondary_group_content">
+    <div class='remote_form_msg'></div>
+    <ul>
+      <% local_model.comments.each do |comment| %>
+        <li>
 					<p>
 						<%= link_to comment.comment, edit_comment_path(comment), :class => "text-like_link" %> &#8212; 
-						<%= link_to comment.user.login, edit_user_path(comment.user) %> 
+						<%= link_to comment.user.username, edit_user_path(comment.user) %> 
 					</p>
 					<p>
 						<em><%= comment.updated_at.strftime("%b %d, %Y") %> </em>
 						<span class="action_link">
-							(<%= link_to 'remove', comment, :class => "action_link", :confirm => 'Are you sure?', :method => :delete %>)
+						  (<%= link_to "remove", comment, :remote => true, :method => :delete, :class => 'remote_delete' %>)
 						</span>
 					</p>
-				</div>
+				</li>
 			<% end %>
+    </ul>
 
 
 			<p class="clearfix"><a href="#comment_form" class="button_green click_to_expose"><b>Add</b></a></p>
 
-			<%= simple_form_for(local_model, :html => {:class => "hide", :id => "comment_form"}) do |f| %>
-				<div>
-					<%= f.fields_for :comments, Comment.new do |cf| %>
-						<%= cf.hidden_field :user_id, :value => current_user.id %>
-						<%= cf.text_area :comment, :rows => 3 %>
-					<% end %>
-				</div>
-	
-				<p><%= f.submit "Add" %></p>
+      <%= simple_form_for(local_model, :html => {:class => "hide", :id => "comment_form"}) do |f| %>
+        <% if return_model %>
+          <%= hidden_field_tag :return_model, return_model %>
+        <% end %>
+
+        <%= f.fields_for :comments, Comment.new do |cf| %>
+	        <div>
+            <%= cf.hidden_field :user_id, :value => current_user.id %>
+            <%= cf.text_area :comment, :rows => 3 %>
+          </div>
+        <% end %>
+        
+        <p><%= f.submit "Add" %></p>
 			<% end %>
 	</div>
 </div>

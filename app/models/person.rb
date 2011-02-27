@@ -14,7 +14,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :contact_numbers, :allow_destroy => true, :reject_if => proc{|a| a['number'].blank? or a['contact_number_type_id'].blank?}
   
   has_many :comments, :as => :commentable, :include => [:user]
-  accepts_nested_attributes_for :comments, :reject_if => proc{|a| a['comment'].blank?}
+  accepts_nested_attributes_for :comments, :allow_destroy => true, :reject_if => proc{|a| a['comment'].blank?}
   
   has_one :address, :as => :addressable, :include => [:state, :county, :neighborhood]
   delegate :address1, :address2, :city, :state, :county, :neighborhood, :zip, :to => :address
