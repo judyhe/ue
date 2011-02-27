@@ -21,7 +21,7 @@
 
 	<% @students.each do |student| %>
 	  <tr>
-			<td><%= image_tag student.person.avatar.url(:thumb) %></td>
+			<td><%= image_tag student.person.avatar.thumb.url %></td>
 			<td><%= link_to student.name, student %></td>
 			<td><%= student.person.email %></td>
 			<td><%= student.age %></td>

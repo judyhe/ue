@@ -14,6 +14,7 @@ Ue::Application.routes.draw do
     resources :student_terms
   end
 
+  resources :assets
   resources :ages
   resources :programs
   resources :organization_staff_types

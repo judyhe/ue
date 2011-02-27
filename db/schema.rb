@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110225223011) do
+ActiveRecord::Schema.define(:version => 20110227223412) do
 
   create_table "activities", :force => true do |t|
     t.string "name"
@@ -59,24 +59,14 @@ ActiveRecord::Schema.define(:version => 20110225223011) do
   end
 
   create_table "assets", :force => true do |t|
-    t.string   "data_file_name"
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "attachings_count",  :default => 0
-    t.datetime "created_at"
-    t.datetime "data_updated_at"
-  end
-
-  create_table "attachings", :force => true do |t|
-    t.integer  "attachable_id"
-    t.integer  "asset_id"
-    t.string   "attachable_type"
+    t.string   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
-  add_index "attachings", ["asset_id"], :name => "index_attachings_on_asset_id"
-  add_index "attachings", ["attachable_id"], :name => "index_attachings_on_attachable_id"
+  add_index "assets", ["attachable_id"], :name => "index_assets_on_attachable_id"
 
   create_table "citizenships", :force => true do |t|
     t.string "level"
@@ -181,16 +171,13 @@ ActiveRecord::Schema.define(:version => 20110225223011) do
   end
 
   create_table "people", :force => true do |t|
-    t.string   "first_name",          :limit => 100, :default => "", :null => false
-    t.string   "last_name",           :limit => 100, :default => "", :null => false
-    t.string   "gender",              :limit => 1
-    t.string   "email",               :limit => 100
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.string   "first_name", :limit => 100, :default => "", :null => false
+    t.string   "last_name",  :limit => 100, :default => "", :null => false
+    t.string   "gender",     :limit => 1
+    t.string   "email",      :limit => 100
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
 
   create_table "programs", :force => true do |t|
@@ -218,15 +205,12 @@ ActiveRecord::Schema.define(:version => 20110225223011) do
   create_table "schools", :force => true do |t|
     t.string   "name",                                                                  :default => "", :null => false
     t.string   "email",                    :limit => 100
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "student_count",                                                         :default => 0
     t.decimal  "minority_percentage",                     :precision => 5, :scale => 2
     t.decimal  "reduced_lunch_percentage",                :precision => 5, :scale => 2
+    t.string   "avatar"
   end
 
   create_table "states", :force => true do |t|

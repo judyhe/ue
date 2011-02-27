@@ -1,10 +1,9 @@
 class Person < ActiveRecord::Base
-  
-  # has_attached_file :avatar, :url => "/system/:class/:id/:attachment_:basename_:style.:extension", :default_url => "/images/:class/:attachment_missing_:style.png", :styles => { :thumb => "32x32>", :medium => "150x150>"}
-  
-  #mount_uploader :avatar, AvatarUploader, :mount_on => :avatar_file_name
-  
-  #acts_as_polymorphic_paperclip
+
+  mount_uploader :avatar, AvatarUploader
+
+  has_many :assets, :as => :attachable
+  accepts_nested_attributes_for :assets, :allow_destroy => true, :reject_if => proc{|a| a['data'].blank?}
   
   has_one :student
   has_one :student_relation
@@ -32,21 +31,4 @@ class Person < ActiveRecord::Base
   end
   
 end
-
-# == Schema Information
-#
-# Table name: people
-#
-#  id                  :integer(4)      not null, primary key
-#  first_name          :string(100)     default(""), not null
-#  last_name           :string(100)     default(""), not null
-#  gender              :string(1)
-#  email               :string(100)
-#  avatar_file_name    :string(255)
-#  avatar_content_type :string(255)
-#  avatar_file_size    :integer(4)
-#  avatar_updated_at   :datetime
-#  created_at          :datetime
-#  updated_at          :datetime
-#
 

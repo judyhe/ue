@@ -36,6 +36,12 @@
     </requirement>
     <requirement>
       <requirement>
+        <dependency name="carrierwave" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
         <dependency name="exception_notification_rails3" version="0" bound="GREATER_OR_EQUAL" lib="exception_notifier" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
@@ -91,6 +97,12 @@
     <requirement>
       <requirement>
         <dependency name="recurrence" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rmagick" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
@@ -177,6 +189,7 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] railties (v3.0.3, /Users/ecomac/.rvm/gems/ruby-1.8.7-p174@ue/gems/railties-3.0.3)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] activesupport (v3.0.3, /Users/ecomac/.rvm/gems/ruby-1.8.7-p174@ue/gems/activesupport-3.0.3)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] treetop (v1.4.9, /Users/ecomac/.rvm/gems/ruby-1.8.7-p174@ue/gems/treetop-1.4.9)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rmagick (v2.13.1, /Users/ecomac/.rvm/gems/ruby-1.8.7-p174@ue/gems/rmagick-2.13.1)" level="application" />
   </component>
 </module>
 

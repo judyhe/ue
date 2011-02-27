@@ -1,6 +1,7 @@
 class Organization < ActiveRecord::Base
   
-  #acts_as_polymorphic_paperclip
+  has_many :assets, :as => :attachable
+  accepts_nested_attributes_for :assets, :allow_destroy => true, :reject_if => proc{|a| a['data'].blank?}
   
   has_many :organization_staffs
   has_many :programs

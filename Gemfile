@@ -8,14 +8,14 @@ gem 'rails', '3.0.3'
 gem 'mysql2'
 gem 'cancan'
 gem 'fastercsv'
-gem 'paperclip'
 gem 'exception_notification_rails3', :require => 'exception_notifier'
 gem 'ancestry'
 gem 'recurrence'
 gem 'jquery-rails'
 gem 'simple_form'
-# gem 'carrierwave'
+gem 'carrierwave'
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'rmagick'
 
 group :development do 
   gem 'rspec-rails'

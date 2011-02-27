@@ -1,7 +1,8 @@
 class School < ActiveRecord::Base
-  has_attached_file :avatar, :url => "/system/:class/:id/:attachment_:basename_:style.:extension", :default_url => "/images/:class/:attachment_missing_:style.png", :styles => { :thumb => "32x32>", :medium => "100x100>"}
+  mount_uploader :avatar, AvatarUploader
 
-  #acts_as_polymorphic_paperclip
+  has_many :assets, :as => :attachable
+  accepts_nested_attributes_for :assets, :allow_destroy => true, :reject_if => proc{|a| a['data'].blank?}
   
   has_many :school_staffs
   
@@ -32,22 +33,3 @@ class School < ActiveRecord::Base
   
   
 end
-
-# == Schema Information
-#
-# Table name: schools
-#
-#  id                       :integer(4)      not null, primary key
-#  name                     :string(255)     default(""), not null
-#  email                    :string(100)
-#  avatar_file_name         :string(255)
-#  avatar_content_type      :string(255)
-#  avatar_file_size         :integer(4)
-#  avatar_updated_at        :datetime
-#  created_at               :datetime
-#  updated_at               :datetime
-#  student_count            :integer(4)      default(0)
-#  minority_percentage      :decimal(5, 2)
-#  reduced_lunch_percentage :decimal(5, 2)
-#
-

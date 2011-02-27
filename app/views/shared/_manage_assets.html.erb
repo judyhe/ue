@@ -6,9 +6,9 @@
 		<ul>
 			<% local_model.assets.each do |asset| %>
 			<li>
-				<%= link_to asset.data_file_name, asset.url %> 
-				<span class="action_link">
-					(<%= link_to "remove", {:controller => "assets", :action => "destroy", :id => asset.id}, :class => "remote_form" %>)
+				<%= link_to asset.data.filename, asset.data.url %> 
+				<span class="action_link">          
+					(<%= link_to "remove", asset_path(asset), :remote => true, :method => :delete, :class => 'remote_delete' %>)
 				</span>
 			</li>
 			<% end %>
@@ -16,12 +16,15 @@
 
 		<p class="clearfix"><a href="#attachment_form" class="button_green click_to_expose"><b>Add</b></a></p>
 
-		<%= simple_form_for(local_model, :html => {:multipart => true, :class => "hide", :id => "attachment_form"}) do |f| %>
-		 <% if return_model %>
-			<%= hidden_field_tag :return_model, return_model %>
-		 <% end %>
-			<div><%= f.file_field :data, :size => 15 %></div>
-			<p><%= f.submit "Add" %></p>
-		<% end %>
-	</div>
+    <% local_model.assets.build if local_model.assets.empty? %>
+    <%= simple_form_for(local_model, :html => {:multipart => true, :class => "hide", :id => "attachment_form"}) do |f| %>
+      <% if return_model %>
+        <%= hidden_field_tag :return_model, return_model %>
+      <% end %>
+      <%= f.fields_for :assets do |a| %>
+        <div><%= a.file_field :data, :size => 15 %></div>
+      <% end %>
+      <p><%= f.submit "Add" %></p>
+    <% end %>
+  </div>
 </div>
