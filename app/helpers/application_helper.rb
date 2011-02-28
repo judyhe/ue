@@ -52,6 +52,7 @@ module ApplicationHelper
       address += ", " if f.neighborhood
       address += f.county.name unless f.county.blank?
     end
-    address
+    
+    raw(address)
   end
 end
