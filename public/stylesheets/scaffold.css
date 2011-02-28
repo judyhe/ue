@@ -273,3 +273,25 @@ form.default div.p2{float:right;width:48%;}
   margin-left:5px;
   color:red;
 }
+
+.error_messages {
+    background-color: #F0F0F0;
+    border: 2px solid red;
+    margin-bottom: 20px;
+    padding: 7px 7px 12px;
+    width: 400px;
+}
+.error_messages h2 {
+    background-color: #CC0000;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    margin: -7px;
+    padding: 5px 5px 5px 15px;
+    text-align: left;
+}
+.error_messages p {
+    color: #333333;
+    margin-bottom: 0;
+    padding: 5px;
+}

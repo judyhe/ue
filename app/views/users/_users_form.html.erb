@@ -1,0 +1,28 @@
+<% simple_form_for @user do |f| %>
+  
+  <%= f.input :username %>
+  <%= f.input :email %>
+  
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  
+  <%= f.input :role, :collection => User::ROLES, :label_method => :humanize, :value_method => :to_s %>
+  
+  <div class="input_set clearfix">
+    <%= f.label :name %>
+    <span>
+      <%= f.text_field :first_name %>
+      <%= f.label :first_name %>
+    </span>
+    
+    <span>
+      <%= f.text_field :last_name %>
+      <%= f.label :last_name %>
+    </span>
+  </div>
+  
+  <%= f.input :phone %>
+  <%= f.input :title %>
+
+  <p><%= f.submit @user.new_record? ? "Create" : "Update" %></p>
+<% end %>

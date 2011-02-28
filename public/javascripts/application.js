@@ -5,25 +5,25 @@ replace_ids = function(s){
   var new_id = new Date().getTime();
   return s.replace(/0/g, new_id);
 }
-// 
-// -$('.add_association').click(function(){
-// -    var holder = $($(this).attr('href'));
-// -    var new_relation = holder.find('.' + $(this).attr('rel')).first().clone();
-// -    var new_relation_html = $('<div>').append(new_relation).remove().html();
-// -    
-// -    holder.append(replace_ids((new_relation_html)));
-// -    return false;
-// -})
-// -
-// -$('form.default').delegate(".remove_association", "click", function(){
-// -    var target = $(this).attr('href').replace(/#/, '.');
-// -    $(this).parents(target).hide();
-// -    var hidden_input = $(this).prev("input[type=hidden]");
-// -    if(hidden_input.length){
-// -        hidden_input.val(1);
-// -    }
-// -})
-// -
+
+$('#content .add_association').click(function(){
+  var holder = $($(this).attr('href'));
+  var new_relation = holder.find('.' + $(this).attr('rel')).first().clone();
+  var new_relation_html = $('<div>').append(new_relation).remove().html();
+   
+  holder.append(replace_ids((new_relation_html)));
+  return false;
+})
+
+$('#content form.default').delegate(".remove_association", "click", function(){
+  var target = $(this).attr('href').replace(/#/, '.');
+  $(this).parents(target).hide();
+  var hidden_input = $(this).prev("input[type=hidden]");
+  if(hidden_input.length){
+    hidden_input.val(1);
+  }
+})
+
 $('#content_secondary .remote_delete').bind('ajax:success', function(event, data){
     $(this).closest('li').addClass(data.klass)
       .closest('ul').prev('.remote_form_msg').text(data.msg);

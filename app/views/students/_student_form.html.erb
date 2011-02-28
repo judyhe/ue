@@ -1,10 +1,15 @@
+<%= error_messages_for(student) %>
+
 <%= simple_form_for(student, :html => {:multipart => true, :class => "default"}) do |f| %>
+  
 	<div class="clearfix">
 	<div class="p1">
 		<%= f.fields_for :person do |person_fields| %>
 			<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => student.person} %>
 		<% end %>
 	</div>
+	
+	
 	<div class="p2">
 		<%= field_set_tag "Student details" do %>			
 		  <%= f.input :birth_date, :as => :date, :start_year => 1995, :end_year => Time.now.year-3, :order => [:month, :day, :year], :include_blank => true %>

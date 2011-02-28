@@ -65,7 +65,12 @@ class Student < ActiveRecord::Base
   
   def siblings
     return [] if self.student_relationships.empty?
-    sibling_relationships = StudentRelationship.where("student_relation_id = #{self.student_relationships.first.student_relation_id} and student_id != #{self.id}").join(:student)
+    
+    relations = self.student_relationships.map{|x| x.student_relation_id}
+    
+    # siblings are students who have the same student_relations as this student
+    sibling_relationships = StudentRelationship.where(:student_relation_id => relations).where("student_id != #{self.id}").includes(:student)
+
   end
   
 end
