@@ -6,7 +6,7 @@
 		<ul>
 			<% local_model.assets.each do |asset| %>
 			<li>
-				<%= link_to asset.data.filename, asset.data.url %> 
+				<%= link_to asset.data.file.filename, asset.data.url %> 
 				<span class="action_link">          
 					(<%= link_to "remove", asset_path(asset), :remote => true, :method => :delete, :class => 'remote_delete' %>)
 				</span>
