@@ -1,4 +1,6 @@
-<%= simple_form_for(relative, :html => {:class => "default"}) do |f| %>	
+<%= error_messages_for(relative) %>
+
+<%= simple_form_for(relative, :html => {:multipart => true, :class => "default"}) do |f| %>	
 	<div class="clearfix">
 		<div class="p1">
 		<%= f.fields_for :person do |person_fields| %>

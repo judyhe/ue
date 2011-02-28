@@ -1,3 +1,4 @@
+<%= error_messages_for(organization_staff) %>
 <%= simple_form_for(organization_staff, :html => {:class => "default"}) do |f| %>
 
 	<div class="clearfix">
@@ -12,7 +13,7 @@
 	<div class="p2">
 		<%= field_set_tag "Employment" do %>
 		
-		<%= f.association :organization_staff_type, :label => "Position" %>
+		<%= f.association :organization_staff_type, :label => "Position", :label_method => :position %>
 	
 	  <%= f.association :organization %>
     

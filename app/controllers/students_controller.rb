@@ -42,16 +42,12 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     @student = Student.find(params[:id])
-    #@student.person.relationships.build if @student.person.relationships.empty?
-    #@possible_family = Person.all_alphabetical
   end
 
   # POST /students
   # POST /students.xml
   def create
     @student = Student.new(params[:student])
-    #@student.person.relationships.build if @student.person.relationships.empty?
-    #@possible_family = Person.all_alphabetical
     
     respond_to do |format|
       if @student.save

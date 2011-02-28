@@ -45,7 +45,7 @@ class StudentRelationsController < ApplicationController
 
     respond_to do |format|
       if @student_relation.save
-        flash[:notice] = 'StudentRelation was successfully created.'
+        flash[:notice] = 'Relative was successfully created.'
         format.html { redirect_to(@student_relation) }
         format.xml  { render :xml => @student_relation, :status => :created, :location => @student_relation }
       else
@@ -62,7 +62,7 @@ class StudentRelationsController < ApplicationController
 
     respond_to do |format|
       if @student_relation.update_attributes(params[:student_relation])
-        flash[:notice] = 'StudentRelation was successfully updated.'
+        flash[:notice] = 'Relative was successfully updated.'
         format.html { redirect_to(@student_relation) }
         format.xml  { head :ok }
       else

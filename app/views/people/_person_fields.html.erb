@@ -13,6 +13,7 @@
 
 	<div>
 		<%= f.label :avatar, "Photo" %>
+		<%= image_tag(person.avatar.url(:thumb), :class => "float_left") %>
 		<%= f.file_field :avatar %>
 	</div>
 
