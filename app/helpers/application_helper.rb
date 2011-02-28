@@ -18,10 +18,20 @@ module ApplicationHelper
     date_to_format.strftime("%b %e, %Y")
   end
   
+  def full_date(date_to_format)
+    date_to_format.strftime("%b %e, %Y (%a)")
+  end
+  
+  def addressable_path(address)
+    eval(address.addressable_type.downcase + "_path(" + address.addressable_id.to_s + ")")
+  end
+  
   def unique_daytimes(set_of_events)    
     unique_daytimes = set_of_events.map {|x| {:day_of_week => x.day.wday, :start_time => x.start, :end_time => x.end}}.uniq
     
-    unique_daytimes.map{|x| Date::DAYNAMES[x[:day_of_week]] + " " + x[:start_time].strftime('%H:%M') + "-" + x[:end_time].strftime("%H:%M")}.join("<br />")
+    unique_daytimes = unique_daytimes.map{|x| Date::DAYNAMES[x[:day_of_week]] + " " + x[:start_time].strftime('%H:%M') + "-" + x[:end_time].strftime("%H:%M")}.join("<br />")
+    
+    raw(unique_daytimes)
   end
   
   def bool_to_eng(bool)

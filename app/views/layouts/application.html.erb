@@ -3,6 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Urban Enrichment" %></title>
     <%= stylesheet_link_tag "scaffold" %>
+    <%= stylesheet_link_tag "jquery-ui-start/jquery-ui-1.8.4.custom"%>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>

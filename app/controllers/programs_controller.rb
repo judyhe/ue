@@ -13,7 +13,7 @@ class ProgramsController < ApplicationController
   # GET /programs/1
   # GET /programs/1.xml
   def show
-    @program = Program.with_default_associations.find(params[:id])
+    @program = Program.default_associations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

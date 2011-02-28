@@ -10,8 +10,10 @@ Ue::Application.routes.draw do
   resources :countries
   resources :languages
   resources :term_sessions
+  
   resources :terms do
-    resources :student_terms
+    resources :student_terms, :controller => 'terms/student_terms'
+    post 'generate_sessions', :on => :member
   end
 
   resources :assets
@@ -38,7 +40,7 @@ Ue::Application.routes.draw do
   resources :activities
   resources :schools
   resources :students do
-      resources :student_terms
+    resources :student_terms, :controller => 'students/student_terms'
   end
 
   root :to => "home#index"

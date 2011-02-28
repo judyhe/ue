@@ -64,7 +64,7 @@ module TermSessionsHelper
 
     end
     
-    html
+    raw(html)
     
   end
 end
