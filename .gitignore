@@ -6,5 +6,4 @@ tmp/**/*
 public/system
 public/uploads
 doc
-.rvmrc
 .rspec
