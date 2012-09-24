@@ -5,10 +5,13 @@ class Address < ActiveRecord::Base
   belongs_to :county
   belongs_to :neighborhood
   
-  scope :venues, :conditions => ["addressable_type = ? or addressable_type = ?", "School", "Organization"]
+  def self.venues
+    addresses = self.where("addressable_type = ? or addressable_type = ?", "School", "Organization")  
+    addresses.reject{|adr| adr.addressable_type == "Organization" && !adr.addressable}
+  end
   
   def addressable_name
-    self.addressable.name 
+    self.addressable.name
   end
 end
 
