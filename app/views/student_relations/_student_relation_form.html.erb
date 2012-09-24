@@ -7,7 +7,6 @@
 			<%= render :partial => "people/person_fields", :locals => {:f => person_fields, :person => relative.person} %>
 		<% end %>
 		</div><!-- end .p1-->
-			
 		<div class="p2">
 			<%= field_set_tag "Related Students" do %>
 				<% relative.student_relationships.build if relative.student_relationships.empty? %>
@@ -15,7 +14,11 @@
 				<%= f.fields_for :student_relationships do |rf| %>
 					<div class="student_relationship">
 						<%= rf.collection_select :student_relationship_type_id, StudentRelationshipType.all, :id, :name, {:include_blank => true} %> of 
-						<%= rf.collection_select :student_id, Student.alphabetical, :id, :name, {:include_blank => true} %>	
+						<% if params[:student_id] %>
+						  <%= rf.collection_select :student_id, Student.alphabetical, :id, :name, {:include_blank => true, :selected => params[:student_id]} %>
+						<% else %>
+						  <%= rf.collection_select :student_id, Student.alphabetical, :id, :name, {:include_blank => true} %>
+					  <% end %>
 						<%= remove_link_unless_new_record(rf) -%>
 					</div>
 				<% end %>

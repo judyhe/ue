@@ -43,7 +43,7 @@
 			<% end %>
 			</span>
 			<p><%= link_to 'Add a family member', '#family', :class => "add_association", :rel => 'student_relationship' %></p>
-			<p><%= link_to 'Create new parent', new_student_relation_path %></p>
+			<p><%= link_to 'Create new parent', new_student_relation_path(:student_id => student.id) %></p>
 		<% end %>
 	</div>
 	</div>
