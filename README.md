@@ -1,2 +1,1 @@
-ue
-==
+Ruby 1.8.7 and Rails 3.0.3
