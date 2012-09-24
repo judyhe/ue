@@ -42,7 +42,7 @@
 					</td>
 					<td><ul>
 							<% if student_term.not_placed_reason_id %>
-								<li>Not Placed: <%= student_term.reason %> <%= student_term.not_placed_reason_other %></li>
+								<li>Not Placed: <%= student_term.reason %></li>
 							<% end %>
 							
 								<li>Completed: <%= bool_to_eng(student_term.completed) %></li>
