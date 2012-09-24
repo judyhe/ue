@@ -4,10 +4,7 @@ log/*.log
 tmp/**/*
 .DS_Store
 public/system
+public/uploads
 doc
 .rvmrc
-.idea/.generators
-.idea/.name
-.idea/.rakeTasks
-.idea/workspace.xml
 .rspec
