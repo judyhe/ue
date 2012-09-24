@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20100830025010) do
-=======
-ActiveRecord::Schema.define(:version => 20101128001035) do
->>>>>>> 61100c39bf99b14a49f5359451c8b64f75df32a0
+ActiveRecord::Schema.define(:version => 20120924045249) do
 
   create_table "activities", :force => true do |t|
     t.string "name"
@@ -51,6 +47,15 @@ ActiveRecord::Schema.define(:version => 20101128001035) do
     t.integer "neighborhood_id"
     t.integer "addressable_id"
     t.string  "addressable_type"
+  end
+
+  create_table "ages", :force => true do |t|
+    t.integer "age"
+  end
+
+  create_table "ages_programs", :id => false, :force => true do |t|
+    t.integer "age_id",     :null => false
+    t.integer "program_id", :null => false
   end
 
   create_table "assets", :force => true do |t|
@@ -159,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20101128001035) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "removed_at"
   end
 
   create_table "payer_types", :force => true do |t|
@@ -173,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20101128001035) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar"
+    t.datetime "removed_at"
   end
 
   create_table "programs", :force => true do |t|
@@ -181,11 +188,8 @@ ActiveRecord::Schema.define(:version => 20101128001035) do
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
-=======
     t.string   "gender",          :limit => 2
     t.boolean  "scholarship",                  :default => false
->>>>>>> 61100c39bf99b14a49f5359451c8b64f75df32a0
   end
 
   create_table "school_staff_types", :force => true do |t|

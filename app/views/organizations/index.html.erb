@@ -10,6 +10,7 @@
 		<th>Name</th>
 		<th>Description</th>
 		<th>Url</th>
+		<% if can? :destroy, @organizations %><th>Delete</th><% end %>
   </tr>
 	</thead>
 	<tbody>
@@ -18,6 +19,7 @@
 			<td><%= link_to org.name, org %></td>
 			<td><%= org.description %></td>
 			<td><%= org.url %></td>
+      <% if can? :destroy, org %><td><%= link_to 'X', org, :method => :delete, :confirm => 'Are you sure?' %></td><% end %>			
 	  </tr>
 	<% end %>
 	</tbody>

@@ -84,7 +84,8 @@ class StudentsController < ApplicationController
   # DELETE /students/1.xml
   def destroy
     @student = Student.find(params[:id])
-    @student.destroy
+    @student.person.removed_at = Time.now
+    @student.person.save
 
     respond_to do |format|
       format.html { redirect_to(students_path) }

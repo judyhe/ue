@@ -24,6 +24,7 @@ class Person < ActiveRecord::Base
   validates_presence_of :last_name  
   validates_inclusion_of :gender, :in => %w(M F)  
   
+  default_scope where("people.removed_at IS NULL")
   scope :alphabetical, :order => "people.last_name, people.first_name"
   
   def name

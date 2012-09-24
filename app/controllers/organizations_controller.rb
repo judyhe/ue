@@ -75,7 +75,8 @@ class OrganizationsController < ApplicationController
   # DELETE /organizations/1.xml
   def destroy
     @organization = Organization.find(params[:id])
-    @organization.destroy
+    @organization.removed_at = Time.now
+    @organization.save
 
     respond_to do |format|
       format.html { redirect_to(organizations_url) }

@@ -20,7 +20,7 @@ class Organization < ActiveRecord::Base
   
   validates_presence_of :name
   
-  default_scope order(:name)
+  default_scope where("removed_at IS NULL").order(:name)
   
 end
 # == Schema Information
