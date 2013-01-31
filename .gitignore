@@ -7,3 +7,4 @@ public/system
 public/uploads
 doc
 .rspec
+config/initializers/secret_token.rb
